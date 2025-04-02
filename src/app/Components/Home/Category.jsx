@@ -1,0 +1,98 @@
+import React from "react";
+import Title from "../Sherd/Title";
+
+const Category = () => {
+  const Categorys = [
+    {
+      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00",
+      title: "Apartments",
+      listing: "1",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00",
+      title: "Apartments",
+      listing: "1",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00",
+      title: "Apartments",
+      listing: "1",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00",
+      title: "Apartments",
+      listing: "1",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00",
+      title: "Apartments",
+      listing: "1",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00",
+      title: "Apartments",
+      listing: "1",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00",
+      title: "Apartments",
+      listing: "1",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00",
+      title: "Apartments",
+      listing: "1",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00",
+      title: "Apartments",
+      listing: "1",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00",
+      title: "Apartments",
+      listing: "1",
+    },
+  ];
+
+  return (
+    <div className="px-4 sm:px-6 lg:px-24">
+      <Title
+        h2="CATEGORIES"
+        p="Find your perfect fit in Portland real estate"
+      />
+      
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+        {Categorys?.slice(0, 6).map((category, index) => (
+          <div 
+            key={index}
+            className="group transform transition-all duration-300 hover:-translate-y-2"
+          >
+            {/* img */}
+            <div className="relative aspect-square border-2 border-gray-100 rounded-bl-[30px] rounded-tr-[30px] overflow-hidden shadow-lg">
+              <img
+                src={category.img}
+                alt={category.title}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+            </div>
+
+            {/* text */}
+            <div className="px-2 py-4 md:px-3 md:py-6">
+              <h2 className="text-lg md:text-xl font-bold text-gray-800 truncate">
+                {category.title}
+              </h2>
+              <p className="text-sm md:text-base text-gray-600 mt-1 md:mt-2">
+                {category.listing} listing
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Category;
