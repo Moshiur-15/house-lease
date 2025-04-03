@@ -9,29 +9,27 @@ import React from "react";
 
 const Home = () => {
   return (
-    <div>
-      <div className="">
-        <Banner />
-        <div className="container mx-auto py-8 md:py-14 lg:py-20">
-          <Services />
-        </div>
-        <div className="container mx-auto">
-          <Exclusive />
-        </div>
-        <div className="py-8 md:py-14 lg:py-20">
-          <PopularAreasCard />
-        </div>
-        <div className="container mx-auto">
-          <Category />
-        </div>
-        <div className=" py-8 md:py-14 lg:py-20">
-          <Rating />
-        </div>
-        <div className="container mx-auto pb-8 md:pb-14 lg:pb-20">
-          <OurBlog />
-        </div>
+    <>
+      <Banner />
+      <div className="container mx-auto py-8 md:py-14 lg:py-20">
+        <Services />
       </div>
-    </div>
+      <div className="container mx-auto">
+        <Exclusive />
+      </div>
+      <div className="py-8 md:py-14 lg:py-20">
+        <PopularAreasCard />
+      </div>
+      <div className="container mx-auto">
+        <Category />
+      </div>
+      <div className=" py-8 md:py-14 lg:py-20">
+        <Rating />
+      </div>
+      <div className="container mx-auto pb-8 md:pb-14 lg:pb-20">
+        <OurBlog />
+      </div>
+    </>
   );
 };
 

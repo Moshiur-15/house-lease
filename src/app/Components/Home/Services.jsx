@@ -1,6 +1,7 @@
-import Image from "next/image";
+
 import React from "react";
 import Title from "../Sherd/Title";
+import Link from "next/link";
 
 const Services = () => {
   const realEstateData = [
@@ -10,6 +11,7 @@ const Services = () => {
       description:
         "Searching for a new home is an exciting journey for buyers and sellers.",
       img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      link: "/properties",
     },
     {
       id: 2,
@@ -17,6 +19,7 @@ const Services = () => {
       description:
         "Accurate home valuation ensures fair pricing for sellers & appropriate offers for buyers.",
       img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      link: "#",
     },
     {
       id: 3,
@@ -24,6 +27,7 @@ const Services = () => {
       description:
         "Whether you're looking to buy, sell, or simply have questions about real estate.",
       img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      link: "/contact",
     },
   ];
 
@@ -45,15 +49,15 @@ const Services = () => {
               />
             </div>
             <div className="px-3 py-6 flex flex-col grow">
-              <h2 className="text-lg sm:text-xl uppercase">{item.title}</h2>
+              <h2 className="text-lg sm:text-xl font-semibold uppercase">{item.title}</h2>
               <p className="text-gray-600 text-sm mt-2">{item.description}</p>
               <div className="mt-auto">
-                <a
-                  href="#"
+                <Link
+                  href={item?.link}
                   className="mt-4 inline-block text-orange-400 font-semibold"
                 >
                   Read More →
-                </a>
+                </Link>
               </div>
             </div>
           </div>

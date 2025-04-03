@@ -1,4 +1,3 @@
-
 import Footer from "../Components/Sherd/Footer";
 import NavBer from "../Components/Sherd/NavBer";
 import "../globals.css";
@@ -11,7 +10,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <div>
-      <NavBer />
+      <div className="sticky top-0 z-50">
+        <NavBer />
+      </div>
       <div className="min-h-[calc(100vh-350px)]"> {children}</div>
       <Footer />
     </div>
