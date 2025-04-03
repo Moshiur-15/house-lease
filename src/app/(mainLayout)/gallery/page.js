@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import React, { useState } from "react";
 
 const images = [
@@ -53,7 +54,7 @@ const Gallery = () => {
                 className="cursor-pointer overflow-hidden rounded-bl-4xl rounded-tr-4xl "
                 onClick={() => setSelectedImage(img)}
               >
-                <img
+                <Image
                   src={img}
                   alt={`Gallery Image ${index + 1}`}
                   width={600}

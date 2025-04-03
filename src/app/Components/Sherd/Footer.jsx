@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-2xl font-bold text-blue-400 mb-4">HouseLease AI</h3>
+            <h3 className="text-2xl font-bold text-[#cc912a] mb-4">HouseLease</h3>
             <p className="text-gray-400">
               Artificial Intelligence Powered Property Management Solution
             </p>

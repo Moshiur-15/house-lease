@@ -1,4 +1,4 @@
-import ExclusiveCard from "../Components/Home/ExclusiveCard";
+import ExclusiveCard from "../../Components/Home/ExclusiveCard";
 
 const properties = () => {
   const properties = [

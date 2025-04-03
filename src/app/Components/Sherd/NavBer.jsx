@@ -9,42 +9,46 @@ const NavBer = () => {
   const isHomePage = pathname === "/";
 
   return (
-    <section className="shadow-sm bg-black">
-      <header className={`container mx-auto ${isHomePage ? "px-4 sm:px-6 lg:px-8 xl:px-24" : "px-6"}`}>
+    <section className="shadow-sm bg-black text-white">
+      <header
+        className={`container mx-auto ${
+          isHomePage ? "px-4 sm:px-6 lg:px-24" : "px-6"
+        }`}
+      >
         <div className="flex items-center justify-between h-16">
           <h1 className="font-extrabold text-2xl md:text-3xl">HouseLease</h1>
 
           <nav className="hidden lg:flex items-center gap-8">
-            <Link href="/" className="hover:text-blue-600 transition-colors">
+            <Link href="/" className="hover:text-[#FF8904] transition-colors">
               Home
             </Link>
             <Link
               href="/properties"
-              className="hover:text-blue-600 transition-colors"
+              className="hover:text-[#FF8904] transition-colors"
             >
               Properties
             </Link>
             <Link
               href="/blog"
-              className="hover:text-blue-600 transition-colors"
+              className="hover:text-[#FF8904] transition-colors"
             >
               Blogs
             </Link>
             <Link
               href="/gallery"
-              className="hover:text-blue-600 transition-colors"
+              className="hover:text-[#FF8904] transition-colors"
             >
               Gallery
             </Link>
             <Link
               href="/about"
-              className="hover:text-blue-600 transition-colors"
+              className="hover:text-[#FF8904] transition-colors"
             >
               About Us
             </Link>
             <Link
               href="/contact"
-              className="hover:text-blue-600 transition-colors"
+              className="hover:text-[#FF8904] transition-colors"
             >
               Contact
             </Link>
@@ -79,25 +83,40 @@ const NavBer = () => {
         {isOpen && (
           <div className="lg:hidden pb-4 space-y-4">
             <nav className="flex flex-col gap-3">
-              <Link href="/" className="p-2 hover:bg-gray-50 hover:text-black rounded">
+              <Link
+                href="/"
+                className="p-2 hover:text-[#FF8904] transition-colors"
+              >
                 Home
               </Link>
-              <Link href="/properties" className="p-2 hover:bg-gray-50 hover:text-black rounded">
+              <Link
+                href="/properties"
+                className="p-2 hover:text-[#FF8904] transition-colors"
+              >
                 Properties
               </Link>
-              <Link href="/blog" className="p-2 hover:bg-gray-50 hover:text-black rounded">
+              <Link
+                href="/blog"
+                className="p-2 hover:text-[#FF8904] transition-colors"
+              >
                 Blogs
               </Link>
               <Link
-              href="/gallery"
-              className="hover:text-blue-600 transition-colors"
-            >
-              Gallery
-            </Link>
-              <Link href="/about" className="p-2 hover:bg-gray-50 hover:text-black rounded">
+                href="/gallery"
+                className="p-2 hover:text-[#FF8904] transition-colors"
+              >
+                Gallery
+              </Link>
+              <Link
+                href="/about"
+                className="p-2 hover:text-[#FF8904] transition-colors"
+              >
                 About Us
               </Link>
-              <Link href="/contact" className="p-2 hover:bg-gray-50 hover:text-black rounded">
+              <Link
+                href="/contact"
+                className="p-2 hover:text-[#FF8904] transition-colors"
+              >
                 Contact
               </Link>
             </nav>

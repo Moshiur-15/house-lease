@@ -28,13 +28,13 @@ const Services = () => {
   ];
 
   return (
-    <div className="px-4 sm:px-6 lg:px-24">
+    <div className="px-4 sm:px-6 lg:px-24 text-black">
       <div className="text-center mb-8">
         <Title h2="OUR SERVICES" p="Passionate about being different & Loyal" />
       </div>
 
       <div className="grid md:grid-cols-3 gap-6">
-        {realEstateData?.slice(0,6).map((item) => (
+        {realEstateData?.slice(0, 6).map((item) => (
           <div key={item.id} className="">
             <div className="relative h-56 lg:h-80 rounded-bl-[30px] rounded-tr-[30px] overflow-hidden">
               <img
@@ -44,17 +44,17 @@ const Services = () => {
                 loading="lazy"
               />
             </div>
-            <div className="px-3 py-6">
-              <h2 className="text-lg sm:text-xl uppercase">
-                {item.title}
-              </h2>
+            <div className="px-3 py-6 flex flex-col grow">
+              <h2 className="text-lg sm:text-xl uppercase">{item.title}</h2>
               <p className="text-gray-600 text-sm mt-2">{item.description}</p>
-              <a
-                href="#"
-                className="mt-4 inline-block text-orange-400 font-semibold"
-              >
-                Read More →
-              </a>
+              <div className="mt-auto">
+                <a
+                  href="#"
+                  className="mt-4 inline-block text-orange-400 font-semibold"
+                >
+                  Read More →
+                </a>
+              </div>
             </div>
           </div>
         ))}

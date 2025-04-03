@@ -2,56 +2,56 @@ import React from "react";
 import Title from "../Sherd/Title";
 
 const Category = () => {
-  const Categorys = [
+  const Categories = [
     {
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00",
+      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
       title: "Apartments",
-      listing: "1",
+      listing: "24",
     },
     {
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00",
-      title: "Apartments",
-      listing: "1",
+      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto =format&fit=crop&w=1350&q=80",
+      title: "Luxury Villas",
+      listing: "12",
     },
     {
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00",
-      title: "Apartments",
-      listing: "1",
+      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      title: "Single Family Homes",
+      listing: "18",
     },
     {
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00",
-      title: "Apartments",
-      listing: "1",
+      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      title: "Commercial Spaces",
+      listing: "30",
     },
     {
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00",
-      title: "Apartments",
-      listing: "1",
+      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      title: "Studio Apartments",
+      listing: "15",
     },
     {
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00",
-      title: "Apartments",
-      listing: "1",
+      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      title: "Resort Homes",
+      listing: "8",
     },
     {
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00",
-      title: "Apartments",
-      listing: "1",
+      img: "https://images.unsplash.com/photo-1570129477492-45c003edd2be",
+      title: "Shared Housing",
+      listing: "20",
     },
     {
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00",
-      title: "Apartments",
-      listing: "1",
+      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      title: "Penthouse",
+      listing: "5",
     },
     {
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00",
-      title: "Apartments",
-      listing: "1",
+      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      title: "Townhouses",
+      listing: "10",
     },
     {
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00",
-      title: "Apartments",
-      listing: "1",
+      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      title: "Land Plots",
+      listing: "50",
     },
   ];
 
@@ -62,8 +62,8 @@ const Category = () => {
         p="Find your perfect fit in Portland real estate"
       />
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
-        {Categorys?.slice(0, 6).map((category, index) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+        {Categories?.slice(0, 10).map((category, index) => (
           <div 
             key={index}
             className="group transform transition-all duration-300 hover:-translate-y-2"

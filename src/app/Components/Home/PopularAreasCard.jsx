@@ -2,17 +2,17 @@ import React from "react";
 
 const areas = [
   {
-    name: "Oregon",
+    name: "Barishal",
     image:
       "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
   },
   {
-    name: "Alberta Arts",
+    name: "Patuakhali",
     image:
       "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
   },
   {
-    name: "Nob Hill",
+    name: "Barguna",
     image:
       "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
   },
