@@ -28,6 +28,12 @@ const NavBer = () => {
               Blogs
             </Link>
             <Link
+              href="/gallery"
+              className="hover:text-blue-600 transition-colors"
+            >
+              Gallery
+            </Link>
+            <Link
               href="/about"
               className="hover:text-blue-600 transition-colors"
             >
@@ -79,6 +85,12 @@ const NavBer = () => {
               <Link href="/blog" className="p-2 hover:bg-gray-50 hover:text-black rounded">
                 Blogs
               </Link>
+              <Link
+              href="/gallery"
+              className="hover:text-blue-600 transition-colors"
+            >
+              Gallery
+            </Link>
               <Link href="/about" className="p-2 hover:bg-gray-50 hover:text-black rounded">
                 About Us
               </Link>

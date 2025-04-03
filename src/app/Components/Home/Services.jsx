@@ -45,7 +45,7 @@ const Services = () => {
               />
             </div>
             <div className="px-3 py-6">
-              <h2 className="text-lg font-semibold text-gray-800">
+              <h2 className="text-lg sm:text-xl uppercase">
                 {item.title}
               </h2>
               <p className="text-gray-600 text-sm mt-2">{item.description}</p>
