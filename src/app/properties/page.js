@@ -74,7 +74,7 @@ const properties = () => {
         </div>
       </div>
 
-      <section className="container mx-auto">
+      <section className="container mx-auto px-6 mb-20">
         {/* title */}
         <div className="flex flex-col space-y-1 text-center pt-10">
           <span className="text-xs font-semibold tracking-widest flex justify-center items-center gap-1 text-orange-500 uppercase">

@@ -1,13 +1,16 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 
 const NavBer = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
   return (
     <section className="shadow-sm bg-black">
-      <header className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <header className={`container mx-auto ${isHomePage ? "px-4 sm:px-6 lg:px-8 xl:px-24" : "px-6"}`}>
         <div className="flex items-center justify-between h-16">
           <h1 className="font-extrabold text-2xl md:text-3xl">HouseLease</h1>
 

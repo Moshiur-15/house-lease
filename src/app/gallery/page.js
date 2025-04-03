@@ -43,7 +43,7 @@ const Gallery = () => {
       </div>
 
       {/*  Gallery  */}
-      <div className="container mx-auto px-5 lg:px-14">
+      <div className="container mx-auto px-5 lg:px-14 mb-20">
         <h2 className="text-3xl font-bold text-center mb-6 my-10">Gallery</h2>
         <div className="mt-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
