@@ -15,7 +15,7 @@ const Contact = () => {
         <div className="absolute inset-0 bg-black/60"></div>
 
         <div className="relative z-10 text-white text-center p-5">
-          <h1 className="sm:text-4xl lg:text-5xl font-bold mb-4">
+          <h1 className="text-4xl lg:text-5xl font-bold mb-4">
             How to contact me
           </h1>
           <p className="text-lg lg:text-xl mb-6 leading-relaxed">

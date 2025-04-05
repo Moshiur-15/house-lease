@@ -82,7 +82,7 @@ const Blogs = () => {
 
         {/* Content */}
         <div className="relative z-10 text-white text-center p-5">
-          <h1 className="sm:text-4xl lg:text-5xl font-bold mb-4">
+          <h1 className="text-4xl lg:text-5xl font-bold mb-4">
             Real Estate Blog
           </h1>
           <p className="text-lg lg:text-xl mb-6 leading-relaxed">
@@ -91,8 +91,8 @@ const Blogs = () => {
         </div>
       </div>
 
-      <section className="container mx-auto mt-20 px-6">
-        {/* <Title h2="NEWS" p="Our Blog" /> */}
+      <section className="container mx-auto px-6">
+        <h2 className="text-3xl lg:text-4xl font-bold my-8">All Blogs</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {blog?.slice(0, 6).map((blog, index) => (
             <div key={index} className="flex flex-col">

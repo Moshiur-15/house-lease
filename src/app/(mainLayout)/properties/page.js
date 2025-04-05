@@ -1,8 +1,10 @@
+import FilterBar from "@/app/Components/Home/FilterBar";
 import ExclusiveCard from "../../Components/Home/ExclusiveCard";
 
 const properties = () => {
   const properties = [
     {
+      id: 1,
       title: "Villa With Panoramic View",
       beds: 5,
       baths: 3,
@@ -10,6 +12,7 @@ const properties = () => {
       price: "$5,500,000",
     },
     {
+      id: 2,
       title: "Villa With Panoramic View",
       beds: 5,
       baths: 3,
@@ -17,6 +20,7 @@ const properties = () => {
       price: "$5,500,000",
     },
     {
+      id: 3,
       title: "Villa With Panoramic View",
       beds: 5,
       baths: 3,
@@ -24,6 +28,7 @@ const properties = () => {
       price: "$5,500,000",
     },
     {
+      id: 4,
       title: "Villa With Panoramic View",
       beds: 5,
       baths: 3,
@@ -31,6 +36,7 @@ const properties = () => {
       price: "$5,500,000",
     },
     {
+      id: 5,
       title: "Villa With Panoramic View",
       beds: 5,
       baths: 3,
@@ -38,6 +44,7 @@ const properties = () => {
       price: "$5,500,000",
     },
     {
+      id: 6,
       title: "Villa With Panoramic View",
       beds: 5,
       baths: 3,
@@ -45,6 +52,7 @@ const properties = () => {
       price: "$5,500,000",
     },
     {
+      id: 7,
       title: "Villa With Panoramic View",
       beds: 5,
       baths: 3,
@@ -52,6 +60,7 @@ const properties = () => {
       price: "$5,500,000",
     },
   ];
+  
 
   return (
     <div className="">
@@ -68,28 +77,22 @@ const properties = () => {
 
         {/* Content */}
         <div className="relative z-10 text-white text-center p-5">
-          <h1 className="sm:text-4xl lg:text-5xl font-semibold mb-4">
+          <h1 className="text-4xl lg:text-5xl font-semibold mb-4">
             Top Real Estate <br/> Listings in Portland
           </h1>
         </div>
       </div>
 
       <section className="container mx-auto px-6 mb-20">
-        {/* title */}
-        <div className="flex flex-col space-y-1 text-center pt-10">
-          <span className="text-xs font-semibold tracking-widest flex justify-center items-center gap-1 text-orange-500 uppercase">
-            <div className="h-2.5 w-2.5 rounded-full bg-[#EA703B]"></div>
-            Exclusive
-          </span>
-          <h2 className="text-3xl font-bold text-gray-900">
-            Featured Properties
-          </h2>
-        </div>
 
+        {/* search */}
+        <>
+        <FilterBar/>
+        </>
         {/* card */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-8">
           {properties?.slice(0, 6).map((property) => (
-            <ExclusiveCard property={property} key={property?.title} />
+            <ExclusiveCard property={property} key={property?.id} />
           ))}
         </div>
       </section>

@@ -1,7 +1,7 @@
-
 import React from "react";
 import Title from "../Sherd/Title";
 import Link from "next/link";
+import Images from "../Sherd/Images";
 
 const Services = () => {
   const realEstateData = [
@@ -10,7 +10,7 @@ const Services = () => {
       title: "HOME SEARCH",
       description:
         "Searching for a new home is an exciting journey for buyers and sellers.",
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      img: "https://portland-residence.b-cdn.net/wp-content/uploads/2021/11/slider4-2-1-1.jpeg",
       link: "/properties",
     },
     {
@@ -18,7 +18,7 @@ const Services = () => {
       title: "HOME VALUATION",
       description:
         "Accurate home valuation ensures fair pricing for sellers & appropriate offers for buyers.",
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      img: "https://portland-residence.b-cdn.net/wp-content/uploads/2014/05/10-4-1-1.webp",
       link: "#",
     },
     {
@@ -41,15 +41,12 @@ const Services = () => {
         {realEstateData?.slice(0, 6).map((item) => (
           <div key={item.id} className="">
             <div className="relative h-56 lg:h-80 rounded-bl-[30px] rounded-tr-[30px] overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1605146769289-440113cc3d00"
-                alt="dlsgfd"
-                className="w-full h-full object-cover object-center"
-                loading="lazy"
-              />
+              <Images img={item.img} />
             </div>
             <div className="px-3 py-6 flex flex-col grow">
-              <h2 className="text-lg sm:text-xl font-semibold uppercase">{item.title}</h2>
+              <h2 className="text-lg sm:text-xl font-semibold uppercase">
+                {item.title}
+              </h2>
               <p className="text-gray-600 text-sm mt-2">{item.description}</p>
               <div className="mt-auto">
                 <Link

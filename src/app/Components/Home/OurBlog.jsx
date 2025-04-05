@@ -16,28 +16,28 @@ const OurBlog = () => {
       title: "Understanding Rental Agreements",
       description:
         "A guide to understanding lease terms, security deposits, and tenant rights.",
-      img: "https://images.unsplash.com/photo-1595526114035-0c717acc70ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      img: "https://portland-residence.b-cdn.net/wp-content/uploads/2014/05/10-4-1-1.webp",
     },
     {
       id: 3,
       title: "Budgeting for Rent",
       description:
         "Tips on managing your finances to ensure you can comfortably afford your rental.",
-      img: "https://images.unsplash.com/photo-1592595896613-b54a63f779d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      img: "https://portland-residence.b-cdn.net/wp-content/uploads/2014/05/2.6-6-1.webp",
     },
     {
       id: 4,
       title: "Tenant vs. Landlord Responsibilities",
       description:
         "Know what tasks fall under the tenant’s responsibility and what landlords must handle.",
-      img: "https://images.unsplash.com/photo-1564013799931-1a9c3c6e163a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      img: "https://portland-residence.b-cdn.net/wp-content/uploads/2014/05/hous224-4-1.webp",
     },
     {
       id: 5,
       title: "How to Get Your Security Deposit Back",
       description:
         "Steps to ensure you leave your rental in great condition and get your deposit returned.",
-      img: "https://images.unsplash.com/photo-1580595029733-2f994b39b4f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      img: "https://portland-residence.b-cdn.net/wp-content/uploads/2014/05/10-4-1-1.webp",
     },
   ];
 
@@ -48,11 +48,16 @@ const OurBlog = () => {
         {blog?.slice(0, 6).map((blog, index) => (
           <div key={index} className="flex flex-col">
             {/* Image */}
-            <img
-              src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-              alt={blog.title}
-              className="w-full h-64 object-cover"
-            />
+            <div className="relative w-full h-56 overflow-hidden">
+              <Image
+                src={blog.img}
+                alt={blog.title}
+                className="object-cover object-center"
+                loading="lazy"
+                fill
+              />
+            </div>
+
             <div className="flex flex-col grow px-4 py-6">
               <h2 className="text-lg font-semibold text-gray-800">
                 {blog.title}

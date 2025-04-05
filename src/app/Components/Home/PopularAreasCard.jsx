@@ -9,12 +9,12 @@ const areas = [
   {
     name: "Patuakhali",
     image:
-      "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      "https://portland-residence.b-cdn.net/wp-content/uploads/2014/05/2.6-6-1.webp",
   },
   {
     name: "Barguna",
     image:
-      "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      "https://portland-residence.b-cdn.net/wp-content/uploads/2014/05/10-4-1-1.webp",
   },
 ];
 

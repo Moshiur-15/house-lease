@@ -1,11 +1,10 @@
 import React from "react";
-import Title from "../Sherd/Title";
-import Image from "next/image";
 import ExclusiveCard from "./ExclusiveCard";
 
 const Exclusive = () => {
   const properties = [
     {
+      id: 1,
       title: "Villa With Panoramic View",
       beds: 5,
       baths: 2,
@@ -13,6 +12,7 @@ const Exclusive = () => {
       price: "$5,500,000",
     },
     {
+      id: 2,
       title: "Villa With Panoramic View",
       beds: 5,
       baths: 3,
@@ -20,6 +20,7 @@ const Exclusive = () => {
       price: "$5,500,000",
     },
     {
+      id: 3,
       title: "Villa With Panoramic View",
       beds: 5,
       baths: 4,
@@ -27,6 +28,7 @@ const Exclusive = () => {
       price: "$5,500,000",
     },
     {
+      id: 4,
       title: "Villa With Panoramic View",
       beds: 5,
       baths: 5,
@@ -38,7 +40,7 @@ const Exclusive = () => {
   return (
     <div className="px-4 sm:px-6 lg:px-24">
       <div className="flex flex-col space-y-1 text-center">
-        <span className="text-xs font-semibold tracking-widest flex justify-center items-center gap-1 text-orange-500 uppercase">
+        <span className="text-xs font-semibold tracking-widest flex justify-center items-center gap-1 uppercase">
           <div className="h-2.5 w-2.5 rounded-full bg-[#EA703B]"></div>Exclusive
         </span>
         <h2 className="text-3xl font-bold text-gray-900">
@@ -47,7 +49,7 @@ const Exclusive = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-8">
-        {properties?.slice(0, 6).map((property) => <ExclusiveCard property={property} key={property?.baths} />)}
+        {properties?.slice(0, 6).map((property) => <ExclusiveCard property={property} key={property?.id} />)}
       </div>
     </div>
   );

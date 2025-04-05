@@ -60,9 +60,10 @@ const NavBer = () => {
             </button>
           </div>
 
+          {/* menu */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 hover:text-black"
+            className="lg:hidden p-2 rounded-lg cursor-pointer"
           >
             <svg
               className="w-6 h-6"
