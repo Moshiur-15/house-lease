@@ -1,10 +1,7 @@
 "use client";
-
 import { FaThLarge, FaBars } from "react-icons/fa";
-import { useState } from "react";
 
-const FilterBar = () => {
-  const [view, setView] = useState("grid");
+const FilterBar = ({view, setView}) => {
 
   return (
     <div className="flex items-center justify-between px-6 py-3 border border-gray-200 bg-white mt-10">
