@@ -12,7 +12,7 @@ const NavBer = () => {
     <section className="shadow-sm bg-black text-white">
       <header
         className={`container mx-auto ${
-          isHomePage ? "px-4 sm:px-6 lg:px-24" : "px-6"
+          isHomePage ? "px-4 lg:px-24" : "px-6"
         }`}
       >
         <div className="flex items-center justify-between h-16">

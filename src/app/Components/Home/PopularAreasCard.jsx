@@ -21,7 +21,7 @@ const areas = [
 
 const PopularAreas = () => {
   return (
-    <section className="bg-black text-white py-32">
+    <section className="bg-black text-white py-10 lg:py-32 px-8">
       <div className="container mx-auto flex flex-col lg:flex-row items-center lg:items-start">
         <div className="w-full lg:w-1/2 text-center md:text-left space-y-4">
           <p className="text-orange-400 text-sm uppercase tracking-wider">
