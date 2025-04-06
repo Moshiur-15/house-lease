@@ -3,7 +3,7 @@ import FilterBar from "@/app/Components/Home/FilterBar";
 import ExclusiveCard from "../../Components/Home/ExclusiveCard";
 import { useState } from "react";
 
-const properties = () => {
+const Properties = () => {
   const [view, setView] = useState("grid");
   console.log(view);
   const properties = [
@@ -137,4 +137,4 @@ const properties = () => {
   );
 };
 
-export default properties;
+export default Properties;
