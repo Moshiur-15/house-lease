@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const areas = [
@@ -36,9 +37,9 @@ const PopularAreas = () => {
             among residents, property developers, local businesses, and
             professionals.
           </p>
-          <a href="#contact" className="text-orange-400 font-semibold">
+          <Link href="/contact" className="text-orange-400 font-semibold">
             Contact Me
-          </a>
+          </Link>
         </div>
         <div className="mt-8 w-full lg:w-1/2 flex justify-center lg:justify-end">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-3xl">

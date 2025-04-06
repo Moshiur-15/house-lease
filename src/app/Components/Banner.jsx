@@ -11,7 +11,7 @@ const Banner = () => {
 
       {/* Content */}
       <div className="relative z-10 text-white text-center p-5 max-w-4xl mx-auto">
-        <h1 className="sm:text-4xl lg:text-5xl font-bold mb-4">
+        <h1 className="text-4xl lg:text-5xl font-bold mb-4">
           Buy, Sell & Rent Real Estate in Portland
         </h1>
         <p className="text-lg lg:text-xl mb-6 leading-relaxed">

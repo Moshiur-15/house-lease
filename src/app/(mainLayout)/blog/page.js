@@ -1,75 +1,64 @@
-import React from "react";
-// import Title from "../Components/Sherd/Title";
+"use client"
+import BlogCard from "@/app/Components/Home/BlogCard";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const Blogs = () => {
+  const [blogPost, setBlogPost] = useState([]);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+  //       const data = await res.json();
+  //       setBlogPost(data.slice(0, 6));
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
+
   const blog = [
     {
       id: 1,
-      title: "HOME SEARCH",
+      title: "Finding Your Dream Rental",
       description:
-        "Searching for a new home is an exciting journey for buyers and sellers.",
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        "Explore the key factors to consider when searching for the perfect rental home.",
+      img: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
     },
     {
       id: 2,
-      title: "HOME VALUATION",
+      title: "Understanding Rental Agreements",
       description:
-        "Accurate home valuation ensures fair pricing for sellers & appropriate offers for buyers.",
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        "A guide to understanding lease terms, security deposits, and tenant rights.",
+      img: "https://portland-residence.b-cdn.net/wp-content/uploads/2014/05/10-4-1-1.webp",
     },
     {
       id: 3,
-      title: "LET'S CONNECT",
+      title: "Budgeting for Rent",
       description:
-        "Whether you're looking to buy, sell, or simply have questions about real estate.",
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        "Tips on managing your finances to ensure you can comfortably afford your rental.",
+      img: "https://portland-residence.b-cdn.net/wp-content/uploads/2014/05/2.6-6-1.webp",
     },
     {
-      id: 3,
-      title: "LET'S CONNECT",
+      id: 4,
+      title: "Tenant vs. Landlord Responsibilities",
       description:
-        "Whether you're looking to buy, sell, or simply have questions about real estate.",
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        "Know what tasks fall under the tenant’s responsibility and what landlords must handle.",
+      img: "https://portland-residence.b-cdn.net/wp-content/uploads/2014/05/hous224-4-1.webp",
     },
     {
-      id: 3,
-      title: "LET'S CONNECT",
+      id: 5,
+      title: "How to Get Your Security Deposit Back",
       description:
-        "Whether you're looking to buy, sell, or simply have questions about real estate.",
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    },
-    {
-      id: 3,
-      title: "LET'S CONNECT",
-      description:
-        "Whether you're looking to buy, sell, or simply have questions about real estate.",
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    },
-    {
-      id: 3,
-      title: "LET'S CONNECT",
-      description:
-        "Whether you're looking to buy, sell, or simply have questions about real estate.",
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    },
-    {
-      id: 3,
-      title: "LET'S CONNECT",
-      description:
-        "Whether you're looking to buy, sell, or simply have questions about real estate.",
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    },
-    {
-      id: 3,
-      title: "LET'S CONNECT",
-      description:
-        "Whether you're looking to buy, sell, or simply have questions about real estate.",
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        "Steps to ensure you leave your rental in great condition and get your deposit returned.",
+      img: "https://portland-residence.b-cdn.net/wp-content/uploads/2014/05/10-4-1-1.webp",
     },
   ];
 
   return (
-    <div className="">
+    <>
       <div
         className="relative h-96 sm:h-[410px] lg:h-[500px] flex items-center justify-center bg-cover bg-center"
         style={{
@@ -94,32 +83,12 @@ const Blogs = () => {
       <section className="container mx-auto px-6">
         <h2 className="text-3xl lg:text-4xl font-bold my-8">All Blogs</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {blog?.slice(0, 6).map((blog, index) => (
-            <div key={index} className="flex flex-col">
-              {/* Image */}
-              <img
-                src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                alt={blog.title}
-                className="w-full h-64 object-cover"
-              />
-
-              <div className="px-3 py-6">
-                <h2 className="text-lg font-semibold text-gray-800">
-                  {blog.title}
-                </h2>
-                <p className="text-gray-600 text-sm mt-2">{blog.description}</p>
-                <a
-                  href="#"
-                  className="mt-4 inline-block text-orange-400 font-semibold"
-                >
-                  Continue reading →
-                </a>
-              </div>
-            </div>
+          {blog.map((blog, index) => (
+            <BlogCard key={index} blog={blog} />
           ))}
         </div>
       </section>
-    </div>
+    </>
   );
 };
 

@@ -1,9 +1,9 @@
 import Link from "next/link";
 import React from "react";
 import { IoLocationOutline } from "react-icons/io5";
-const ExclusiveCard = ({ property }) => {
+const ExclusiveCard = async({ property }) => {
   return (
-    <Link href='/' className="flex flex-col">
+    <Link href={`/properties/${property.id}`} className="flex flex-col">
       {/* Image */}
       <img
         src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"

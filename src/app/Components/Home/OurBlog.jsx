@@ -1,6 +1,6 @@
 import React from "react";
 import Title from "../Sherd/Title";
-import Image from "next/image";
+import BlogCard from "./BlogCard";
 
 const OurBlog = () => {
   const blog = [
@@ -46,33 +46,7 @@ const OurBlog = () => {
       <Title h2="NEWS" p="Our Blog" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         {blog?.slice(0, 6).map((blog, index) => (
-          <div key={index} className="flex flex-col">
-            {/* Image */}
-            <div className="relative w-full h-56 overflow-hidden">
-              <Image
-                src={blog.img}
-                alt={blog.title}
-                className="object-cover object-center"
-                loading="lazy"
-                fill
-              />
-            </div>
-
-            <div className="flex flex-col grow px-4 py-6">
-              <h2 className="text-lg font-semibold text-gray-800">
-                {blog.title}
-              </h2>
-              <p className="text-gray-600 text-sm mt-2">{blog.description}</p>
-              <div className="mt-auto">
-                <a
-                  href="#"
-                  className="inline-block text-orange-400 font-semibold  mt-auto "
-                >
-                  Continue reading →
-                </a>
-              </div>
-            </div>
-          </div>
+         <BlogCard key={index} blog={blog} />
         ))}
       </div>
     </div>
