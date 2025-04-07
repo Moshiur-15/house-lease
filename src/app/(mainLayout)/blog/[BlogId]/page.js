@@ -1,5 +1,7 @@
 import BlogAside from "@/app/Components/Home/BlogAside";
+import BlogComment from "@/app/Components/Home/BlogComment";
 import BlogDetails from "@/app/Components/Home/BlogDetails";
+import ShowBlogComment from "@/app/Components/Home/ShowBlogComment";
 import React from "react";
 
 const BlogId = ({ params }) => {
@@ -163,6 +165,10 @@ const BlogId = ({ params }) => {
         {/* details data */}
         <section className="w-full lg:w-4/6 min-h-96">
           <BlogDetails detail={detail} />
+          {/* show Comment */}
+          <ShowBlogComment/>
+          {/* Comment input */}
+          <BlogComment/>
         </section>
         {/* sideber */}
         <aside className="w-full lg:w-2/6 h-fit sticky top-12">

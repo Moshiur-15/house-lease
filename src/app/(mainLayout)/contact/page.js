@@ -81,12 +81,12 @@ const Contact = () => {
               placeholder="Your Message"
               className="p-3 border  w-full mt-4 h-32"
             ></textarea>
-            <button
-              type="submit"
-              className="mt-4 bg-black text-white py-2 px-6 hover:bg-gray-800 transition"
-            >
-              Send Email
-            </button>
+            <button className="group relative px-8 border border-black overflow-hidden py-2.5 mt-4 transition-all duration-500 hover:border-transparent bg-black">
+            <div className="absolute inset-0 w-0 bg-white transition-[width] duration-500 ease-in-out group-hover:w-full"></div>
+            <span className="relative z-10 flex items-center justify-center gap-2 text-white group-hover:text-black">
+              Send Mail
+            </span>
+          </button>
           </form>
         </div>
       </section>

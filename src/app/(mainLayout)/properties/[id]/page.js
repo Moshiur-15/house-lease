@@ -1,4 +1,6 @@
+import Comment from "@/app/Components/Propertie/Comment";
 import CustomSwiper from "@/app/Components/Propertie/CustomSwiper";
+import ShowComment from "@/app/Components/Propertie/ShowComment";
 import SideBer from "@/app/Components/Propertie/SideBer";
 import React from "react";
 
@@ -12,6 +14,10 @@ export default async function PropertiesDetails({ params }) {
         {/* details data */}
         <section className="w-full lg:w-4/6 my-8">
            <CustomSwiper/>
+           {/* show comment */}
+           <ShowComment/>
+           {/* comment */}
+           <Comment/>
         </section>
         {/* sideber */}
         <aside className="w-full lg:w-2/6 h-fit top-12 sticky">

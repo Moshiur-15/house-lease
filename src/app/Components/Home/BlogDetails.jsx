@@ -46,38 +46,6 @@ const BlogDetails = ({ detail }) => {
         <p className="text-gray-800 mb-4">{DetailDes1}</p>
         <p className="text-gray-800">{DetailDes2}</p>
       </section>
-
-      {/* comment */}
-      <>
-        <div className="mt-6px-6 py-12">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">Leave a Reply</h2>
-          <p className="text-gray-700 mb-4"> Your email address will not be published.</p>
-          <form>
-            <textarea
-              placeholder="Your Message"
-              className="p-3 border  w-full mt-4 h-32 focus:outline-none focus:ring-0"
-            ></textarea>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input
-                type="text"
-                placeholder="Your Name"
-                className="p-3 border  w-full focus:outline-none focus:ring-0"
-              />
-              <input
-                type="email"
-                placeholder="Your Email"
-                className="p-3 border  w-full focus:outline-none focus:ring-0"
-              />
-            </div>
-            <button
-              type="submit"
-              className="mt-4 bg-black text-white py-2 px-6 hover:bg-gray-300 font-bold hover:text-black transition duration-500"
-            >
-              Send Comment
-            </button>
-          </form>
-        </div>
-      </>
     </>
   );
 };

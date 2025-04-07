@@ -1,21 +1,5 @@
 import React from "react";
-import {
-  FaInstagram,
-  FaFacebookF,
-  FaLinkedinIn,
-  FaPinterest,
-  FaBehance,
-} from "react-icons/fa";
-
 const SideBer = () => {
-  const socialLinks = [
-    { name: "Instagram", icon: <FaInstagram /> },
-    { name: "Facebook", icon: <FaFacebookF /> },
-    { name: "LinkedIn", icon: <FaLinkedinIn /> },
-    { name: "Pinterest", icon: <FaPinterest /> },
-    { name: "Behance", icon: <FaBehance /> },
-  ];
-
   const recentPosts = [
     {
       date: "13. MARCH 2023.",
@@ -41,16 +25,15 @@ const SideBer = () => {
     <aside className="py-8 space-y-10">
       {/* seller info */}
       <div className="p-6 bg-gray-100">
-        {/* Agent Info */}
         <div className="flex items-center space-x-4">
           <img
-            src="https://randomuser.me/api/portraits/women/44.jpg"
+            src="https://i.ibb.co.com/wNPyX4j/me.jpg"
             alt="Agent"
             className="w-12 h-12 rounded-full object-cover"
-          />
+          />{/* posted user img */}
           <div>
-            <h2 className="text-lg font-semibold">Sam Daniels</h2>
-            <p className="text-sm text-gray-500">SE DRE# 12567897</p>
+            <h2 className="text-lg font-semibold">Moshiur</h2> {/* posted user name */}
+            <p className="text-sm text-gray-500">10-10-2020</p> {/* posted date */}
           </div>
         </div>
 
