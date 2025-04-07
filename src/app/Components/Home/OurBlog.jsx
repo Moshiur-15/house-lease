@@ -60,7 +60,7 @@ const OurBlog = () => {
         "Look out for suspicious listings, landlords who won’t meet in person, or those asking for large deposits without paperwork—these are red flags you shouldn't ignore.",
       DetailDes2:
         "Protect yourself by verifying property ownership, visiting homes in person, and never making payments until you're sure everything is legitimate and legal.",
-        image: "https://images.unsplash.com/photo-1581091012184-7c4ff26d6f86?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
       Date: "2025-08-30",
       Location: "UK",
     },
@@ -75,7 +75,7 @@ const OurBlog = () => {
         "Make sure to have your ID, proof of income, references, and bank statements ready. These are standard documents that most landlords will require for review.",
       DetailDes2:
         "Having your paperwork in order allows you to apply quickly for rentals you love, especially in competitive markets where hesitation could cost you the deal.",
-        image: "https://images.unsplash.com/photo-1607082349566-18734270f676?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
       Date: "2025-08-18",
       Location: "Australia",
     },
@@ -120,7 +120,7 @@ const OurBlog = () => {
         "Begin with basic furniture like a bed, table, and seating. Avoid unnecessary splurges on decorative items until you've settled into your new place comfortably.",
       DetailDes2:
         "Look for deals at thrift stores, online marketplaces, or furniture rental services. These options help you save money while still creating a cozy environment.",
-        image: "https://images.unsplash.com/photo-1560448071-8ef170df9f0f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
       Date: "2025-06-30",
       Location: "Japan",
     },
@@ -135,7 +135,7 @@ const OurBlog = () => {
         "Pay attention to clauses related to rent increases, repairs, subletting, and termination. Each of these can affect your rental experience and rights.",
       DetailDes2:
         "If something seems unclear, ask for clarification or legal advice before signing. Never agree to anything you're unsure about or can't afford to commit to.",
-        image: "https://images.unsplash.com/photo-1581091870621-b2c989c7c58e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
       Date: "2025-06-15",
       Location: "Italy",
     },
@@ -150,7 +150,7 @@ const OurBlog = () => {
         "Rental prices often dip during the winter months due to lower demand. Plan your move during this period to secure better deals and have more options.",
       DetailDes2:
         "Avoid peak moving seasons like summer when competition is high. Moving in off-season months provides more negotiation power and flexibility.",
-        image: "https://images.unsplash.com/photo-1572120360610-d971b9b78828?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
       Date: "2025-05-15",
       Location: "USA",
     },

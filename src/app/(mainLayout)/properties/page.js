@@ -5,7 +5,6 @@ import { useState } from "react";
 
 const Properties = () => {
   const [view, setView] = useState("grid");
-  console.log(view);
   const properties = [
     {
       id: 1,
@@ -125,7 +124,7 @@ const Properties = () => {
           className={`grid gap-6 mt-8 ${
             view === "list"
               ? "grid-cols-1"
-              : "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3"
+              : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
           }`}
         >
           {properties?.slice(0, 6).map((property) => (
