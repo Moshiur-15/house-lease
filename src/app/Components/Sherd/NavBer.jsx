@@ -42,16 +42,16 @@ const NavBer = () => {
               Gallery
             </Link>
             <Link
-              href="/about"
-              className="hover:text-[#FF8904] transition-colors"
-            >
-              About Us
-            </Link>
-            <Link
               href="/contact"
               className="hover:text-[#FF8904] transition-colors"
             >
               Contact
+            </Link>
+            <Link
+              href="/dashboard"
+              className="hover:text-[#FF8904] transition-colors"
+            >
+              Dashboard
             </Link>
           </nav>
 
@@ -110,16 +110,16 @@ const NavBer = () => {
                 Gallery
               </Link>
               <Link
-                href="/about"
-                className="p-2 hover:text-[#FF8904] transition-colors"
-              >
-                About Us
-              </Link>
-              <Link
                 href="/contact"
                 className="p-2 hover:text-[#FF8904] transition-colors"
               >
                 Contact
+              </Link>
+              <Link
+                href="/dashboard"
+                className="p-2 hover:text-[#FF8904] transition-colors"
+              >
+                Dashboard
               </Link>
             </nav>
             <button className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6">

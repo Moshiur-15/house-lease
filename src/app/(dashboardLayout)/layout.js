@@ -6,9 +6,5 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  return (
-    <div className="">
-      <div className="px-4"> {children}</div>
-    </div>
-  );
+  return <div className=""> {children}</div>;
 }
