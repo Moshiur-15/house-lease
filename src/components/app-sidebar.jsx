@@ -139,45 +139,33 @@ export function AppSidebar({ ...props }) {
                 {
                   id: 1,
                   title: "Admin Dashboard",
-                  url: "/admin/dashboard",
+                  url: "/dashboard",
                   icon: PieChart,
                 },
                 {
                   id: 2,
                   title: "Manage Users",
-                  url: "/admin/users",
+                  url: "dashboard/AllUsers",
                   icon: Bot,
                 },
                 {
                   id: 3,
-                  title: "View Properties",
-                  url: "/admin/properties",
+                  title: "Manage Properties",
+                  url: "dashboard/ManageProperties",
                   icon: Map,
-                },
-                {
-                  id: 4,
-                  title: "Reports",
-                  url: "/admin/reports",
-                  icon: SquareTerminal,
                 },
                 {
                   id: 5,
                   title: "Payments",
-                  url: "/admin/payments",
+                  url: "dashboard/Payments",
                   icon: AudioWaveform,
                 },
                 {
                   id: 6,
-                  title: "Blog Management",
-                  url: "/admin/blog-management",
+                  title: "Manage Blogs",
+                  url: "dashboard/ManageBlog",
                   icon: BookOpen,
-                },
-                {
-                  id: 7,
-                  title: "Add Blog",
-                  url: "/admin/add-blog",
-                  icon: GalleryVerticalEnd,
-                },
+                }
               ],
             },
             {
