@@ -133,41 +133,41 @@ export function AppSidebar({ ...props }) {
       <SidebarContent>
         <NavMain
           items={[
-            {
-              section: "Admin",
-              items: [
-                {
-                  id: 1,
-                  title: "Admin Dashboard",
-                  url: "/dashboard",
-                  icon: PieChart,
-                },
-                {
-                  id: 2,
-                  title: "Manage Users",
-                  url: "dashboard/AllUsers",
-                  icon: Bot,
-                },
-                {
-                  id: 3,
-                  title: "Manage Properties",
-                  url: "dashboard/ManageProperties",
-                  icon: Map,
-                },
-                {
-                  id: 5,
-                  title: "Payments",
-                  url: "dashboard/Payments",
-                  icon: AudioWaveform,
-                },
-                {
-                  id: 6,
-                  title: "Manage Blogs",
-                  url: "dashboard/ManageBlog",
-                  icon: BookOpen,
-                }
-              ],
-            },
+            // {
+            //   section: "Admin",
+            //   items: [
+            //     {
+            //       id: 1,
+            //       title: "Admin Dashboard",
+            //       url: "/dashboard",
+            //       icon: PieChart,
+            //     },
+            //     {
+            //       id: 2,
+            //       title: "Manage Users",
+            //       url: "/dashboard/allUsers",
+            //       icon: Bot,
+            //     },
+            //     {
+            //       id: 3,
+            //       title: "Manage Properties",
+            //       url: "/dashboard/manageProperties",
+            //       icon: Map,
+            //     },
+            //     {
+            //       id: 5,
+            //       title: "Payments",
+            //       url: "/dashboard/payments",
+            //       icon: AudioWaveform,
+            //     },
+            //     {
+            //       id: 6,
+            //       title: "Manage Blogs",
+            //       url: "/dashboard/manageBlog",
+            //       icon: BookOpen,
+            //     }
+            //   ],
+            // },
             {
               section: "Seller",
               items: [
@@ -179,15 +179,15 @@ export function AppSidebar({ ...props }) {
                 },
                 {
                   id: 9,
-                  title: "My Properties",
-                  url: "/agent/properties",
-                  icon: Map,
-                },
-                {
-                  id: 10,
                   title: "Add Property",
                   url: "/agent/add-property",
                   icon: Frame,
+                },
+                {
+                  id: 10,
+                  title: "My Properties",
+                  url: "/agent/properties",
+                  icon: Map,
                 },
                 {
                   id: 11,
@@ -197,41 +197,41 @@ export function AppSidebar({ ...props }) {
                 },
               ],
             },
-            {
-              section: "User",
-              items: [
-                {
-                  id: 12,
-                  title: "Homepage",
-                  url: "/home",
-                  icon: Command,
-                },
-                {
-                  id: 13,
-                  title: "Properties",
-                  url: "/properties",
-                  icon: Map,
-                },
-                {
-                  id: 14,
-                  title: "Wishlist",
-                  url: "/wishlist",
-                  icon: GalleryVerticalEnd,
-                },
-                {
-                  id: 15,
-                  title: "Manage Bookings",
-                  url: "/bookings",
-                  icon: BookOpen,
-                },
-                {
-                  id: 16,
-                  title: "Profile",
-                  url: "/profile",
-                  icon: Settings2,
-                },
-              ],
-            },
+            // {
+            //   section: "User",
+            //   items: [
+            //     {
+            //       id: 12,
+            //       title: "Homepage",
+            //       url: "/home",
+            //       icon: Command,
+            //     },
+            //     {
+            //       id: 13,
+            //       title: "Properties",
+            //       url: "/properties",
+            //       icon: Map,
+            //     },
+            //     {
+            //       id: 14,
+            //       title: "Wishlist",
+            //       url: "/wishlist",
+            //       icon: GalleryVerticalEnd,
+            //     },
+            //     {
+            //       id: 15,
+            //       title: "Manage Bookings",
+            //       url: "/bookings",
+            //       icon: BookOpen,
+            //     },
+            //     {
+            //       id: 16,
+            //       title: "Profile",
+            //       url: "/profile",
+            //       icon: Settings2,
+            //     },
+            //   ],
+            // },
           ]}
         />
       </SidebarContent>

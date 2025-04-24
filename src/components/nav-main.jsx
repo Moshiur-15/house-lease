@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/sidebar";
 
 export function NavMain({ items }) {
-  console.log(items)
   return (
     <SidebarGroup>
       <SidebarMenu>
