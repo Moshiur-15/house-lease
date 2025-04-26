@@ -102,6 +102,10 @@ const ProfilePage = () => {
         </div>
       </div>
 
+      <div className="bg-white h-10">
+
+      </div>
+
       {/* Update Section */}
       <section className="border-t dark:border-gray-700 bg-slate-50 dark:bg-gray-900/80 mt-12">
         <div className="px-4 py-10 lg:px-32">
