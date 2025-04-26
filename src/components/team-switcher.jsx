@@ -47,7 +47,7 @@ export function TeamSwitcher({ teams }) {
                   className="border h-11 w-11"
                 />
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-bold text-[18px] uppercase">
+                  <span className="truncate font-bold text-[18px] uppercase text-black">
                     House Lease
                   </span>
                 </div>

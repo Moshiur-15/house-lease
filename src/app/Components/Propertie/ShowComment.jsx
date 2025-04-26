@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 
 const ShowComment = () => {
   const comments = [
@@ -8,7 +9,7 @@ const ShowComment = () => {
       date: "13. March 2023",
       avatar: "https://randomuser.me/api/portraits/women/1.jpg",
       comment:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore dolore vix etiam mea id erat essent complectitur vis.",
+        "Dynamically evisculate go forward systems rather than proactive leadership. Uniquely strategize highly efficient niches and cross functional processes. Competently supply diverse relationships and quality quality vectors. Synergistically target next-generation supply chains without robust systems. Efficiently predominate out-of-the-box imperatives via premium infrastructures.Enthusiastically provide access to intermandated infomediaries and business applications. Completely incubate backend methods of empowerment via.",
     },
     {
       id: 2,
@@ -16,7 +17,7 @@ const ShowComment = () => {
       date: "13. March 2023",
       avatar: "https://randomuser.me/api/portraits/men/1.jpg",
       comment:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore dolore vix etiam mea id erat essent complectitur vis.",
+        "Dynamically evisculate go forward systems rather than proactive leadership. Uniquely strategize highly efficient niches and cross functional processes. Competently supply diverse relationships and quality quality vectors. Synergistically target next-generation supply chains without robust systems. Efficiently predominate out-of-the-box imperatives via premium infrastructures.Enthusiastically provide access to intermandated infomediaries and business applications. Completely incubate backend methods of empowerment via.",
     },
     {
       id: 3,
@@ -28,16 +29,23 @@ const ShowComment = () => {
     },
   ];
 
+  // State to store which comment is expanded
+  const [expandedComments, setExpandedComments] = useState({});
+
+  const toggleComment = (id) => {
+    setExpandedComments((prevState) => ({
+      ...prevState,
+      [id]: !prevState[id],
+    }));
+  };
+
   return (
     <div className="mt-10">
       <h2 className="text-2xl font-bold mb-6 uppercase">
         {comments.length} Comments
       </h2>
-      {comments.map((item, index) => (
-        <div
-          key={item.id}
-          className={`flex gap-4 mb-8 ${index % 2 === 0 ? "pl-0" : "pl-8 lg:pl-16"}`}
-        >
+      {comments.map((item) => (
+        <div key={item.id} className="flex gap-4 mb-8">
           {/* Avatar */}
           {item.avatar ? (
             <img
@@ -58,7 +66,17 @@ const ShowComment = () => {
               <span className="text-sm text-gray-500">{item.date}</span>
             </div>
             <p className="text-gray-700 my-2 text-justify border-b border-gray-300 leading-7 pb-4">
-              {item.comment}
+              {expandedComments[item.id]
+                ? item.comment
+                : `${item.comment.slice(0, 150)}...`}
+              {item.comment.length > 150 && (
+                <span
+                  onClick={() => toggleComment(item.id)}
+                  className="text-blue-500 cursor-pointer ml-1 hover:underline"
+                >
+                  {expandedComments[item.id] ? " Show Less" : " Read More"}
+                </span>
+              )}
             </p>
           </div>
         </div>
