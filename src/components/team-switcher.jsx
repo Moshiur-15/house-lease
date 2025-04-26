@@ -33,26 +33,26 @@ export function TeamSwitcher({ teams }) {
     <SidebarMenu>
       <SidebarMenuItem>
         <DropdownMenu>
-          <DropdownMenuTrigger asChild><Link href="/">
-            <SidebarMenuButton
-              size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground rounded-none bg-[#fff2e5f3] hover:bg-[#f6e0cb] hover:cursor-pointer duration-500"
-            >
-              
-                <img
-                  src='https://i.ibb.co.com/qLHFY80t/cover-letter-For-Full-stack-devoper-3.webp'
-                  alt="??"
-                  // width={40}
-                  // height={40}
-                  className="border h-11 w-11"
+          <DropdownMenuTrigger asChild>
+            <Link href="/">
+              <SidebarMenuButton
+                size="lg"
+                className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground rounded-none bg-white hover:cursor-pointer duration-500 shadow-lg shadow-gray-300 hover:bg-white"
+              >
+                <Image
+                  src="/Images/img2.png"
+                  alt="Image"
+                  width={40}
+                  height={40}
+                  className="h-11 w-14"
                 />
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-bold text-[18px] uppercase text-black">
                     House Lease
                   </span>
                 </div>
-              
-            </SidebarMenuButton></Link>
+              </SidebarMenuButton>
+            </Link>
           </DropdownMenuTrigger>
         </DropdownMenu>
       </SidebarMenuItem>
