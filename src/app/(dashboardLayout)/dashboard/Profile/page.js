@@ -50,12 +50,29 @@ const ProfilePage = () => {
             />
           </div>
         </div>
-
         <>
-          <h2 className="text-2xl md:text-3xl font-bold dark:text-white">
-            {userData.name}
-          </h2>
-          <p className="text-gray-600 dark:text-gray-400 mt-1 text-sm">
+          <div className="relative group overflow-hidden">
+            <h2 className="text-2xl md:text-3xl font-bold dark:text-white">
+              <span
+                className="relative dark:text-white text-xl sm:text-3xl uppercase tracking-widest text-transparent [text-stroke:1px rgba(0,0,0,0.5)]"
+                style={{ WebkitTextStroke: "1px rgba(0,0,0,0.5)" }}
+              >
+                <span
+                  className="absolute top-0.5 lg:top-[3px] xl:top-[2px] left-0 w-0 h-full overflow-hidden whitespace-nowrap transition-all duration-1000 ease-in-out group-hover:w-full border-r-4"
+                  style={{
+                    color: "#ffb17d",
+                    WebkitTextStroke: "1px #ffb17d",
+                    borderColor: "#ffb17d",
+                  }}
+                >
+                  {userData.name}
+                </span>
+                {userData.name}
+              </span>
+            </h2>
+          </div>
+
+          <p className="text-gray-600 dark:text-gray-400 mt-1 text-[17px]">
             {userData.role === "admin" && "Administrator"}
             {userData.role === "seller" && "Real Estate Seller"}
           </p>
@@ -102,16 +119,34 @@ const ProfilePage = () => {
         </div>
       </div>
 
-      <div className="bg-white h-10">
-
-      </div>
+      <div className="bg-white dark:h-0 h-10"></div>
 
       {/* Update Section */}
       <section className="border-t dark:border-gray-700 bg-slate-50 dark:bg-gray-900/80 mt-12">
         <div className="px-4 py-10 lg:px-32">
-          <h3 className="text-2xl font-semibold dark:text-white mb-8">
-            Update Profile
-          </h3>
+
+          <div className="relative group overflow-hidden mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold dark:text-white">
+              <span
+                className="relative dark:text-white text-xl sm:text-3xl tracking-widest text-transparent dark:[text-stroke:1px #ffff]"
+                style={{
+                  WebkitTextStroke: "1px rgba(0, 0, 0, 0.5)",
+                }}
+              >
+                <span
+                  className="absolute top-0.5 lg:top-[3px] xl:top-[2px] left-0 w-0 h-full overflow-hidden whitespace-nowrap transition-all duration-1000 ease-in-out group-hover:w-full border-r-4"
+                  style={{
+                    color: "#ffb17d",
+                    WebkitTextStroke: "1px #ffb17d",
+                    borderColor: "#ffb17d",
+                  }}
+                >
+                  Update Profile
+                </span>
+                Update Profile
+              </span>
+            </h2>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <input
