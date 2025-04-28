@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import { FaMapMarkerAlt, FaCalendarAlt, FaComments } from "react-icons/fa";
 
@@ -36,10 +37,12 @@ const BlogDetails = ({ detail }) => {
 
         <p className="text-gray-700 mb-4">{CardDes}</p>
 
-        <img
+        <Image
           src={image}
           alt={CardTitle}
-          className="w-full h-auto mb-6 object-cover"
+          className="w-full h-auto mb-6 object-cover bg-gray-200"
+          height={70}
+          width={100}
         />
 
         <h2 className="text-2xl sm:text-3xl font-bold mb-4">{DetailTitle}</h2>

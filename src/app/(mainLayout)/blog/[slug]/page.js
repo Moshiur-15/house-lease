@@ -160,7 +160,6 @@ const BlogId = ({ params }) => {
 //   param data
   const { slug } = React.use(params);
   const detail = blogs.find(b=> b.id === parseInt(slug))
-  console.log(detail, slug)
   return (
     <div className="container mx-auto lg:flex gap-10 px-6.5 lg:px-5.5">
         {/* details data */}
