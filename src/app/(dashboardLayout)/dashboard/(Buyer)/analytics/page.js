@@ -35,7 +35,6 @@ const property = [
   },
 ];
 
-// Chart Data - Restructure the property data to fit the chart format
 const chartData = property.map(item => ({
   name: `Property ${item.id}`,
   beds: item.beds,
@@ -58,7 +57,6 @@ const TriangleBar = (props) => {
 
 const Analytics = () => {
   const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
   return (
     <div className="p-6 dark:bg-gray-800 min-h-screen">
       <h1 className="text-3xl font-bold mb-6 text-center text-white">Property Analytics</h1>

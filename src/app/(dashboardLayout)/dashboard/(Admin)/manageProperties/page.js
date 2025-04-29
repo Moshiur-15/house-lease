@@ -4,7 +4,6 @@ const ManageProperties = () => {
     return (
         <div>
             ManageProperties
-            ManageProperties
         </div>
     );
 };

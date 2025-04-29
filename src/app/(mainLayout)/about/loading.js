@@ -14,6 +14,8 @@ const loading = () => {
                 <span className="animate-bounce [animation-delay:0.7s]">.</span>
                 <span className="animate-bounce [animation-delay:0.8s]">.</span>
                 <span className="animate-bounce [animation-delay:0.9s]">.</span>
+                <span className="animate-bounce [animation-delay:0.8s]">.</span>
+                <span className="animate-bounce [animation-delay:0.9s]">.</span>
             </div>
         </div>
     );

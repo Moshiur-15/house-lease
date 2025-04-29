@@ -3,7 +3,7 @@ import React from 'react';
 const ManagePropertie = () => {
     return (
         <div>
-            ManagePropertie
+            ManageProperties
         </div>
     );
 };

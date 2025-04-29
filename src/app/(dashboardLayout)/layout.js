@@ -38,6 +38,5 @@ export default function RootLayout({ children }) {
         </div>
       </SidebarInset>
     </SidebarProvider>
-    
   </div>;
 }
