@@ -183,11 +183,9 @@ const Properties = () => {
       </div>
 
       <section className="container mx-auto px-6 mb-20">
-        {/* search */}
         <>
           <FilterBar view={view} setView={setView} />
         </>
-        {/* card */}
         <div
           className={`grid gap-6 mt-8 ${
             view === "list"

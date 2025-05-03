@@ -34,7 +34,6 @@ const property = [
     price: 6000,
   },
 ];
-
 const chartData = property.map(item => ({
   name: `Property ${item.id}`,
   beds: item.beds,

@@ -204,7 +204,6 @@ export default async function PropertiesDetails({ params }) {
       description: "LUXURY VILLA WITH MODERN INTERIOR AND SPACIOUS ROOMS.",
     },
   ];
-
   const { id } = await params;
   const house = properties.find((p) => p?.id !== id);
 
