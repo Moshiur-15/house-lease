@@ -57,12 +57,11 @@ const TriangleBar = (props) => {
 const Analytics = () => {
   const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
   return (
-    <div className="p-6 dark:bg-gray-800 min-h-screen">
-      <h1 className="text-3xl font-bold mb-6 text-center text-white">Property Analytics</h1>
+    <div className="p-6 bg-gray-100 dark:bg-gray-800 min-h-screen">
+      <h1 className="text-3xl font-bold mb-6 text-center text-black dark:text-white">Property Analytics</h1>
 
       {/* Bar Chart */}
       <div className="dark:bg-gray-900">
-        <h2 className="text-xl font-bold mb-4 text-center text-white">Property Statistics</h2>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#333" />
