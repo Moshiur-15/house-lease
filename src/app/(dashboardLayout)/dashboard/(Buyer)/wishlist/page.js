@@ -61,11 +61,11 @@ const Wishlist = () => {
                 key={item.id}
                 className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
               >
-                <TableCell className="border-r border-gray-200 dark:border-gray-700">
+                <TableCell className="p-0">
                   <img
                     src={item.cardImage}
                     alt={item.title}
-                    className="w-16 h-12 object-cover shadow-sm"
+                    className="w-16 h-12.5 object-cover shadow-sm"
                   />
                 </TableCell>
                 <TableCell className="font-medium text-gray-800 dark:text-gray-100 border-r border-gray-200 dark:border-gray-700">{item.title}</TableCell>
