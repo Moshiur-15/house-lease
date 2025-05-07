@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useMemo } from "react";
 import {
   Table,
@@ -18,7 +18,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import wishlistData from '../../../../../fakeapi/wishlist/page'
+import wishlistData from "../../../../../fakeapi/wishlist/page";
 
 const Wishlist = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -52,14 +52,16 @@ const Wishlist = () => {
   return (
     <div className="p-4 mx-auto">
       <div className="flex justify-between mb-4 items-center">
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200">Wishlist</h2>
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
+          Wishlist
+        </h2>
         <input
           type="text"
           placeholder="Search wishlist..."
           value={searchTerm}
           onChange={(e) => {
             setSearchTerm(e.target.value);
-            setCurrentPage(1); // Reset to page 1 when searching
+            setCurrentPage(1);
           }}
           className="border border-gray-300 dark:border-gray-600 w-full max-w-[16rem] py-2 px-3 rounded"
         />
@@ -69,11 +71,21 @@ const Wishlist = () => {
         <Table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
           <TableHeader className="bg-gray-100 dark:bg-gray-800">
             <TableRow>
-              <TableHead className="text-gray-700 dark:text-gray-300 border-r border-gray-200 dark:border-gray-700">Image</TableHead>
-              <TableHead className="text-gray-700 dark:text-gray-300 border-r border-gray-200 dark:border-gray-700">Title</TableHead>
-              <TableHead className="text-gray-700 dark:text-gray-300 border-r border-gray-200 dark:border-gray-700">Location</TableHead>
-              <TableHead className="text-gray-700 dark:text-gray-300 border-r border-gray-200 dark:border-gray-700">Status</TableHead>
-              <TableHead className="text-gray-700 dark:text-gray-300 border-r border-gray-200 dark:border-gray-700">Action</TableHead>
+              <TableHead className="text-gray-700 dark:text-gray-300 border-r border-gray-200 dark:border-gray-700">
+                Image
+              </TableHead>
+              <TableHead className="text-gray-700 dark:text-gray-300 border-r border-gray-200 dark:border-gray-700">
+                Title
+              </TableHead>
+              <TableHead className="text-gray-700 dark:text-gray-300 border-r border-gray-200 dark:border-gray-700">
+                Location
+              </TableHead>
+              <TableHead className="text-gray-700 dark:text-gray-300 border-r border-gray-200 dark:border-gray-700">
+                Status
+              </TableHead>
+              <TableHead className="text-gray-700 dark:text-gray-300 border-r border-gray-200 dark:border-gray-700">
+                Action
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody className="bg-white dark:bg-gray-900">
@@ -82,15 +94,20 @@ const Wishlist = () => {
                 key={item.id}
                 className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
               >
-                <TableCell className="p-0">
+                <TableCell className="p-1 border-r border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">
                   <img
                     src={item.cardImage}
                     alt={item.title}
-                    className="w-16 h-12.5 object-cover shadow-sm"
+                    className="w-full h-[50px] object-cover mx-auto"
                   />
                 </TableCell>
-                <TableCell className="font-medium text-gray-800 dark:text-gray-100 border-r border-gray-200 dark:border-gray-700">{item.title}</TableCell>
-                <TableCell className="text-gray-700 dark:text-gray-300 border-r border-gray-200 dark:border-gray-700">{item.location}</TableCell>
+
+                <TableCell className="font-medium text-gray-800 dark:text-gray-100 border-r border-gray-200 dark:border-gray-700">
+                  {item.title}
+                </TableCell>
+                <TableCell className="text-gray-700 dark:text-gray-300 border-r border-gray-200 dark:border-gray-700">
+                  {item.location}
+                </TableCell>
                 <TableCell className="text-center border-r border-gray-200 dark:border-gray-700">
                   <span
                     className={`px-2 py-1 text-xs font-medium ${
@@ -142,7 +159,7 @@ const Wishlist = () => {
             <PaginationItem>
               <PaginationEllipsis />
             </PaginationItem>
-          )}
+          )}...
 
           <PaginationItem>
             <PaginationNext
