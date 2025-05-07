@@ -1,4 +1,5 @@
-import React from "react";
+"use client"
+import React, { useState, useMemo } from "react";
 import {
   Table,
   TableBody,
@@ -7,43 +8,63 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { AiOutlineEye, AiOutlineDelete } from "react-icons/ai"; // Importing icons
-
-const wishlistData = [
-  {
-    id: 1,
-    title: "Luxury Villa in Beverly Hills",
-    location: "Beverly Hills, CA",
-    beds: 5,
-    baths: 3,
-    sqft: 250,
-    price: 5000,
-    status: "For Sale",
-    category: "Villa",
-    cardImage:
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    description: "Luxury Villa in Beverly Hills with modern amenities and scenic views.",
-  },
-  {
-    id: 2,
-    title: "Modern Apartment in NYC",
-    location: "New York City, NY",
-    beds: 2,
-    baths: 2,
-    sqft: 120,
-    price: 3500,
-    status: "Sold",
-    category: "Apartment",
-    cardImage:
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    description: "A sleek and stylish apartment in the heart of the city.",
-  },
-];
+import { AiOutlineEye, AiOutlineDelete } from "react-icons/ai";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import wishlistData from '../../../../../fakeapi/wishlist/page'
 
 const Wishlist = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
+
+  const filteredWishlist = useMemo(() => {
+    const term = searchTerm.toLowerCase();
+    return wishlistData.filter(
+      (item) =>
+        item.title.toLowerCase().includes(term) ||
+        item.location.toLowerCase().includes(term) ||
+        item.status.toLowerCase().includes(term) ||
+        item.category.toLowerCase().includes(term)
+    );
+  }, [searchTerm]);
+
+  const totalPages = Math.ceil(filteredWishlist.length / itemsPerPage);
+
+  const paginatedWishlist = useMemo(() => {
+    const start = (currentPage - 1) * itemsPerPage;
+    return filteredWishlist.slice(start, start + itemsPerPage);
+  }, [filteredWishlist, currentPage]);
+
+  const handlePageChange = (number) => {
+    if (number >= 1 && number <= totalPages) {
+      setCurrentPage(number);
+    }
+  };
+
   return (
-    <div className="p-4 max-w-7xl mx-auto">
-      <h2 className="text-2xl font-bold mb-4 uppercase text-gray-800 dark:text-gray-200">Wishlist</h2>
+    <div className="p-4 mx-auto">
+      <div className="flex justify-between mb-4 items-center">
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200">Wishlist</h2>
+        <input
+          type="text"
+          placeholder="Search wishlist..."
+          value={searchTerm}
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+            setCurrentPage(1); // Reset to page 1 when searching
+          }}
+          className="border border-gray-300 dark:border-gray-600 w-full max-w-[16rem] py-2 px-3 rounded"
+        />
+      </div>
+
       <div className="overflow-x-auto border border-gray-200 dark:border-gray-700">
         <Table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
           <TableHeader className="bg-gray-100 dark:bg-gray-800">
@@ -56,7 +77,7 @@ const Wishlist = () => {
             </TableRow>
           </TableHeader>
           <TableBody className="bg-white dark:bg-gray-900">
-            {wishlistData.map((item) => (
+            {paginatedWishlist.map((item) => (
               <TableRow
                 key={item.id}
                 className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
@@ -94,6 +115,43 @@ const Wishlist = () => {
           </TableBody>
         </Table>
       </div>
+
+      {/* Pagination Controls */}
+      <Pagination className="mt-4">
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious
+              href="#"
+              onClick={() => handlePageChange(currentPage - 1)}
+            />
+          </PaginationItem>
+
+          {Array.from({ length: totalPages }, (_, i) => (
+            <PaginationItem key={i}>
+              <PaginationLink
+                href="#"
+                isActive={currentPage === i + 1}
+                onClick={() => handlePageChange(i + 1)}
+              >
+                {i + 1}
+              </PaginationLink>
+            </PaginationItem>
+          ))}
+
+          {totalPages > 3 && currentPage < totalPages - 2 && (
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+          )}
+
+          <PaginationItem>
+            <PaginationNext
+              href="#"
+              onClick={() => handlePageChange(currentPage + 1)}
+            />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
     </div>
   );
 };
