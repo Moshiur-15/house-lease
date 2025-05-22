@@ -121,7 +121,7 @@ const NavBer = () => {
               </Link>
               <Link
                 href="/about"
-                className="hover:text-[#FF8904] transition-colors"
+                className="p-2 hover:text-[#FF8904] transition-colors"
               >
                 About
               </Link>
