@@ -1,5 +1,5 @@
 "use client";
-import '../../globals.css'
+import "../../globals.css";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
@@ -12,9 +12,7 @@ const NavBer = () => {
   return (
     <section className="shadow-sm bg-black text-white">
       <header
-        className={`container mx-auto ${
-          isHomePage ? "px-4 lg:px-24" : "px-6"
-        }`}
+        className={`container mx-auto ${isHomePage ? "px-4 lg:px-24" : "px-6"}`}
       >
         <div className="flex items-center justify-between h-16">
           <h1 className="font-extrabold text-2xl md:text-3xl">HouseLease</h1>
@@ -46,6 +44,12 @@ const NavBer = () => {
               className="hover:text-[#FF8904] transition-colors"
             >
               Contact
+            </Link>
+            <Link
+              href="/about"
+              className="hover:text-[#FF8904] transition-colors"
+            >
+              About
             </Link>
             <Link
               href="/dashboard"
@@ -114,6 +118,12 @@ const NavBer = () => {
                 className="p-2 hover:text-[#FF8904] transition-colors"
               >
                 Contact
+              </Link>
+              <Link
+                href="/about"
+                className="hover:text-[#FF8904] transition-colors"
+              >
+                About
               </Link>
               <Link
                 href="/dashboard"

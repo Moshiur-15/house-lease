@@ -1,10 +1,18 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 import { FaFacebook, FaLinkedin, FaGithub } from "react-icons/fa";
 const Footer = () => {
+  const pathname = usePathname();
+  const isFooterPage = pathname === "/";
   return (
     <footer className="bg-black text-white pt-12 pb-8">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-24">
+      <div
+        className={`container mx-auto ${
+          isFooterPage ? "px-4 lg:px-24" : "px-6"
+        }`}
+      >
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div>
@@ -65,15 +73,22 @@ const Footer = () => {
                   href="mailto:masiurislam28@gmail.com"
                   className="hover:text-[#FF8904]"
                 >
-                  <span className="underline underline-offset-2">Email</span>: masiurislam28@gmail.com
+                  <span className="underline underline-offset-2">Email</span>:
+                  masiurislam28@gmail.com
                 </a>
               </li>
               <li>
                 <a href="tel:+8801327023639" className="hover:text-[#FF8904]">
-                  <span className="underline underline-offset-2">Phone</span>: +880 1327023639
+                  <span className="underline underline-offset-2">Phone</span>:
+                  +880 1327023639
                 </a>
               </li>
-              <li><span className="underline underline-offset-2 hover:text-[#FF8904]">Address</span>: Patuakhali, Barishal, Bangladesh</li>
+              <li>
+                <span className="underline underline-offset-2 hover:text-[#FF8904]">
+                  Address
+                </span>
+                : Patuakhali, Barishal, Bangladesh
+              </li>
             </ul>
           </div>
 

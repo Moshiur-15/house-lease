@@ -19,7 +19,7 @@ const Services = () => {
       description:
         "Accurate home valuation ensures fair pricing for sellers & appropriate offers for buyers.",
       img: "https://portland-residence.b-cdn.net/wp-content/uploads/2014/05/10-4-1-1.webp",
-      link: "#",
+      link: "/about",
     },
     {
       id: 3,
