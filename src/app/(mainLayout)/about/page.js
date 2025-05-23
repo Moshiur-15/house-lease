@@ -23,8 +23,9 @@ export default function AboutUs() {
       <section className="flex flex-col md:flex-row items-center justify-center container mx-auto py-8">
         <div className="relative z-10 w-full md:w-1/2 text-white px-8 py-12">
           <h1 className="text-4xl font-bold mb-4">
-            WANT TO KNOW YOUR PROPERTY'S WORTH?
+            WANT TO KNOW YOUR PROPERTY&apos;S WORTH?
           </h1>
+
           <p className="text-lg">
             Gain insight into the true worth of your property through a thorough
             and professional valuation process. Our team of experts meticulously
