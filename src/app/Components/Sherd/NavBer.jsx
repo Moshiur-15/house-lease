@@ -60,9 +60,11 @@ const NavBer = () => {
           </nav>
 
           <div className="hidden lg:block">
-            <button className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6">
-              Login
-            </button>
+            <Link href="/Auth/Login">
+              <button className="bg-gray-600 cursor-pointer hover:bg-gray-700 text-white font-bold py-3 px-6">
+                Login
+              </button>
+            </Link>
           </div>
 
           {/* menu */}
@@ -132,9 +134,11 @@ const NavBer = () => {
                 Dashboard
               </Link>
             </nav>
-            <button className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6">
-              Login
-            </button>
+            <Link href="/Auth/Login">
+              <button className="bg-gray-600 cursor-pointer hover:bg-gray-700 text-white font-bold py-3 px-6">
+                Login
+              </button>
+            </Link>
           </div>
         )}
       </header>
