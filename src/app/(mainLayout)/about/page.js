@@ -1,5 +1,4 @@
 "use client";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export default function AboutUs() {
@@ -31,7 +30,7 @@ export default function AboutUs() {
             and professional valuation process. Our team of experts meticulously
             assesses various factors including location, size, condition, and
             recent market trends to provide you with an accurate estimation of
-            your home's value.
+            your home&apos;s value.
           </p>
         </div>
 
