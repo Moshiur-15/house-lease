@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import user from "../Models/user";
 import bcrypt from "bcryptjs";
+import user from "../Models/user";
 
 // register
 export const register = async (req) => {
-  const { name, email, password } = await req.json();
+  const { name, email, password, image } = await req.json();
   try {
     let existingUser = await user.findOne({ email });
     if (existingUser) {
@@ -19,7 +19,10 @@ export const register = async (req) => {
       name,
       email,
       password: pass,
+      role:"buyer",
+      image
     });
+    console.log("newUser",newUser)
     return NextResponse.json({
       message: "User created successfully",
       user: newUser,
