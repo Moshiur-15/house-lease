@@ -4,11 +4,14 @@ import bcrypt from "bcryptjs";
 
 // register
 export const register = async (req) => {
-  const { name, email, password } = req.json();
+  const { name, email, password } = await req.json();
   try {
     let existingUser = await user.findOne({ email });
     if (existingUser) {
-      return NextResponse.json({ message: "Email already exists" }, { status: 400 });
+      return NextResponse.json(
+        { message: "Email already exists" },
+        { status: 400 }
+      );
     }
     // password
     const pass = await bcrypt.hash(password, 6);
@@ -31,7 +34,7 @@ export const register = async (req) => {
 
 // login
 export const login = async (req) => {
-  const { email, password } = req.json();
+  const { email, password } = await req.json();
   try {
     // email match
     let existingUser = await user.findOne({ email });

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-const AddProperty = () => {
+const property = () => {
   const [formData, setFormData] = useState({
     title: "",
     location: "",
@@ -267,4 +267,4 @@ const AddProperty = () => {
   );
 };
 
-export default AddProperty;
+export default property;
