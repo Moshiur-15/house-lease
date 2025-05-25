@@ -16,7 +16,7 @@ const BlogId = ({ params }) => {
       DetailDes1:
         "Get expert advice on how to begin your search, understand what to prioritize, and navigate the rental market without feeling lost or confused by listings.",
       DetailDes2:
-        "Before signing anything, it's crucial to fully understand the terms and conditions of rental agreements to avoid future legal or financial issues.",
+        "Before signing anything, its crucial to fully understand the terms and conditions of rental agreements to avoid future legal or financial issues.",
       image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
       Date: "2025-10-05",
       Location: "USA",

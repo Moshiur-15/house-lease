@@ -101,7 +101,7 @@ const LoginPage = () => {
           )}
 
           <p className="text-sm text-center text-gray-600 mt-6">
-            Don't have an account?{" "}
+            Don&apos;t have an account?
             <Link
               href="/Auth/register"
               className="text-blue-500 font-semibold hover:underline"
@@ -116,3 +116,4 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
