@@ -1,27 +1,14 @@
 "use client";
-
 import React, { useState, useEffect, useRef } from "react";
 import { FaEdit, FaTrash, FaEye } from "react-icons/fa";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
 const ManagePropertieTable = ({ properties }) => {
   const [openMenuId, setOpenMenuId] = useState(null);
-  const menuRef = useRef(null);
-
   const toggleMenu = (id) => {
-    setOpenMenuId(openMenuId === id ? null : id);
+    setOpenMenuId((prev) => (prev === id ? null : id));
+    console.log(id)
   };
-
-  const handleClickOutside = (event) => {
-    if (menuRef.current && !menuRef.current.contains(event.target)) {
-      setOpenMenuId(null);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
 
   return (
     <div className="p-4">
@@ -37,9 +24,9 @@ const ManagePropertieTable = ({ properties }) => {
                 "Price",
                 "Status",
                 "Actions",
-              ].map((head) => (
+              ].map((head, key) => (
                 <th
-                  key={head}
+                  key={key}
                   className="py-3 px-4 border-b border-gray-300 dark:border-gray-700 text-sm font-semibold text-gray-700 dark:text-gray-300"
                 >
                   {head}
@@ -50,7 +37,7 @@ const ManagePropertieTable = ({ properties }) => {
           <tbody>
             {properties.map((property) => (
               <tr
-                key={property.id}
+                key={property._id}
                 className="hover:bg-gray-50 dark:hover:bg-gray-800 transition duration-200"
               >
                 <td className="py-3 px-4 border-b border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 whitespace-nowrap">
@@ -79,20 +66,17 @@ const ManagePropertieTable = ({ properties }) => {
                     {property.status}
                   </span>
                 </td>
+
                 <td className="py-3 px-4 border-b border-gray-300 dark:border-gray-700 text-center relative overflow-visible whitespace-nowrap">
                   <button
-                    onClick={() => toggleMenu(property.id)}
                     className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full transition"
-                    aria-label="Open action menu"
+                    onClick={() => toggleMenu(property._id)}
                   >
                     <BsThreeDotsVertical className="text-xl" />
                   </button>
 
-                  {openMenuId === property.id && (
-                    <div
-                      ref={menuRef}
-                      className="absolute right-0 mt-2 w-32 bg-white dark:bg-gray-800 rounded-md shadow-lg border border-gray-200 dark:border-gray-700 z-50"
-                    >
+                  {openMenuId === property._id && (
+                    <div className="absolute right-0 mt-2 w-32 bg-white dark:bg-gray-800 rounded-md shadow-lg border border-gray-200 dark:border-gray-700 z-50">
                       <ul className="py-1">
                         <li className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
                           <FaEye className="text-blue-500" title="View" />

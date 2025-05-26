@@ -12,7 +12,6 @@ const Property = () => {
     baths: "",
     sqft: "",
     price: "",
-    status: "For Sale",
     category: "",
     cardImage: "",
     detImg1: "",
@@ -23,7 +22,6 @@ const Property = () => {
     rate: "",
   });
 
-  // Track uploading state per image input name
   const [uploading, setUploading] = useState({
     cardImage: false,
     detImg1: false,
@@ -68,10 +66,17 @@ const Property = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would send `formData` to your backend or API
-    console.log("Submitted Property Data:", formData);
+    try {
+      await axios.post(
+        "http://localhost:3000/api/seller/property",
+        formData
+      );
+      alert("Data Added Successfully!")
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const inputClass =
@@ -101,6 +106,7 @@ const Property = () => {
                 value={formData.title}
                 className={inputClass}
                 placeholder="Title*"
+                required
               />
             </div>
             <div>
@@ -113,6 +119,7 @@ const Property = () => {
                 value={formData.location}
                 className={inputClass}
                 placeholder="Location*"
+                required
               />
             </div>
             <div>
@@ -126,6 +133,7 @@ const Property = () => {
                 value={formData.beds}
                 className={inputClass}
                 placeholder="Beds*"
+                required
               />
             </div>
             <div>
@@ -139,6 +147,7 @@ const Property = () => {
                 value={formData.baths}
                 className={inputClass}
                 placeholder="Baths*"
+                required
               />
             </div>
             <div>
@@ -152,6 +161,7 @@ const Property = () => {
                 value={formData.sqft}
                 className={inputClass}
                 placeholder="Sqft*"
+                required
               />
             </div>
             <div>
@@ -165,6 +175,7 @@ const Property = () => {
                 value={formData.price}
                 className={inputClass}
                 placeholder="Price*"
+                required
               />
             </div>
             <div>
@@ -177,6 +188,7 @@ const Property = () => {
                 value={formData.category}
                 className={inputClass}
                 placeholder="Category*"
+                required
               />
             </div>
             <div>
@@ -190,6 +202,7 @@ const Property = () => {
                 value={formData.rate}
                 className={inputClass}
                 placeholder="Yearly Tax Rate*"
+                required
               />
             </div>
 
@@ -204,6 +217,7 @@ const Property = () => {
                 className={inputClass}
                 placeholder="Description*"
                 rows={4}
+                required
               ></textarea>
             </div>
           </div>
@@ -216,17 +230,18 @@ const Property = () => {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              { label: "Card Image", name: "cardImage" },
-              { label: "Detail Image 1", name: "detImg1" },
-              { label: "Detail Image 2", name: "detImg2" },
-              { label: "Detail Image 3", name: "detImg3" },
-              { label: "Detail Image 4", name: "detImg4" },
+              { label: "Card Image*", name: "cardImage" },
+              { label: "Detail Image 1*", name: "detImg1" },
+              { label: "Detail Image 2*", name: "detImg2" },
+              { label: "Detail Image 3*", name: "detImg3" },
+              { label: "Detail Image 4*", name: "detImg4" },
             ].map(({ label, name }) => (
               <div key={name}>
                 <label className="block text-sm mb-1 text-gray-600 dark:text-gray-300">
                   {label}
                 </label>
                 <input
+                  required
                   name={name}
                   type="file"
                   accept="image/*"

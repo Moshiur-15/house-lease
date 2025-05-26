@@ -1,11 +1,11 @@
 import addProperty from "@/app/Models/addProperty";
 import { NextResponse } from "next/server";
 
-// post property
+// Add property
 export const property = async (req) => {
   const data = await req.json();
-  const property = await addProperty.create(data)
-  return NextResponse.json({message: "data post",status: 200, property,});
+  const property = await addProperty.create(data);
+  return NextResponse.json({ message: "data post", status: 200, property });
 };
 
 // get property
@@ -13,6 +13,12 @@ export const getProperty = async (req) => {
   const property = await addProperty.find();
   return NextResponse.json({ message: "Get post data", status: 200, property });
 };
+
+export const getSingleProperty = async (id) => {
+  const property = await addProperty.findById(id);
+  return NextResponse.json({ message: "Single post", status: 200, property });
+};
+
 
 // delete property
 export const deleteProperty = async (req) => {
@@ -31,5 +37,5 @@ export const updateProperty = async (req, id) => {
 //get update data
 export const getUpdateData = async (req, id) => {
   const property = await addProperty.findOne({ _id: id });
-   return NextResponse.json({ message: "Get updated data", property });
+  return NextResponse.json({ message: "Get updated data", property });
 };
