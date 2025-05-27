@@ -1,13 +1,9 @@
 import GetPropertiesData from "@/app/Components/seller/GetData";
-import GetSingleData from "@/app/Components/seller/GetSingleData";
 import ManagePropertieTable from "@/app/Components/seller/ManagePropertieTable";
 import React from "react";
 
 const ManagePropertie = async () => {
   const PropertiesData = await GetPropertiesData();
-  console.log(PropertiesData);
-  const getSingleData =await GetSingleData("683410b0cb2e65715fdb3640");
-  console.log(getSingleData);
 
   return (
     <section className="my-5 lg:my-10">

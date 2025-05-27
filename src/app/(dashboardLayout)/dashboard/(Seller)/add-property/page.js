@@ -21,6 +21,7 @@ const Property = () => {
     description: "",
     rate: "",
   });
+  
 
   const [uploading, setUploading] = useState({
     cardImage: false,
@@ -69,16 +70,18 @@ const Property = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
+      const res = await axios.post(
         "http://localhost:3000/api/seller/property",
         formData
       );
+      console.log(res)
+      
       alert("Data Added Successfully!")
     } catch (err) {
       console.error(err);
     }
   };
-
+console.log(formData)
   const inputClass =
     "p-3 border border-gray-300 dark:border-gray-400 focus:outline-none focus:ring-0 w-full bg-white dark:bg-slate-800 text-black dark:text-white";
 

@@ -11,7 +11,7 @@ const ExclusiveCard = ({ property, view }) => {
     beds,
     sqft,
     baths,
-    id,
+    _id,
     description,
     location,
     cardImage,
@@ -25,7 +25,7 @@ const ExclusiveCard = ({ property, view }) => {
 
   return (
     <Link
-      href={`/properties/${id}`}
+      href={`/properties/${_id}`}
       className={`${
         view === "list" ? "flex flex-col sm:flex-row gap-4" : "flex flex-col"
       } bg-white overflow-hidden transition-all duration-300`}

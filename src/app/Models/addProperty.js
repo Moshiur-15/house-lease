@@ -8,6 +8,7 @@ const propertySchema = new mongoose.Schema(
     baths: { type: Number, required: true },
     sqft: { type: Number, required: true },
     price: { type: Number, required: true },
+    rate: { type: Number, required: true },
     category: { type: String, required: true },
     cardImage: { type: String, required: true },
     detImg1: { type: String },

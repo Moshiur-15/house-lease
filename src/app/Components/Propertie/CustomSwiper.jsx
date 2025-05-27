@@ -9,8 +9,11 @@ import "swiper/css/thumbs";
 const GallerySwiper = ({ house }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
+  const { detImg1, detImg2, detImg3, detImg4 } = house || {};
+  const images = { detImg1, detImg2, detImg3, detImg4 };
+
   // Convert the images object to an array
-  const imageArray = house?.images ? Object.values(house.images) : [];
+  const imageArray = images ? Object.values(images) : [];
 
   return (
     <div className="">

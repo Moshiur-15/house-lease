@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 // Add property
 export const property = async (req) => {
   const data = await req.json();
+  console.log(data)
   const property = await addProperty.create(data);
   return NextResponse.json({ message: "data post", status: 200, property });
 };
