@@ -22,7 +22,7 @@ const ExclusiveCard = ({ property, view }) => {
     e.preventDefault();
     setLiked(!liked);
   };
-
+  
   return (
     <Link
       href={`/properties/${_id}`}

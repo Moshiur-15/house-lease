@@ -1,4 +1,5 @@
 "use client"
+import { useAuth } from "@/app/context/AuthContext";
 import axios from "axios";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -9,6 +10,7 @@ const LoginPage = () => {
 
   const [register, setRegister] = useState(false);
   const [message, setMessage] = useState("");
+  const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,11 +21,12 @@ const LoginPage = () => {
       const email = e.target.email.value;
       const password = e.target.password.value;
 
-      await axios.post("http://localhost:3000/api/auth?login=true", {
+      const res = await axios.post("http://localhost:3000/api/auth?login=true", {
         email,
         password,
       });
       setMessage("Login successfully");
+      console.log(res.data);
     } catch (err) {
       console.error("Error submitting data", err);
       setMessage("Failed to create account. Please try again.");
