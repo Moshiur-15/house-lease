@@ -60,41 +60,41 @@ export function AppSidebar({ ...props }) {
       <SidebarContent>
         <NavMain
           items={[
-            // {
-            //   section: "Admin",
-            //   items: [
-            //     {
-            //       id: 1,
-            //       title: "ADMIN DASHBOARD",
-            //       url: "/dashboard",
-            //       icon: PieChart,
-            //     },
-            //     {
-            //       id: 2,
-            //       title: "MANAGE USERS",
-            //       url: "/dashboard/allUsers",
-            //       icon: Bot,
-            //     },
-            //     {
-            //       id: 3,
-            //       title: "MANAGE PROPERTIES",
-            //       url: "/dashboard/manageProperties",
-            //       icon: MapIcon,
-            //     },
-            //     {
-            //       id: 5,
-            //       title: "MANAGE BLOGS",
-            //       url: "/dashboard/manageBlog",
-            //       icon: BookOpen,
-            //     },
-            //     {
-            //       id: 6,
-            //       title: "PAYMENTS",
-            //       url: "/dashboard/payments",
-            //       icon: AudioWaveform,
-            //     },
-            //   ],
-            // },
+            {
+              section: "Admin",
+              items: [
+                {
+                  id: 1,
+                  title: "ADMIN DASHBOARD",
+                  url: "/dashboard",
+                  icon: PieChart,
+                },
+                {
+                  id: 2,
+                  title: "MANAGE USERS",
+                  url: "/dashboard/allUsers",
+                  icon: Bot,
+                },
+                {
+                  id: 3,
+                  title: "MANAGE PROPERTIES",
+                  url: "/dashboard/manageProperties",
+                  icon: MapIcon,
+                },
+                {
+                  id: 5,
+                  title: "MANAGE BLOGS",
+                  url: "/dashboard/manageBlog",
+                  icon: BookOpen,
+                },
+                {
+                  id: 6,
+                  title: "PAYMENTS",
+                  url: "/dashboard/payments",
+                  icon: AudioWaveform,
+                },
+              ],
+            },
           
             {
               section: "Seller",
