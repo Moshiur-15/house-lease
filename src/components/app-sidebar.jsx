@@ -87,12 +87,6 @@ export function AppSidebar({ ...props }) {
                   url: "/dashboard/manageBlog",
                   icon: BookOpen,
                 },
-                {
-                  id: 6,
-                  title: "PAYMENTS",
-                  url: "/dashboard/payments",
-                  icon: AudioWaveform,
-                },
               ],
             },
           
@@ -120,7 +114,7 @@ export function AppSidebar({ ...props }) {
                 {
                   id: 11,
                   title: "MANAGE BOOKINGS",
-                  url: "/dashboard/manageBookings", // update this if needed
+                  url: "/dashboard/manageBookings",
                   icon: BookOpen,
                 },
               ],

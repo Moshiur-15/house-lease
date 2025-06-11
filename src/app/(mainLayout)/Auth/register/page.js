@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import axios from "axios";
-import { useAuth } from "@/app/context/AuthContext";
+// import { useAuth } from "@/app/context/AuthContext";
 
 // 👇 Replace with your actual API key
 const imgbbApiKey = "58a9d3ffd0c8663f17be9ce8a26786ff";
@@ -50,12 +50,12 @@ const RegisterPage = () => {
     console.log("Submitted data:", formData);
     try {
       setRegister(true);
-      const  res  = await axios.post(
-        "http://localhost:3000/api/auth?register=true",
-        formData
-      );
-      setMessage("Account created successfully");
-      login(res.data)
+      // const  res  = await axios.post(
+      //   "http://localhost:3000/api/auth?register=true",
+      //   formData
+      // );
+      // setMessage("Account created successfully");
+      // login(res.data)
     } catch (err) {
       console.error("Error submitting data", err);
     } finally {

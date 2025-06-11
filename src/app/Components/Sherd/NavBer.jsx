@@ -1,5 +1,5 @@
 "use client";
-import { useAuth } from "@/app/context/AuthContext";
+// import { useAuth } from "@/app/context/AuthContext";
 import "../../globals.css";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -10,8 +10,6 @@ const NavBer = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const isHomePage = pathname === "/";
-  const { user } = useAuth();
-  console.log(user);
 
   return (
     <section className="shadow-sm bg-black text-white">
