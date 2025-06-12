@@ -15,6 +15,7 @@ const ManagePropertieModal = ({ propertyId, onDelete }) => {
     }
   };
 
+  
   return (
     <div className="absolute right-0 mt-2 w-32 bg-white dark:bg-gray-800 rounded-md shadow-lg border border-gray-200 dark:border-gray-700 z-50">
       <ul className="py-1">
