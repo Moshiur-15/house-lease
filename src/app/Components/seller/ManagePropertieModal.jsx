@@ -7,7 +7,7 @@ import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 const ManagePropertieModal = ({ propertyId, onDelete }) => {
   const handleDelete = async () => {
     try {
-      await axios.delete(`https://house-lease-6p94zuqie-moshiur-15s-projects.vercel.app/api/seller/property?id=${propertyId}`);
+      await axios.delete(`https://house-lease.vercel.app/api/seller/property?id=${propertyId}`);
       alert("Property deleted");
       onDelete(propertyId);
     } catch (err) {

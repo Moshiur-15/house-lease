@@ -71,7 +71,7 @@ const Property = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/seller/property",
+        "https://house-lease.vercel.app/api/seller/property",
         formData
       );
       console.log(res)

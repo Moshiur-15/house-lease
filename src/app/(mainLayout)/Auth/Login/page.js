@@ -22,7 +22,7 @@ const LoginPage = () => {
     //   const email = e.target.email.value;
     //   const password = e.target.password.value;
 
-    //   const res = await axios.post("http://localhost:3000/api/auth?login=true", {
+    //   const res = await axios.post("https://house-lease.vercel.app/api/auth?login=true", {
     //     email,
     //     password,
     //   });

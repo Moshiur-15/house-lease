@@ -23,7 +23,7 @@ const ManageUserTable = ({ User }) => {
               <td className="py-3 px-4">Moshiur</td>
               <td className="py-3 px-4">
                 <select
-                  className="bg-[#ffa57c] text-white rounded-full py-1 px-4 outline-none cursor-pointer"
+                  className="bg-green-100 text-green-800 dark:bg-green-800 dark:text-white rounded-full px-4 outline-none cursor-pointer text-sm"
                   defaultValue="Admin"
                   onChange={(e) => console.log(e.target.value)}
                 >
@@ -33,9 +33,76 @@ const ManageUserTable = ({ User }) => {
                 </select>
               </td>
 
-              <td className="py-3 px-4">Email</td>
+              <td className="py-3 px-4">admin@gmail.com</td>
               <td className="py-3">
-                <button className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer w-full">
+                <button className="flex items-center gap-2 px-4 py-0 text-sm hover:bg-red-200 cursor-pointer bg-red-100 text-red-800 dark:bg-red-800 dark:text-white rounded-full">
+                  Delete
+                </button>
+              </td>
+            </tr>
+
+             <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition duration-200">
+              <td className="py-3 px-4">Moshiur</td>
+              <td className="py-3 px-4">
+                <select
+                  className="bg-green-100 text-green-800 dark:bg-green-800 dark:text-white rounded-full px-4 outline-none cursor-pointer text-sm"
+                  defaultValue="Admin"
+                  onChange={(e) => console.log(e.target.value)}
+                >
+                  <option value="Admin">Admin</option>
+                  <option value="Seller">Seller</option>
+                  <option value="Buyer">Buyer</option>
+                </select>
+              </td>
+
+              <td className="py-3 px-4">admin@gmail.com</td>
+              <td className="py-3">
+                <button className="flex items-center gap-2 px-4 py-0 text-sm hover:bg-red-200 cursor-pointer bg-red-100 text-red-800 dark:bg-red-800 dark:text-white rounded-full">
+                  Delete
+                </button>
+              </td>
+            </tr>
+
+             <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition duration-200">
+              <td className="py-3 px-4">Moshiur</td>
+              <td className="py-3 px-4">
+                <select
+                  className="bg-green-100 text-green-800 dark:bg-green-800 dark:text-white rounded-full px-4 outline-none cursor-pointer text-sm"
+                  defaultValue="Admin"
+                  onChange={(e) => console.log(e.target.value)}
+                >
+                  <option value="Admin">Admin</option>
+                  <option value="Seller">Seller</option>
+                  <option value="Buyer">Buyer</option>
+                </select>
+              </td>
+
+              <td className="py-3 px-4">admin@gmail.com</td>
+              <td className="py-3">
+                <button className="flex items-center gap-2 px-4 py-0 text-sm hover:bg-red-200 cursor-pointer bg-red-100 text-red-800 dark:bg-red-800 dark:text-white rounded-full">
+                  Delete
+                </button>
+              </td>
+            </tr>
+
+
+             <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition duration-200">
+              <td className="py-3 px-4">Moshiur</td>
+              <td className="py-3 px-4">
+                <select
+                  className="bg-green-100 text-green-800 dark:bg-green-800 dark:text-white rounded-full px-4 outline-none cursor-pointer text-sm"
+                  defaultValue="Admin"
+                  onChange={(e) => console.log(e.target.value)}
+                >
+                  <option value="Admin">Admin</option>
+                  <option value="Seller">Seller</option>
+                  <option value="Buyer">Buyer</option>
+                </select>
+              </td>
+
+              <td className="py-3 px-4">admin@gmail.com</td>
+              <td className="py-3">
+                <button className="flex items-center gap-2 px-4 py-0 text-sm hover:bg-red-200 cursor-pointer bg-red-100 text-red-800 dark:bg-red-800 dark:text-white rounded-full">
                   Delete
                 </button>
               </td>

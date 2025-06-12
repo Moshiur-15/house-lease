@@ -51,7 +51,7 @@ const RegisterPage = () => {
     try {
       setRegister(true);
       // const  res  = await axios.post(
-      //   "http://localhost:3000/api/auth?register=true",
+      //   "https://house-lease.vercel.app/api/auth?register=true",
       //   formData
       // );
       // setMessage("Account created successfully");

@@ -82,7 +82,7 @@ const PropertyUpdateModal = ({ property }) => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:3000/api/seller/property/${property._id}`,
+        `https://house-lease.vercel.app/api/seller/property/${property._id}`,
         formData
       );
       console.log(response.data);

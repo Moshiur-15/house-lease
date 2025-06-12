@@ -6,8 +6,8 @@ const ViewProperty = ({ properties }) => {
   };
 
   return (
-    <div className="p-4 overflow-x-auto">
-      <table className="min-w-[500px] lg:min-w-[1285px] mx-auto border border-gray-300 dark:border-gray-700 text-center">
+    <div className="overflow-x-auto">
+      <table className="w-full border border-gray-300 dark:border-gray-700 text-center">
         <thead className="bg-gray-100 dark:bg-gray-800">
           <tr>
             {[

@@ -1,10 +1,14 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const imgbbApiKey = "58a9d3ffd0c8663f17be9ce8a26786ff";
 
-const BlogSectionDesign = () => {
+const BlogSectionDesign = ({ id }) => {
+  const router = useRouter();
+  const BlogId = id._id;
+  const BlogData = id;
   const [formData, setFormData] = useState({
     CardTitle: "",
     CardDes: "",
@@ -15,7 +19,7 @@ const BlogSectionDesign = () => {
     DetailDes2_1: "",
     Date: "",
     Location: "",
-    detImg1: ""
+    detImg1: "",
   });
 
   const [uploading, setUploading] = useState({
@@ -59,17 +63,34 @@ const BlogSectionDesign = () => {
     }
   };
 
+  useEffect(() => {
+    if (BlogData) {
+      setFormData({
+        CardTitle: BlogData.CardTitle || "",
+        CardDes: BlogData.CardDes || "",
+        DetailTitle: BlogData.DetailTitle || "",
+        DetailDes1: BlogData.DetailDes1 || "",
+        DetailTitle1_1: BlogData.DetailTitle1_1 || "",
+        DetailDes2: BlogData.DetailDes2 || "",
+        DetailDes2_1: BlogData.DetailDes2_1 || "",
+        Date: BlogData.Date || "",
+        Location: BlogData.Location || "",
+        cardImage: BlogData.cardImage || "",
+        detImg1: BlogData.detImg1 || "",
+      });
+    }
+  }, [BlogData]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        `https://house-lease.vercel.app/api/admin/blogs`,
+      const res = await axios.put(
+        `https://house-lease.vercel.app/api/admin/blogs/${BlogId}`,
         formData
       );
-      console.log(res);
-
-      alert("Data Added Successfully!");
-      console.log(formData);
+      console.log(formData, res);
+      alert("Blog updated successfully");
+      router.push('/dashboard/manageBlog')
     } catch (err) {
       console.error(err);
     }
@@ -81,7 +102,7 @@ const BlogSectionDesign = () => {
   return (
     <section className="p-4 sm:p-6 min-h-screen">
       <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
-        ADD NEW BLOG
+        UPDATE BLOG
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-14">

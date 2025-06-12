@@ -77,7 +77,7 @@ export function AppSidebar({ ...props }) {
                 {
                   id: 3,
                   title: "MANAGE PROPERTIES",
-                  url: "/dashboard/manageProperties",
+                  url: "/dashboard/viewAllProperty",
                   icon: MapIcon,
                 },
                 {

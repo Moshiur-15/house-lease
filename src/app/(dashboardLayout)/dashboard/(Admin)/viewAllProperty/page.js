@@ -6,8 +6,8 @@ const ViewAllProperty = async () => {
   const PropertiesData = await GetPropertiesData();
 
   return (
-    <section className="my-5 lg:my-10 min-h-[calc(100vh-350px)]">
-      {/* <div className="flex lg:flex-row justify-between min-w-[1120px] mx-auto">
+    <section className="my-5 lg:my-10 px-4 xl:px-0 space-y-3">
+      <div className="flex flex-col lg:flex-row justify-between space-y-3">
         <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
           MANAGE YOU PROPERTIES
         </h2>
@@ -16,7 +16,7 @@ const ViewAllProperty = async () => {
           placeholder="Search Properties..."
           className="border border-gray-300 dark:border-gray-600 w-full max-w-[16rem] py-2 px-3"
         />
-      </div> */}
+      </div>
       <ViewProperty properties={PropertiesData} />
     </section>
   );
