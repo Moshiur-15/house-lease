@@ -8,5 +8,4 @@ const AddBlog = () => {
         </div>
     );
 };
-
 export default AddBlog;
