@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import BlogCard from "@/app/Components/Home/BlogCard";
 // import Link from "next/link";
 // import { useEffect, useState } from "react";
@@ -19,156 +19,119 @@ const Blogs = () => {
   //   fetchData();
   // }, []);
 
-  const blog = [
+  const blogs = [
     {
-      id: 1,
-      CardTitle: "Finding Your Dream Rental",
-      DetailTitle:
-        "A Comprehensive Guide to Finding Your Dream Rental Home Easily",
+      _id: 1,
+      CardTitle: "How to Find the Perfect Rental Home",
       CardDes:
-        "Looking for the perfect rental home can be overwhelming, but knowing your needs, preferences, and budget will make the entire process much smoother and successful.",
+        "Explore smart strategies to find a rental home that fits your lifestyle and budget.",
+      Date: "2025-04-10",
+      DetailTitle: "Step-by-step Guide to Rental Hunting",
       DetailDes1:
-        "Get expert advice on how to begin your search, understand what to prioritize, and navigate the rental market without feeling lost or confused by listings.",
+        "Start by identifying your needs, location preferences, and budget before searching.",
+      DetailTitle1_1: "Research Neighborhoods",
       DetailDes2:
-        "Before signing anything, its crucial to fully understand the terms and conditions of rental agreements to avoid future legal or financial issues.",
-      image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      Date: "2025-10-05",
-      Location: "USA",
+        "Visit neighborhoods at different times and check for amenities, safety, and transport.",
+      DetailDes2_1: "Talk to locals and use online forums for honest reviews.",
+      Location: "San Francisco, CA",
+      cardImage: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      detImg1:
+        "https://images.unsplash.com/photo-1572120360610-d971b9b5a45e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
     },
     {
-      id: 2,
-      CardTitle: "Smart Budgeting for Renters",
-      DetailTitle:
-        "How to Effectively Budget for Your New Rental Home and Stay Financially Secure",
+      _id: 2,
+      CardTitle: "Budgeting Tips for Renters",
       CardDes:
-        "Budgeting properly is essential for renters. By planning your expenses and saving for unexpected costs, you can live comfortably and avoid financial stress.",
+        "Learn how to effectively plan your rental budget to avoid financial stress.",
+      Date: "2025-05-02",
+      DetailTitle: "Building Your Rental Budget",
       DetailDes1:
-        "Set realistic financial goals, create a monthly plan, and include all rental-related costs like utilities, deposits, maintenance, and emergency savings.",
+        "Include rent, utilities, deposits, and emergency funds in your budget plan.",
+      DetailTitle1_1: "Track Monthly Expenses",
       DetailDes2:
-        "Avoid common budgeting mistakes such as underestimating move-in costs or forgetting to factor in insurance, transportation, and internet bills.",
-        image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
-      Date: "2025-09-22",
-      Location: "Canada",
+        "Use budgeting apps or spreadsheets to monitor your spending habits.",
+      DetailDes2_1: "Adjust your lifestyle to meet your financial goals.",
+      Location: "Austin, TX",
+      cardImage:
+        "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+      detImg1:
+        "https://images.unsplash.com/photo-1494526585095-c41746248156?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
     },
     {
-      id: 3,
-      CardTitle: "Top Cities for Affordable Rentals",
-      DetailTitle:
-        "Explore the Best Cities Offering Affordable Rentals Without Sacrificing Quality",
+      _id: 3,
+      CardTitle: "Understanding Your Rental Agreement",
       CardDes:
-        "Finding affordable places to live doesn't mean sacrificing comfort. These cities offer budget-friendly rentals while still maintaining a good quality of life.",
+        "Avoid disputes by knowing the key clauses in your lease agreement.",
+      Date: "2025-03-15",
+      DetailTitle: "Important Lease Agreement Points",
       DetailDes1:
-        "We’ve compiled a list of cities around the world where renting won’t break the bank, and you’ll still enjoy access to public transport, safety, and local charm.",
+        "Review rent amount, duration, maintenance responsibilities, and penalties carefully.",
+      DetailTitle1_1: "Clarify Additional Terms",
       DetailDes2:
-        "Compare rental prices, cost of living, amenities, and job opportunities across different cities before deciding where to move for a more balanced lifestyle.",
-        image: "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      Date: "2025-09-10",
-      Location: "Germany",
+        "Ask about pet policies, guest rules, and subletting restrictions before signing.",
+      DetailDes2_1: "Keep a signed copy and document all communications.",
+      Location: "New York, NY",
+      cardImage:
+        "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      detImg1:
+        "https://images.unsplash.com/photo-1560184897-e6f9e7632ca3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
     },
     {
-      id: 4,
-      CardTitle: "Rental Scams to Avoid",
-      DetailTitle:
-        "How to Spot and Avoid Common Rental Scams to Protect Yourself From Fraud",
+      _id: 4,
+      CardTitle: "Moving Tips for Renters",
       CardDes:
-        "The rental market can sometimes attract scammers. Learn to identify and avoid fraud by staying informed and practicing cautious behavior during your search.",
+        "Make your move stress-free with these essential packing and planning tips.",
+      Date: "2025-06-01",
+      DetailTitle: "Efficient Moving Strategies",
       DetailDes1:
-        "Look out for suspicious listings, landlords who won’t meet in person, or those asking for large deposits without paperwork—these are red flags you shouldn't ignore.",
+        "Start packing early, label boxes, and keep essentials accessible.",
+      DetailTitle1_1: "Plan Utilities and Change of Address",
       DetailDes2:
-        "Protect yourself by verifying property ownership, visiting homes in person, and never making payments until you're sure everything is legitimate and legal.",
-        image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
-      Date: "2025-08-30",
-      Location: "UK",
+        "Schedule disconnection and reconnection of utilities in advance.",
+      DetailDes2_1: "Update your address for mail and services timely.",
+      Location: "Seattle, WA",
+      cardImage:
+        "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+      detImg1:
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
     },
     {
-      id: 5,
-      CardTitle: "Documents You Need to Rent",
-      DetailTitle:
-        "Essential Documents You Must Have Ready Before Renting a Property",
+      _id: 5,
+      CardTitle: "How to Maintain Your Rental Property",
       CardDes:
-        "Before moving into a new rental, you’ll need several key documents. Being prepared helps speed up the process and shows you're a serious tenant to landlords.",
+        "Simple maintenance tips to keep your rental in great condition and avoid charges.",
+      Date: "2025-05-22",
+      DetailTitle: "Rental Maintenance Basics",
       DetailDes1:
-        "Make sure to have your ID, proof of income, references, and bank statements ready. These are standard documents that most landlords will require for review.",
+        "Report issues promptly and keep the property clean to prevent damages.",
+      DetailTitle1_1: "Understand Your Responsibilities",
       DetailDes2:
-        "Having your paperwork in order allows you to apply quickly for rentals you love, especially in competitive markets where hesitation could cost you the deal.",
-        image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      Date: "2025-08-18",
-      Location: "Australia",
+        "Know what maintenance tasks are your duty and what belongs to the landlord.",
+      DetailDes2_1: "Keep documentation of repairs and communications.",
+      Location: "Chicago, IL",
+      cardImage:
+        "https://images.unsplash.com/photo-1468071174046-657d9d351a40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+      detImg1:
+        "https://images.unsplash.com/photo-1556911073-52527ac437f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
     },
     {
-      id: 6,
-      CardTitle: "How to Negotiate Rent",
-      DetailTitle:
-        "Master the Art of Negotiating Rent for Better Deals and Lower Prices",
+      _id: 6,
+      CardTitle: "Neighborhood Tips for Renters",
       CardDes:
-        "Negotiating your rent is possible, especially in markets with high vacancy rates. Learn the best strategies and how to communicate effectively with landlords.",
+        "Choose a neighborhood that fits your lifestyle and safety preferences.",
+      Date: "2025-04-28",
+      DetailTitle: "Evaluating Neighborhoods",
       DetailDes1:
-        "Build your case by researching local rental rates, offering longer leases, and being a reliable tenant. These factors help support your rent reduction request.",
+        "Check local amenities, safety ratings, public transport, and schools.",
+      DetailTitle1_1: "Visit at Different Times",
       DetailDes2:
-        "Approach negotiations professionally. Avoid being too aggressive, and instead, show how both parties benefit from the arrangement for better outcomes.",
-        image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      Date: "2025-08-01",
-      Location: "India",
-    },
-    {
-      id: 7,
-      CardTitle: "Renting With Pets",
-      DetailTitle:
-        "Essential Tips for Renting With Pets and Finding the Right Pet-Friendly Home",
-      CardDes:
-        "Renting with pets can be tricky, but it’s not impossible. You’ll need to find pet-friendly properties and understand the rules that come with them.",
-      DetailDes1:
-        "Start by filtering listings that allow pets. Ask landlords about breed restrictions, pet deposits, and pet rent so you're clear on expectations and costs.",
-      DetailDes2:
-        "Be transparent about your pet's behavior, keep them trained, and maintain cleanliness to ensure a good relationship with your landlord and neighbors.",
-        image: "https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      Date: "2025-07-15",
-      Location: "France",
-    },
-    {
-      id: 8,
-      CardTitle: "Furnishing Your First Rental",
-      DetailTitle:
-        "Smart Ways to Furnish Your First Rental Without Breaking the Bank",
-      CardDes:
-        "Starting from scratch can be expensive. Learn how to furnish your new rental in a cost-effective way by focusing on essentials and prioritizing what you need.",
-      DetailDes1:
-        "Begin with basic furniture like a bed, table, and seating. Avoid unnecessary splurges on decorative items until you've settled into your new place comfortably.",
-      DetailDes2:
-        "Look for deals at thrift stores, online marketplaces, or furniture rental services. These options help you save money while still creating a cozy environment.",
-        image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      Date: "2025-06-30",
-      Location: "Japan",
-    },
-    {
-      id: 9,
-      CardTitle: "Understanding Rental Agreements",
-      DetailTitle:
-        "Your Complete Guide to Understanding Rental Agreements and Lease Contracts",
-      CardDes:
-        "A rental agreement is a legal contract that protects both tenants and landlords. Understanding the terms can save you from unexpected fees and obligations.",
-      DetailDes1:
-        "Pay attention to clauses related to rent increases, repairs, subletting, and termination. Each of these can affect your rental experience and rights.",
-      DetailDes2:
-        "If something seems unclear, ask for clarification or legal advice before signing. Never agree to anything you're unsure about or can't afford to commit to.",
-        image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
-      Date: "2025-06-15",
-      Location: "Italy",
-    },
-    {
-      id: 10,
-      CardTitle: "When to Move for Better Deals",
-      DetailTitle:
-        "How to Choose the Right Time to Move for Better Rental Deals and Discounts",
-      CardDes:
-        "The time of year you choose to move can greatly impact rental prices. Learn when landlords are more likely to offer discounts or lower rent for faster leasing.",
-      DetailDes1:
-        "Rental prices often dip during the winter months due to lower demand. Plan your move during this period to secure better deals and have more options.",
-      DetailDes2:
-        "Avoid peak moving seasons like summer when competition is high. Moving in off-season months provides more negotiation power and flexibility.",
-        image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      Date: "2025-05-15",
-      Location: "USA",
+        "Experience the neighborhood during day and night for a full picture.",
+      DetailDes2_1: "Connect with locals for honest insights.",
+      Location: "Boston, MA",
+      cardImage:
+        "https://images.unsplash.com/photo-1494526585095-c41746248156?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+      detImg1:
+        "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
     },
   ];
 
@@ -197,7 +160,7 @@ const Blogs = () => {
       <section className="container mx-auto px-6">
         <h2 className="text-3xl lg:text-4xl font-bold my-8">All Blogs</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {blog.map((blog, index) => (
+          {blogs.map((blog, index) => (
             <BlogCard key={index} blog={blog} />
           ))}
         </div>

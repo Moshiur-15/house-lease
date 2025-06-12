@@ -1,5 +1,5 @@
+import ViewProperty from "@/app/Components/Admin/ViewProperty";
 import GetPropertiesData from "@/app/Components/seller/GetData";
-import ManagePropertieTable from "@/app/Components/seller/ManagePropertieTable";
 import React from "react";
 
 const ViewAllProperty = async () => {
@@ -17,7 +17,7 @@ const ViewAllProperty = async () => {
           className="border border-gray-300 dark:border-gray-600 w-full max-w-[16rem] py-2 px-3"
         />
       </div> */}
-      <ManagePropertieTable properties={PropertiesData} />
+      <ViewProperty properties={PropertiesData} />
     </section>
   );
 };

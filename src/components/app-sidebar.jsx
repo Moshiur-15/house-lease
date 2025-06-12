@@ -1,15 +1,17 @@
 "use client";
 import {
-  PieChart,
-  Bot,
-  MapIcon,
-  BookOpen,
   AudioWaveform,
-  Frame,
+  BookOpen,
+  Bot,
   Command,
+  Frame,
   GalleryVerticalEnd,
-  FilePlus,
+  MapIcon,
+  PieChart,
+  AddIcon,
+  PaymentIcon
 } from "lucide-react";
+import { FaPlus, FaMoneyCheckAlt } from "react-icons/fa";
 
 import { NavMain } from "@/components/nav-main";
 import { NavUser } from "@/components/nav-user";
@@ -75,8 +77,14 @@ export function AppSidebar({ ...props }) {
                 {
                   id: 3,
                   title: "MANAGE PROPERTIES",
-                  url: "/dashboard/viewAllProperty",
+                  url: "/dashboard/manageProperties",
                   icon: MapIcon,
+                },
+                {
+                  id: 4,
+                  title: "ADD BLOG",
+                  url: "/dashboard/addBlog",
+                  icon: FaPlus,
                 },
                 {
                   id: 5,
@@ -84,15 +92,6 @@ export function AppSidebar({ ...props }) {
                   url: "/dashboard/manageBlog",
                   icon: BookOpen,
                 },
-<<<<<<< HEAD
-=======
-                {
-                  id: 6,
-                  title: "ADD BLOGS",
-                  url: "/dashboard/addBlog",
-                  icon: FilePlus,
-                }
->>>>>>> 1f8aad2 (manage property , admin)
               ],
             },
 
@@ -101,7 +100,7 @@ export function AppSidebar({ ...props }) {
               items: [
                 {
                   id: 8,
-                  title: "SELLER DASHBOARD", 
+                  title: "SELLER DASHBOARD",
                   url: "/dashboard/seller",
                   icon: PieChart,
                 },
@@ -124,10 +123,10 @@ export function AppSidebar({ ...props }) {
                   icon: BookOpen,
                 },
                 {
-                  id: 6,
-                  title: "PAYMENTS",
-                  url: "/dashboard/payments",
-                  icon: AudioWaveform,
+                  id: 20,
+                  title: "PAYMENT",
+                  url: "/dashboard/paymentBookingUser",
+                  icon: FaMoneyCheckAlt,
                 },
               ],
             },
@@ -137,7 +136,7 @@ export function AppSidebar({ ...props }) {
               items: [
                 {
                   id: 12,
-                  title: "ANALYTICS", 
+                  title: "ANALYTICS",
                   url: "/dashboard/analytics",
                   icon: Command,
                 },

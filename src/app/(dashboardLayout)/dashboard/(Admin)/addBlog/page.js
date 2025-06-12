@@ -1,9 +1,10 @@
+import BlogSectionDesign from '@/app/Components/Admin/BlogSectionDesign';
 import React from 'react';
 
 const AddBlog = () => {
     return (
         <div>
-            Add Blogs
+            <BlogSectionDesign/>
         </div>
     );
 };

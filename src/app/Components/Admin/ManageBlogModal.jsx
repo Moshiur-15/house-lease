@@ -5,6 +5,7 @@ import React from "react";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 
 const ManageBlogModal = ({ BlogId }) => {
+  console.log(BlogId)
 
   return (
     <div className="absolute right-0 mt-2 w-32 bg-white dark:bg-gray-800 rounded-md shadow-lg border border-gray-200 dark:border-gray-700 z-50">

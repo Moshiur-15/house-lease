@@ -3,7 +3,6 @@ import GetPropertiesData from "../seller/GetData";
 
 const Exclusive = async () => {
   const properties = await GetPropertiesData();
-  console.log(properties)
 
   return (
     <div className="px-4 sm:px-6 lg:px-24">

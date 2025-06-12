@@ -3,13 +3,15 @@ import Link from "next/link";
 import React from "react";
 
 const BlogCard = ({ blog }) => {
-  const { image, CardTitle, CardDes, id } = blog || [];
+  const { cardImage, CardTitle, CardDes, _id } = blog || {};
+  console.log(_id)
+
   return (
     <div className="flex flex-col">
       {/* Image */}
       <div className="relative w-full h-56 overflow-hidden">
         <Image
-          src={image}
+          src={cardImage}
           alt={CardTitle}
           className="object-cover object-center"
           loading="lazy"
@@ -22,7 +24,7 @@ const BlogCard = ({ blog }) => {
         <p className="text-gray-600 text-sm mt-2">{CardDes}</p>
         <div className="mt-auto">
           <Link
-            href={`/blog/${id}`}
+            href={`/blog/${_id}`}
             className="mt-4 inline-block text-orange-400 font-semibold"
           >
             Continue reading →

@@ -9,7 +9,10 @@ const BlogDetails = ({ detail }) => {
     CardDes,
     DetailDes1,
     DetailDes2,
-    image,
+    DetailTitle1_1,
+    DetailDes2_1,
+    cardImage,
+    detImg1,
     Date,
     Location,
   } = detail || {};
@@ -38,7 +41,7 @@ const BlogDetails = ({ detail }) => {
         <p className="text-gray-700 mb-4">{CardDes}</p>
 
         <Image
-          src={image}
+          src={cardImage}
           alt={CardTitle}
           className="w-full h-auto mb-6 object-cover bg-gray-200"
           height={70}
@@ -48,6 +51,17 @@ const BlogDetails = ({ detail }) => {
         <h2 className="text-2xl sm:text-3xl font-bold mb-4">{DetailTitle}</h2>
         <p className="text-gray-800 mb-4">{DetailDes1}</p>
         <p className="text-gray-800">{DetailDes2}</p>
+
+         <Image
+          src={detImg1}
+          alt={CardTitle}
+          className="w-full h-auto mb-6 object-cover bg-gray-200 mt-8 lg:mt-14"
+          height={70}
+          width={100}
+        />
+
+        <h2 className="text-2xl sm:text-3xl font-bold mb-4">{DetailTitle1_1}</h2>
+        <p className="text-gray-800 mb-4">{DetailDes2_1}</p>
       </section>
     </>
   );
