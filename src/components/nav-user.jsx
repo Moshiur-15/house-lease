@@ -88,7 +88,7 @@ export function NavUser() {
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <Sparkles />
-                <Link href='/dashboard/profile'>Profile</Link>
+                <Link href='/dashboard/Profile'>Profile</Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

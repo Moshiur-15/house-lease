@@ -1,20 +1,17 @@
 "use client";
-
-import * as React from "react";
 import {
-  AudioWaveform,
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
-  Map,
-  MapIcon,
   PieChart,
+  Bot,
+  MapIcon,
+  BookOpen,
+  AudioWaveform,
+  Frame,
+  Command,
+  GalleryVerticalEnd,
+  FilePlus,
 } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
-import { NavProjects } from "@/components/nav-projects";
 import { NavUser } from "@/components/nav-user";
 import { TeamSwitcher } from "@/components/team-switcher";
 import {
@@ -78,7 +75,7 @@ export function AppSidebar({ ...props }) {
                 {
                   id: 3,
                   title: "MANAGE PROPERTIES",
-                  url: "/dashboard/manageProperties",
+                  url: "/dashboard/viewAllProperty",
                   icon: MapIcon,
                 },
                 {
@@ -87,15 +84,24 @@ export function AppSidebar({ ...props }) {
                   url: "/dashboard/manageBlog",
                   icon: BookOpen,
                 },
+<<<<<<< HEAD
+=======
+                {
+                  id: 6,
+                  title: "ADD BLOGS",
+                  url: "/dashboard/addBlog",
+                  icon: FilePlus,
+                }
+>>>>>>> 1f8aad2 (manage property , admin)
               ],
             },
-          
+
             {
               section: "Seller",
               items: [
                 {
                   id: 8,
-                  title: "SELLER DASHBOARD",
+                  title: "SELLER DASHBOARD", 
                   url: "/dashboard/seller",
                   icon: PieChart,
                 },
@@ -117,15 +123,21 @@ export function AppSidebar({ ...props }) {
                   url: "/dashboard/manageBookings",
                   icon: BookOpen,
                 },
+                {
+                  id: 6,
+                  title: "PAYMENTS",
+                  url: "/dashboard/payments",
+                  icon: AudioWaveform,
+                },
               ],
             },
-          
+
             {
               section: "User",
               items: [
                 {
                   id: 12,
-                  title: "ANALYTICS",
+                  title: "ANALYTICS", 
                   url: "/dashboard/analytics",
                   icon: Command,
                 },

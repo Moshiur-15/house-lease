@@ -57,6 +57,7 @@ const ManageBlogTable = () => {
   const toggleMenu = (id) => {
     setOpenMenuId((prev) => (prev === id ? null : id));
   };
+  const tdStyle= "p-3 border text-nowrap"
   return (
     <div className="px-4 py-6">
       <div className="overflow-x-auto">
@@ -74,11 +75,11 @@ const ManageBlogTable = () => {
           <tbody>
             {blogData.map((blog) => (
               <tr key={blog._id} className="hover:bg-gray-50">
-                <td className="p-3 border">{blog._id}</td>
-                <td className="p-3 border">{blog.CardTitle}</td>
-                <td className="p-3 border">{blog.Date}</td>
-                <td className="p-3 border">{blog.Location}</td>
-                <td className="p-2 border overflow-hidden">
+                <td className={`${tdStyle}`}>{blog._id}</td>
+                <td className={`${tdStyle}`}>{blog.CardTitle}</td>
+                <td className={`${tdStyle}`}>{blog.Date}</td>
+                <td className={`${tdStyle}`}>{blog.Location}</td>
+                <td className={`${tdStyle} overflow-hidden `}>
                   <img
                     src={blog.image}
                     alt="Blog"
