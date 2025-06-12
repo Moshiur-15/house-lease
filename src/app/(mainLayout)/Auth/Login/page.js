@@ -10,8 +10,9 @@ const LoginPage = () => {
 
   const [register, setRegister] = useState(false);
   const [message, setMessage] = useState("");
-  const { login } = useAuth();
+  //const { login } = useAuth();
 
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     // setMessage("");

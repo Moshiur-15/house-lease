@@ -17,7 +17,7 @@ const RegisterPage = () => {
     password: "",
     image: "",
   });
-  const { login } = useAuth();
+  //const { login } = useAuth();
   const [register, setRegister] = useState(false);
   const [message, setMessage] = useState("");
 
