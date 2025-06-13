@@ -19,8 +19,8 @@ export function NavMain({ items }) {
               <SidebarMenuItem key={subItem.id}>
                 <Link href={subItem.url} className="w-full">
                   <SidebarMenuButton>
-                    {subItem.icon && <subItem.icon className="w-4 h-4" />}
-                    <span>{subItem.title}</span>
+                    {subItem.icon && <subItem.icon className="w-4 h-4 hover:cursor-pointer" />}
+                    <span className="hover:cursor-pointer">{subItem.title}</span>
                   </SidebarMenuButton>
                 </Link>
               </SidebarMenuItem>

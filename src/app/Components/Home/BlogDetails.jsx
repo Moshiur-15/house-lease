@@ -15,7 +15,7 @@ const BlogDetails = ({ detail }) => {
     detImg1,
     Date,
     Location,
-  } = detail || {};
+  } = detail || {}
 
   return (
     <>
@@ -41,7 +41,7 @@ const BlogDetails = ({ detail }) => {
         <p className="text-gray-700 mb-4">{CardDes}</p>
 
         <Image
-          src={cardImage}
+          src={cardImage ||  "/default-image.jpg"}
           alt={CardTitle}
           className="w-full h-auto mb-6 object-cover bg-gray-200"
           height={70}
@@ -53,7 +53,7 @@ const BlogDetails = ({ detail }) => {
         <p className="text-gray-800">{DetailDes2}</p>
 
          <Image
-          src={detImg1}
+          src={detImg1 ||  "/default-image.jpg"}
           alt={CardTitle}
           className="w-full h-auto mb-6 object-cover bg-gray-200 mt-8 lg:mt-14"
           height={70}

@@ -1,8 +1,25 @@
 "use client";
 
+import axios from "axios";
+import { useState } from "react";
+
 const ViewProperty = ({ properties }) => {
-  const handleDelete = (id) => {
-    console.log(id);
+  const [property, setProperty] = useState(properties);
+  const [loadingId, setLoadingId] = useState(null);
+  const handleDelete = async (id) => {
+    setLoadingId(id);
+    try {
+      await axios.delete(
+        `https://house-lease.vercel.app/api/seller/property?id=${id}`
+      );
+      alert("Property deleted");
+      setProperty((p) => p.filter((p) => p._id !== id));
+    } catch (err) {
+      console.error(err);
+      alert("Delete failed. Please try again.");
+    } finally {
+      setLoadingId(null);
+    }
   };
 
   return (
@@ -29,14 +46,20 @@ const ViewProperty = ({ properties }) => {
           </tr>
         </thead>
         <tbody>
-          {properties.map((property) => (
+          {property.map((property) => (
             <tr
               key={property._id}
               className="hover:bg-gray-50 dark:hover:bg-gray-800 transition duration-200"
             >
-              <td className="py-1 sm:py-3 px-2 sm:px-4 text-nowrap text-sm lg:text-lg">{property.title}</td>
-              <td className="py-1 sm:py-3 px-2 sm:px-4 text-nowrap text-sm lg:text-lg">{property.location}</td>
-              <td className="py-1 sm:py-3 px-2 sm:px-4 text-center text-sm lg:text-lg">{property.beds}</td>
+              <td className="py-1 sm:py-3 px-2 sm:px-4 text-nowrap text-sm lg:text-lg">
+                {property.title}
+              </td>
+              <td className="py-1 sm:py-3 px-2 sm:px-4 text-nowrap text-sm lg:text-lg">
+                {property.location}
+              </td>
+              <td className="py-1 sm:py-3 px-2 sm:px-4 text-center text-sm lg:text-lg">
+                {property.beds}
+              </td>
               <td className="py-3 px-4 text-center">{property.baths}</td>
               <td className="py-1 sm:py-3 px-2 sm:px-4 text-center text-sm lg:text-lg">
                 {property.price.toLocaleString()}
@@ -57,7 +80,7 @@ const ViewProperty = ({ properties }) => {
                   className="text-red-500 font-bold p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full transition"
                   onClick={() => handleDelete(property._id)}
                 >
-                  Delete
+                  {loadingId === property._id ? "Deleting..." : "Delete"}
                 </button>
               </td>
             </tr>

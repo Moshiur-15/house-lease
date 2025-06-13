@@ -1,7 +1,9 @@
 import ManageUserTable from "@/app/Components/Admin/ManageUserTable";
+import user from "@/fakeapi/user/page";
 import React from "react";
 
 const AllUsers = () => {
+  const UsersData = user;
   return (
     <div>
       <div className="flex flex-col lg:flex-row justify-between space-y-3 px-4">
@@ -14,7 +16,7 @@ const AllUsers = () => {
           className="border border-gray-300 dark:border-gray-600 w-full max-w-[16rem] py-2 px-3"
         />
       </div>
-      <ManageUserTable />
+      <ManageUserTable UsersData={UsersData} />
     </div>
   );
 };

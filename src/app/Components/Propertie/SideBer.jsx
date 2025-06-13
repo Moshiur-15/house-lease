@@ -1,25 +1,4 @@
-import React from "react";
-const SideBer = () => {
-  const recentPosts = [
-    {
-      date: "13. MARCH 2023.",
-      title: "Luxury Houses",
-      image:
-        "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
-    },
-    {
-      date: "13. MARCH 2023.",
-      title: "Great Guide",
-      image:
-        "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
-    },
-    {
-      date: "13. MARCH 2023.",
-      title: "House of the Week",
-      image:
-        "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
-    },
-  ];
+const SideBer = ({ recentPosts }) => {
 
   return (
     <aside className="py-8 space-y-10">
@@ -30,10 +9,13 @@ const SideBer = () => {
             src="https://i.ibb.co.com/wNPyX4j/me.jpg"
             alt="Agent"
             className="w-12 h-12 rounded-full object-cover"
-          />{/* posted user img */}
+          />
+          {/* posted user img */}
           <div>
-            <h2 className="text-lg font-semibold">Moshiur</h2> {/* posted user name */}
-            <p className="text-sm text-gray-500">10-10-2020</p> {/* posted date */}
+            <h2 className="text-lg font-semibold">Moshiur</h2>{" "}
+            {/* posted user name */}
+            <p className="text-sm text-gray-500">10-10-2020</p>{" "}
+            {/* posted date */}
           </div>
         </div>
 
@@ -62,9 +44,9 @@ const SideBer = () => {
 
         {/* Buttons */}
         <button className="w-full border bg-black py-2 mt-2 hover:border-black hover:bg-gray-100 text-white duration-500  hover:text-black border-transparent">
-        📧 Send Email
+          📧 Send Email
         </button>
-        
+
         <button className="group relative w-full border border-black overflow-hidden py-2 mt-2 transition-all duration-500 hover:border-transparent">
           <div className="absolute inset-0 w-0 bg-black transition-[width] duration-500 ease-in-out group-hover:w-full"></div>
           <span className="relative z-10 flex items-center justify-center gap-2 text-black group-hover:text-white">
@@ -77,19 +59,29 @@ const SideBer = () => {
       <div className="p-4 bg-gray-100">
         <h2 className="font-semibold text-lg mb-4">Recent Properties</h2>
         <ul className="space-y-4">
-          {recentPosts.map((post, index) => (
-            <li key={index} className="flex items-center space-x-3">
-              <img
-                src={post.image}
-                alt={post.title}
-                className="w-[100px] h-[90px] lg:w-[75px] lg:h-[75px] object-cover rounded cursor-pointer"
-              />
-              <div>
-                <p className="text-xs text-gray-600">{post.date}</p>
-                <p className="text-sm font-medium">{post.title}</p>
-              </div>
-            </li>
-          ))}
+          {recentPosts
+            ?.slice()
+            .reverse()
+            .slice(0, 3)
+            .map((post, index) => (
+              <li key={index} className="flex items-center space-x-3">
+                <img
+                  src={post.cardImage}
+                  alt={post.title}
+                  className="w-[100px] h-[90px] lg:w-[75px] lg:h-[75px] object-cover rounded cursor-pointer"
+                />
+                <div>
+                  <p className="text-xs text-gray-600">
+                    {new Date(post.createdAt).toLocaleDateString("en-US", {
+                      day: "2-digit",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </p>
+                  <p className="text-sm font-medium">{post.title}</p>
+                </div>
+              </li>
+            ))}
         </ul>
       </div>
     </aside>

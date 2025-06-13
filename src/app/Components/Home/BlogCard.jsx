@@ -4,8 +4,6 @@ import React from "react";
 
 const BlogCard = ({ blog }) => {
   const { cardImage, CardTitle, CardDes, _id } = blog || {};
-  console.log(_id)
-
   return (
     <div className="flex flex-col">
       {/* Image */}
@@ -21,7 +19,7 @@ const BlogCard = ({ blog }) => {
 
       <div className="flex flex-col grow px-4 py-6">
         <h2 className="text-lg font-semibold text-gray-800">{CardTitle}</h2>
-        <p className="text-gray-600 text-sm mt-2">{CardDes}</p>
+        <p className="text-gray-600 text-sm mt-2">{CardDes.slice(0, 80)}...</p>
         <div className="mt-auto">
           <Link
             href={`/blog/${_id}`}

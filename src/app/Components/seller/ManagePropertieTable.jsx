@@ -35,7 +35,7 @@ const ManagePropertieTable = ({ properties }) => {
             </tr>
           </thead>
           <tbody>
-            {propertyList.map((property) => (
+            {propertyList?.slice().reverse().map((property) => (
               <tr key={property._id} className="hover:bg-gray-50 dark:hover:bg-gray-800 transition duration-200">
                 <td className={`${tdStyle}`}>{property.title}</td>
                 <td className={`${tdStyle}`}>{property.location}</td>

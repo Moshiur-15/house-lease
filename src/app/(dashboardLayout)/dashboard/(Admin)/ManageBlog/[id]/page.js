@@ -4,7 +4,8 @@ import GetSingleBlog from "@/app/Components/Admin/GetSingleBlog";
 import React from "react";
 
 const Page = async ({ params }) => {
-  const { id } = params;
+  const { id } = await params;
+  console.log(id)
   const SingleData = await GetSingleBlog(id);
 
     if (!SingleData) {

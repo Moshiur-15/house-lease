@@ -30,7 +30,7 @@ const ShowBlogComment = () => {
   ];
 
   // State to store which comment is expanded
-  const [expandedComments, setExpandedComments] = useState({});
+   const [expandedComments, setExpandedComments] = useState({});
 
   const toggleComment = (id) => {
     setExpandedComments((prevState) => ({

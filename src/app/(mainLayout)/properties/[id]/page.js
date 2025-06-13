@@ -2,6 +2,7 @@ import Comment from "@/app/Components/Propertie/Comment";
 import CustomSwiper from "@/app/Components/Propertie/CustomSwiper";
 import ShowComment from "@/app/Components/Propertie/ShowComment";
 import SideBer from "@/app/Components/Propertie/SideBer";
+import GetPropertiesData from "@/app/Components/seller/GetData";
 import GetSingleData from "@/app/Components/seller/GetSingleData";
 import React from "react";
 
@@ -12,8 +13,8 @@ export default async function PropertiesDetails({ params }) {
     if (!house) {
       return <div className="text-center text-red-500 p-10">Data not found</div>;
     }
-  console.log(house)
-
+    const recentPosts = await GetPropertiesData();
+    
   return (
     <section>
       <div className="container mx-auto lg:flex gap-10 lg:gap-14 px-6.5 lg:px-5.5">
@@ -27,7 +28,7 @@ export default async function PropertiesDetails({ params }) {
         </section>
         {/* sideber */}
         <aside className="w-full lg:w-2/6 h-fit top-12 sticky">
-          <SideBer />
+          <SideBer recentPosts={recentPosts} />
         </aside>
       </div>
     </section>

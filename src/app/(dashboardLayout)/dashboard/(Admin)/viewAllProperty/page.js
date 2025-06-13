@@ -9,7 +9,7 @@ const ViewAllProperty = async () => {
     <section className="my-5 lg:my-10 px-4 xl:px-0 space-y-3">
       <div className="flex flex-col lg:flex-row justify-between space-y-3">
         <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
-          MANAGE YOU PROPERTIES
+          MANAGE PROPERTIES
         </h2>
         <input
           type="text"

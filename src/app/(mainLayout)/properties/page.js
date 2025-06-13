@@ -54,7 +54,7 @@ const Properties = () => {
               : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
           }`}
         >
-          {properties?.slice(0, 6).map((property) => (
+          {properties?.slice().reverse().map((property) => (
             <ExclusiveCard view={view} property={property} key={property?._id} />
           ))}
         </div>

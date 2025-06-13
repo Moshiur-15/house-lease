@@ -16,7 +16,7 @@ const Exclusive = async () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
-        {properties?.slice(0, 6).map((property) => (
+        {properties?.slice().reverse().slice(0, 6).map((property) => (
           <ExclusiveCard property={property} key={property._id} />
         ))}
       </div>
