@@ -7,7 +7,8 @@ import ShowBlogComment from "@/app/Components/Home/ShowBlogComment";
 import React from "react";
 
 const BlogId = async({ params }) => {
-  const id = params.id;
+  const param = await params;
+  const id = param.id;
   const singleBlog = await GetSingleBlog(id);
   const resentBlog = await GetBlog(); 
   console.log(singleBlog)
