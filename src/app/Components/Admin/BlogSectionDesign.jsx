@@ -63,7 +63,7 @@ const BlogSectionDesign = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `https://house-lease.vercel.app/api/admin/blogs`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/admin/blogs`,
         formData
       );
       console.log(res);

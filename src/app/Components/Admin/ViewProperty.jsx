@@ -10,7 +10,7 @@ const ViewProperty = ({ properties }) => {
     setLoadingId(id);
     try {
       await axios.delete(
-        `https://house-lease.vercel.app/api/seller/property?id=${id}`
+        `${process.env.NEXT_PUBLIC_API_URL}/api/seller/property?id=${id}`
       );
       alert("Property deleted");
       setProperty((p) => p.filter((p) => p._id !== id));

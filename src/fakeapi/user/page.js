@@ -21,7 +21,7 @@ const user = [
     email: "jane.smith@mailinator.com",
     password: "$2b$06$JwyUNLJVmN9YWnLnLfXjV.q5L2fkjTgKjxJ0ce4A1.5GRr/2Q.zdi",
     image: "https://i.ibb.co/z4sy1PN/sample-avatar2.png",
-    role: "buyer",
+    role: "admin",
   },
   {
     _id: "6832c8ad5c8fd83a6b1e49dc",
@@ -29,7 +29,7 @@ const user = [
     email: "mike@mailinator.com",
     password: "$2b$06$JwyUNLJVmN9YWnLnLfXjV.q5L2fkjTgKjxJ0ce4A1.5GRr/2Q.zdi",
     image: "https://i.ibb.co/gVDzCkf/sample-avatar3.png",
-    role: "buyer",
+    role: "seller",
   },
   {
     _id: "6832c8ad5c8fd83a6b1e49dd",

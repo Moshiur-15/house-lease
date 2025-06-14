@@ -7,7 +7,7 @@ import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 const ManageBlogModal = ({ BlogId, onDelete }) => {
   const handleDelete = async () => {
     try {
-      await axios.delete(`https://house-lease.vercel.app/api/admin/blogs?id=${BlogId}`);
+      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/blogs?id=${BlogId}`);
       alert("Blog deleted");
       onDelete(BlogId);
     } catch (err) {

@@ -1,4 +1,5 @@
 "use client";
+
 import FilterBar from "@/app/Components/Home/FilterBar";
 import ExclusiveCard from "../../Components/Home/ExclusiveCard";
 import { useEffect, useState } from "react";
