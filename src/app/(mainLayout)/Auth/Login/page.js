@@ -134,7 +134,6 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  // Predefined credentials based on role
   const handleRoleClick = (selectedRole) => {
     setRole(selectedRole);
     if (selectedRole === "admin") {

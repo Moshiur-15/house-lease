@@ -22,10 +22,13 @@ export const getSingleProperty = async (id) => {
 
 // delete property
 export const deleteProperty = async (req) => {
-  const id = req.nextUrl.searchParams.get("id");
+  const { searchParams } = new URL(req.url);
+  const id = searchParams.get("id");
   const property = await addProperty.findByIdAndDelete(id);
-  return NextResponse.json({ message: "Delete post", status: 200, property });
+
+  return NextResponse.json({ message: "Deleted successfully", status: 200, property });
 };
+
 
 // update property
 export const updateProperty = async (req, id) => {
