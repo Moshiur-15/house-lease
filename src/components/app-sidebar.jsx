@@ -162,8 +162,8 @@ export function AppSidebar(props) {
   const filteredNav = fullNav.filter((section) => {
     if (role === "admin") return section.section === "Admin";
     if (role === "seller") return section.section === "Seller";
-    if (role === "user") return section.section === "User";
-    return false; // no sections shown if role unknown
+    if (role === "buyer") return section.section === "User";
+    return false;
   });
 
   return (
