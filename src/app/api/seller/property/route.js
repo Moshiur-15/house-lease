@@ -37,7 +37,6 @@ export async function DELETE(req) {
   return addCORS(res);
 }
 
-// Helper function to add CORS headers to response
 function addCORS(response) {
   response.headers.set("Access-Control-Allow-Origin", "*");
   response.headers.set("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS");
