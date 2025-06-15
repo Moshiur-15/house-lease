@@ -11,52 +11,51 @@ const handler = NextAuth({
         role: { label: "Role", type: "text" }, // role পাঠাতে হলে
       },
       async authorize(credentials) {
-  const { email, password, role } = credentials;
+        const { email, password, role } = credentials;
 
-  const users = [
-    {
-      id: "1",
-      name: "Admin User",
-      email: "admin@gmail.com",
-      password: "admin123",
-      role: "admin",
-    },
-    {
-      id: "2",
-      name: "Seller User",
-      email: "seller@gmail.com",
-      password: "seller123",
-      role: "seller",
-    },
-    {
-      id: "3",
-      name: "Buyer User",
-      email: "buyer@gmail.com",
-      password: "buyer123",
-      role: "buyer",
-    },
-  ];
+        const users = [
+          {
+            id: "1",
+            name: "Admin User",
+            email: "admin@gmail.com",
+            password: "admin123",
+            role: "admin",
+          },
+          {
+            id: "2",
+            name: "Seller User",
+            email: "seller@gmail.com",
+            password: "seller123",
+            role: "seller",
+          },
+          {
+            id: "3",
+            name: "Buyer User",
+            email: "buyer@gmail.com",
+            password: "buyer123",
+            role: "buyer",
+          },
+        ];
 
-  const matchedUser = users.find(
-    (user) =>
-      user.email === email &&
-      user.password === password &&
-      user.role === role
-  );
+        const matchedUser = users.find(
+          (user) =>
+            user.email === email &&
+            user.password === password &&
+            user.role === role
+        );
 
-  if (matchedUser) {
-    return {
-      id: matchedUser.id,
-      name: matchedUser.name,
-      email: matchedUser.email,
-      role: matchedUser.role,
-      image: "https://i.pravatar.cc/150?u=" + matchedUser.email,
-    };
-  }
+        if (matchedUser) {
+          return {
+            id: matchedUser.id,
+            name: matchedUser.name,
+            email: matchedUser.email,
+            role: matchedUser.role,
+            image: "https://i.pravatar.cc/150?u=" + matchedUser.email,
+          };
+        }
 
-  return null;
-}
-,
+        return null;
+      },
     }),
   ],
 
