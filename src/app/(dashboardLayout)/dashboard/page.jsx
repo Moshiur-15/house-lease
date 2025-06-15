@@ -1,13 +1,29 @@
-// import { Suspense } from "react";
-// import Loader from "../../components/Loader";
+"use client";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
+export default function DashboardPage() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
 
-const Dashboard = () => {
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/Auth/Login");
+    }
+  }, [status, router]);
+
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
+
+  if (!session) {
+    return null;
+  }
+
   return (
-      <div>
-        <h2 className="text-xl font-bold mb-4">WELCOME TO DASHBOARD</h2>
-      </div>
+    <div>
+      <h1>Welcome to Dashboard, {session.user.name}</h1>
+    </div>
   );
-};
-
-export default Dashboard;
+}
