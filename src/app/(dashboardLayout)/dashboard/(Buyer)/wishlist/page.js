@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Table,
   TableBody,
@@ -9,24 +9,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { AiOutlineEye, AiOutlineDelete } from "react-icons/ai";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 
 const Wishlist = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
   const [wishlistData, setWishlistData] = useState([]);
-  const itemsPerPage = 8;
-
   const { data: session } = useSession();
   const email = session?.user?.email;
 
@@ -59,28 +47,15 @@ const Wishlist = () => {
     }
   };
 
-  const filteredWishlist = useMemo(() => {
+  const filteredWishlist = wishlistData.filter((item) => {
     const term = searchTerm.toLowerCase();
-    return wishlistData.filter(
-      (item) =>
-        item.title.toLowerCase().includes(term) ||
-        item.location.toLowerCase().includes(term) ||
-        item.status.toLowerCase().includes(term) ||
-        (item.category ? item.category.toLowerCase().includes(term) : false)
+    return (
+      item.title.toLowerCase().includes(term) ||
+      item.location.toLowerCase().includes(term) ||
+      item.status.toLowerCase().includes(term) ||
+      (item.category ? item.category.toLowerCase().includes(term) : false)
     );
-  }, [searchTerm, wishlistData]);
-
-  const totalPages = Math.ceil(filteredWishlist.length / itemsPerPage);
-  const paginatedWishlist = useMemo(() => {
-    const start = (currentPage - 1) * itemsPerPage;
-    return filteredWishlist.slice(start, start + itemsPerPage);
-  }, [filteredWishlist, currentPage]);
-
-  const handlePageChange = (number) => {
-    if (number >= 1 && number <= totalPages) {
-      setCurrentPage(number);
-    }
-  };
+  });
 
   return (
     <div className="p-4 mx-auto">
@@ -92,10 +67,7 @@ const Wishlist = () => {
           type="text"
           placeholder="Search wishlist..."
           value={searchTerm}
-          onChange={(e) => {
-            setSearchTerm(e.target.value);
-            setCurrentPage(1);
-          }}
+          onChange={(e) => setSearchTerm(e.target.value)}
           className="border border-gray-300 dark:border-gray-600 w-full max-w-[20rem] py-2 px-4 focus:outline-none focus:ring-0 dark:bg-gray-800 dark:text-white"
         />
       </div>
@@ -104,44 +76,43 @@ const Wishlist = () => {
         <Table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
           <TableHeader className="bg-gray-100 dark:bg-gray-800">
             <TableRow>
-              <TableHead className="text-gray-700 dark:text-gray-300 border-r border-gray-200 dark:border-gray-700">
+              <TableHead className="text-gray-700 dark:text-gray-300 border-r">
                 Image
               </TableHead>
-              <TableHead className="text-gray-700 dark:text-gray-300 border-r border-gray-200 dark:border-gray-700">
+              <TableHead className="text-gray-700 dark:text-gray-300 border-r">
                 Title
               </TableHead>
-              <TableHead className="text-gray-700 dark:text-gray-300 border-r border-gray-200 dark:border-gray-700">
+              <TableHead className="text-gray-700 dark:text-gray-300 border-r">
                 Location
               </TableHead>
-              <TableHead className="text-gray-700 dark:text-gray-300 border-r border-gray-200 dark:border-gray-700">
+              <TableHead className="text-gray-700 dark:text-gray-300 border-r">
                 Status
               </TableHead>
-              <TableHead className="text-gray-700 dark:text-gray-300 border-r border-gray-200 dark:border-gray-700">
+              <TableHead className="text-gray-700 dark:text-gray-300 border-r">
                 Action
               </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody className="bg-white dark:bg-gray-900">
-            {paginatedWishlist.map((item) => (
+            {filteredWishlist.map((item) => (
               <TableRow
                 key={item._id}
-                className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
+                className="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
               >
-                <TableCell className="p-1 border-r border-gray-200 dark:border-gray-700">
+                <TableCell className="p-1 border-r dark:border-gray-700">
                   <img
                     src={item.cardImage}
                     alt={item.title}
                     className="w-full h-[50px] object-cover mx-auto"
                   />
                 </TableCell>
-
-                <TableCell className="font-medium text-gray-800 dark:text-gray-100 border-r border-gray-200 dark:border-gray-700">
+                <TableCell className="font-medium text-gray-800 dark:text-gray-100 border-r dark:border-gray-700">
                   {item.title}
                 </TableCell>
-                <TableCell className="text-gray-700 dark:text-gray-300 border-r border-gray-200 dark:border-gray-700">
+                <TableCell className="text-gray-700 dark:text-gray-300 border-r dark:border-gray-700">
                   {item.location}
                 </TableCell>
-                <TableCell className="text-center border-r border-gray-200 dark:border-gray-700">
+                <TableCell className="text-center border-r dark:border-gray-700">
                   <span
                     className={`px-2 py-1 text-xs font-medium ${
                       item.status === "For Sale"
@@ -153,19 +124,19 @@ const Wishlist = () => {
                   </span>
                 </TableCell>
                 <TableCell className="text-gray-700 dark:text-gray-300 flex space-x-3 text-xl mt-1.5 mx-3">
-                  <button className="text-blue-600 dark:text-blue-400 hover:text-blue-500">
-                    <AiOutlineEye className="inline-block" />
-                  </button>
+                  {/* <button className="text-blue-600 dark:text-blue-400 hover:text-blue-500">
+                    <AiOutlineEye />
+                  </button> */}
                   <button
                     onClick={() => handleDelete(item._id)}
                     className="text-red-600 dark:text-red-400 hover:text-red-500"
                   >
-                    <AiOutlineDelete className="inline-block" />
+                    <AiOutlineDelete />
                   </button>
                 </TableCell>
               </TableRow>
             ))}
-            {paginatedWishlist.length === 0 && (
+            {filteredWishlist.length === 0 && (
               <TableRow>
                 <TableCell colSpan={5} className="text-center p-4 text-gray-500">
                   No wishlist items found.
@@ -175,52 +146,6 @@ const Wishlist = () => {
           </TableBody>
         </Table>
       </div>
-
-      {totalPages > 1 && (
-        <Pagination className="mt-4">
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handlePageChange(currentPage - 1);
-                }}
-                disabled={currentPage === 1}
-              />
-            </PaginationItem>
-            {Array.from({ length: totalPages }, (_, i) => (
-              <PaginationItem key={i}>
-                <PaginationLink
-                  href="#"
-                  isActive={currentPage === i + 1}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handlePageChange(i + 1);
-                  }}
-                >
-                  {i + 1}
-                </PaginationLink>
-              </PaginationItem>
-            ))}
-            {totalPages > 3 && currentPage < totalPages - 2 && (
-              <PaginationItem>
-                <PaginationEllipsis />
-              </PaginationItem>
-            )}
-            <PaginationItem>
-              <PaginationNext
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handlePageChange(currentPage + 1);
-                }}
-                disabled={currentPage === totalPages}
-              />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
-      )}
     </div>
   );
 };

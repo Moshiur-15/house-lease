@@ -13,6 +13,7 @@ import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
 import FeedBackModal from "@/app/Components/buyer/FeedBackModal";
+import { toast } from "sonner";
 
 const MyBookings = () => {
   const [bookings, setBookings] = useState([]);
@@ -47,12 +48,13 @@ const MyBookings = () => {
       await axios.delete(`/api/buyer/booking?id=${id}`);
       setBookings((prev) => prev.filter((b) => b._id !== id));
     } catch (err) {
-      alert("Failed to delete");
+      console.error(err);
+      toast("Failed to delete");
     }
   };
 
   const handlePay = () => {
-    alert("processing...");
+    toast("processing...");
   };
 
   return (

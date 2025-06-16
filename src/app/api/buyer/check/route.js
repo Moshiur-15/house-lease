@@ -1,5 +1,6 @@
 import Wishlist from "@/app/Models/Wishlist";
 import connectDB from "@/app/utils/database";
+import { NextResponse } from "next/server";
 
 export async function GET(req) {
   await connectDB();
@@ -8,10 +9,10 @@ export async function GET(req) {
   const propertyID = searchParams.get("propertyID");
 
   if (!userEmail || !propertyID) {
-    return new Response("Missing data", { status: 400 });
+    return NextResponse.json("Missing data", { status: 400 });
   }
 
   const exists = await Wishlist.findOne({ userEmail, propertyID });
 
-  return Response.json({ exists: !!exists });
+  return NextResponse.json({ exists: !!exists });
 }

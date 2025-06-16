@@ -23,7 +23,6 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 
-// Sample static data for teams and user info, you can replace this later
 const data = {
   user: {
     name: "shadcn",
@@ -51,9 +50,8 @@ const data = {
 
 export function AppSidebar(props) {
   const { data: session } = useSession();
-  const role = session?.user?.role || "user"; // default role user
+  const role = session?.user?.role || "user";
 
-  // Full menu data
   const fullNav = [
     {
       section: "Admin",
@@ -67,7 +65,7 @@ export function AppSidebar(props) {
         {
           id: 2,
           title: "MANAGE USERS",
-          url: "/dashboard/allUsers",
+          url: "/dashboard/AllUsers",
           icon: Bot,
         },
         {
@@ -85,7 +83,7 @@ export function AppSidebar(props) {
         {
           id: 5,
           title: "MANAGE BLOGS",
-          url: "/dashboard/manageBlog",
+          url: "/dashboard/ManageBlog",
           icon: BookOpen,
         },
       ],
@@ -104,7 +102,7 @@ export function AppSidebar(props) {
           id: 9,
           title: "ADD PROPERTY",
           url: "/dashboard/add-property",
-          icon: Frame,
+          icon: FaPlus,
         },
         {
           id: 10,
@@ -117,12 +115,6 @@ export function AppSidebar(props) {
           title: "MANAGE BOOKINGS",
           url: "/dashboard/manageBookings",
           icon: BookOpen,
-        },
-        {
-          id: 20,
-          title: "PAYMENT",
-          url: "/dashboard/paymentBookingUser",
-          icon: FaMoneyCheckAlt,
         },
       ],
     },

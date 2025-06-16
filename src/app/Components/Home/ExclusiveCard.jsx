@@ -5,6 +5,7 @@ import { IoLocationOutline } from "react-icons/io5";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import axios from "axios";
 import { useSession } from "next-auth/react";
+import { toast } from "sonner";
 
 const ExclusiveCard = ({ property, view }) => {
   const {
@@ -48,9 +49,9 @@ const ExclusiveCard = ({ property, view }) => {
   //  Toggle wishlist add
   const toggleWishlist = async (e) => {
     e.preventDefault();
-    if (!session?.user?.email) return alert("Please Login...");
+    if (!session?.user?.email) return toast("Please Login...");
     if (session?.user?.role !== "buyer")
-      return alert("Only buyer can add to wishlist!");
+      return toast("Only buyer can add to wishlist!");
 
     try {
       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/buyer`, {
@@ -62,10 +63,10 @@ const ExclusiveCard = ({ property, view }) => {
         status: status,
       });
       setLiked(true);
-      alert("Added to wishlist!");
+      toast("Added to wishlist!")
     } catch (err) {
       console.log(err)
-      alert(err?.response?.data || "Something went wrong");
+      toast(err?.response?.data || "Something went wrong");
     }
   };
 

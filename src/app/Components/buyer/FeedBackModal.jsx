@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Star } from "lucide-react";
+import { toast } from "sonner";
 
 const FeedBackModal = ({ booking, onClose }) => {
   const [feedback, setFeedback] = useState("");
@@ -10,7 +11,7 @@ const FeedBackModal = ({ booking, onClose }) => {
   e.preventDefault();
 
   if (rating === 0) {
-    alert("Please give a rating before submitting.");
+    toast("Please give a rating before submitting.");
     return;
   }
   console.log("⭐:", rating);

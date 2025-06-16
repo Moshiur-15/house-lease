@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import axios from "axios";
+import { toast } from "sonner";
 // import { useAuth } from "@/app/context/AuthContext";
 
 // 👇 Replace with your actual API key
@@ -131,7 +132,7 @@ const RegisterPage = () => {
           <button
             type="button"
             className="w-full border border-gray-300 py-2 flex items-center justify-center gap-2 hover:bg-black hover:text-white hover:border-transparent duration-300"
-            onClick={() => alert("Google login not implemented yet")}
+            onClick={() => toast("Google login not implemented yet")}
           >
             <img
               src="https://www.svgrepo.com/show/355037/google.svg"

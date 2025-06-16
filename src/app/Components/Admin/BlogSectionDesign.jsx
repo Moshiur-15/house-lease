@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "sonner";
 
 const imgbbApiKey = "58a9d3ffd0c8663f17be9ce8a26786ff";
 
@@ -53,7 +54,7 @@ const BlogSectionDesign = () => {
       }));
     } catch (error) {
       console.error(`Failed to upload ${name}`, error);
-      alert(`Image upload failed for ${name}`);
+      toast(`Image upload failed for ${name}`);
     } finally {
       setUploading((prev) => ({ ...prev, [name]: false }));
     }
@@ -68,7 +69,7 @@ const BlogSectionDesign = () => {
       );
       console.log(res);
 
-      alert("Data Added Successfully!");
+      toast("Data Added Successfully!");
       console.log(formData);
     } catch (err) {
       console.error(err);

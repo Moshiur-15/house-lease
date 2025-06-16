@@ -8,6 +8,7 @@ import "swiper/css/thumbs";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const CustomSwiper = ({ house, propertyId }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -20,8 +21,8 @@ const CustomSwiper = ({ house, propertyId }) => {
 
   const handleBooking = async () => {
     try {
-      if (!session?.user?.email) return alert("please login!");
-      if (session?.user?.role !== "buyer") return alert("You are not a buyer!");
+      if (!session?.user?.email) return toast("please login!");
+      if (session?.user?.role !== "buyer") return toast("You are not a buyer!");
 
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/buyer/booking`, {
         BuyerName: session?.user?.name,
@@ -33,11 +34,11 @@ const CustomSwiper = ({ house, propertyId }) => {
         propertyId: propertyId,
       });
       console.log(res.data);
-      alert("Booking successful");
+      toast("Booking successful");
       router.push('/dashboard/myBookings')
     } catch (err) {
       console.log(err);
-      alert(`${err?.response?.data?.message}`)
+      toast(`${err?.response?.data?.message}`)
     }
   };
 

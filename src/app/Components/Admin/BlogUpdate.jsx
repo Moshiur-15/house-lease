@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const imgbbApiKey = "58a9d3ffd0c8663f17be9ce8a26786ff";
 
@@ -57,7 +58,7 @@ const BlogSectionDesign = ({ id }) => {
       }));
     } catch (error) {
       console.error(`Failed to upload ${name}`, error);
-      alert(`Image upload failed for ${name}`);
+      toast(`Image upload failed for ${name}`);
     } finally {
       setUploading((prev) => ({ ...prev, [name]: false }));
     }
@@ -89,7 +90,7 @@ const BlogSectionDesign = ({ id }) => {
         formData
       );
       console.log(formData, res);
-      alert("Blog updated successfully");
+      toast("Blog updated successfully");
       router.push('/dashboard/manageBlog')
     } catch (err) {
       console.error(err);

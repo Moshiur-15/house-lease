@@ -2,7 +2,7 @@ import ManageUserTable from "@/app/Components/Admin/ManageUserTable";
 import user from "@/fakeapi/user/page";
 import React from "react";
 
-const AllUsers = () => {
+const page = () => {
   const UsersData = user;
   return (
     <div>
@@ -21,4 +21,4 @@ const AllUsers = () => {
   );
 };
 
-export default AllUsers;
+export default page;

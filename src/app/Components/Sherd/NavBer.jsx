@@ -26,6 +26,7 @@ const NavBer = () => {
             <NavLinks href="/gallery" text="Gallery" />
             <NavLinks href="/contact" text="Contact" />
             <NavLinks href="/about" text="About" />
+            <NavLinks href="/dashboard" text="Dashboard" />
 
             {session?.user ? (
               <div className="flex items-center gap-3">

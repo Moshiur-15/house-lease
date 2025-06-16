@@ -2,7 +2,7 @@ import GetBlog from "@/app/Components/Admin/GetBlog";
 import ManageBlogTable from "@/app/Components/Admin/ManageBlogTable";
 import React from "react";
 
-const ManageBlog = async () => {
+const page = async () => {
   const blog = await GetBlog();
 
   return (
@@ -23,4 +23,4 @@ const ManageBlog = async () => {
   );
 };
 
-export default ManageBlog;
+export default page;

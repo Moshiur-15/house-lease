@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSession } from "next-auth/react";
+import { toast } from "sonner";
 
 const BlogCommentsWrapper = ({ blogId }) => {
   const [comments, setComments] = useState([]);
@@ -17,7 +18,7 @@ const BlogCommentsWrapper = ({ blogId }) => {
       if (res.data.success) {
         setComments(res.data.data);
       } else {
-        alert("Failed to load comments");
+        toast("Failed to load comments");
       }
     } catch (error) {
       console.error(error);
@@ -111,7 +112,7 @@ const BlogComment = ({ blogId, fetchComments }) => {
 
   const handleComment = async (e) => {
     e.preventDefault();
-    if (!section?.user?.email) return alert("Please Login...");
+    if (!section?.user?.email) return toast("Please Login...");
     const comment = e.target.comment.value;
 
     try {
@@ -122,12 +123,12 @@ const BlogComment = ({ blogId, fetchComments }) => {
         comment,
         blogId,
       });
-      alert("Comment submitted!");
+      toast("Comment submitted!");
       e.target.reset();
-      await fetchComments(); // নতুন কমেন্ট লোড করার জন্য কল
+      await fetchComments(); 
     } catch (err) {
       console.error(err);
-      alert("Failed to submit comment");
+      toast("Failed to submit comment");
     } finally {
       setLoading(false);
     }

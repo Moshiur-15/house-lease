@@ -1,5 +1,6 @@
 "use client";
 
+import { toast } from "sonner";
 import handleRoleUpdate from "./handleRoleUpdate ";
 
 const ManageUserTable = ({ UsersData }) => {
@@ -9,7 +10,7 @@ const ManageUserTable = ({ UsersData }) => {
   const handleUpdate = (id, role) => {
     console.log(id, role);
     // handleRoleUpdate(id, role);
-    alert("UPDATED USER ROLE!")
+    toast("UPDATED USER ROLE!")
   };
   return (
     <div className="p-4">

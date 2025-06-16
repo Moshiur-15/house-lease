@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "sonner";
 
 const ShowComment = ({ propertyId }) => {
   const [comments, setComments] = useState([]);
@@ -19,7 +20,7 @@ const ShowComment = ({ propertyId }) => {
         if (res.data.success) {
           setComments(res.data.data);
         } else {
-          alert("Failed to load comments");
+          toast("Failed to load comments");
         }
       } catch (error) {
         console.error(error);

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const imgbbApiKey = "58a9d3ffd0c8663f17be9ce8a26786ff";
 
@@ -72,7 +73,7 @@ const PropertyUpdateModal = ({ property }) => {
       }));
     } catch (error) {
       console.error(`Failed to upload ${name}`, error);
-      alert(`Image upload failed for ${name}`);
+      toast(`Image upload failed for ${name}`);
     } finally {
       setUploading((prev) => ({ ...prev, [name]: false }));
     }
@@ -86,7 +87,7 @@ const PropertyUpdateModal = ({ property }) => {
         formData
       );
       console.log(response.data);
-      alert("Property updated successfully.");
+      toast("Property updated successfully.");
       router.push('/dashboard/managePropertie')
     } catch (err) {
       console.error(err);

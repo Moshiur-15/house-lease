@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const ViewProperty = ({ properties }) => {
   const [property, setProperty] = useState(properties);
@@ -12,11 +13,11 @@ const ViewProperty = ({ properties }) => {
       await axios.delete(
         `${process.env.NEXT_PUBLIC_API_URL}/api/seller/property?id=${id}`
       );
-      alert("Property deleted");
+      toast("Property deleted");
       setProperty((p) => p.filter((p) => p._id !== id));
     } catch (err) {
       console.error(err);
-      alert("Delete failed. Please try again.");
+      toast("Delete failed. Please try again.");
     } finally {
       setLoadingId(null);
     }

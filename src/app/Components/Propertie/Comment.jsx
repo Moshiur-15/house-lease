@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSession } from "next-auth/react";
+import { toast } from "sonner";
 
 // Main Page Component
 const PropertyComments = ({ propertyId }) => {
@@ -19,7 +20,7 @@ const PropertyComments = ({ propertyId }) => {
       if (res.data.success) {
         setComments(res.data.data);
       } else {
-        alert("Failed to load comments");
+        toast("Failed to load comments");
       }
     } catch (error) {
       console.error(error);
@@ -108,7 +109,7 @@ const CommentForm = ({ propertyId, fetchComments }) => {
 
   const handleComment = async (e) => {
     e.preventDefault();
-    if (!section?.user?.email) return alert("Please Login...");
+    if (!section?.user?.email) return toast("Please Login...");
     const comment = e.target.comment.value;
     try {
       setLoading(true);
