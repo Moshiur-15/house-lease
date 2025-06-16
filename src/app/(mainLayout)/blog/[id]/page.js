@@ -18,9 +18,9 @@ const BlogId = async({ params }) => {
       <section className="w-full lg:w-4/6 min-h-96">
         <BlogDetails detail={singleBlog} />
         {/* show Comment */}
-        <ShowBlogComment />
+        <ShowBlogComment blogId={id} />
         {/* Comment input */}
-        <BlogComment />
+        <BlogComment blogId={id} />
       </section>
       {/* sideber */}
       <aside className="w-full lg:w-2/6 h-fit sticky top-12">

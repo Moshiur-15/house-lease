@@ -11,9 +11,8 @@ const CustomSwiper = ({ house }) => {
 
   const { detImg1, detImg2, detImg3, detImg4 } = house || {};
   const images = { detImg1, detImg2, detImg3, detImg4 };
-
-  // Convert the images object to an array
   const imageArray = images ? Object.values(images) : [];
+  
 
   return (
     <div className="">
@@ -84,12 +83,12 @@ const CustomSwiper = ({ house }) => {
               <button className="w-full cursor-pointer text-white py-3 bg-[#FF8904] transition-colors font-semibold duration-500">
                 Booking
               </button>
-              <button className="group relative w-full border border-[#FF8904] overflow-hidden py-2 mt-2 transition-all duration-500 hover:border-transparent">
+              {/* <button className="group relative w-full border border-[#FF8904] overflow-hidden py-2 mt-2 transition-all duration-500 hover:border-transparent">
                 <div className="absolute inset-0 w-0 bg-[#FF8904] transition-[width] duration-500 ease-in-out group-hover:w-full"></div>
                 <span className="relative z-10 flex items-center justify-center gap-2 text-black group-hover:text-white  cursor-pointer">
                   Wishlist
                 </span>
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
