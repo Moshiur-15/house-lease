@@ -35,19 +35,35 @@ export const deleteBlog = async (req) => {
 };
 
 // get single blog
-export const getSingleBlog = async (req, id) => {
+// export const getSingleBlog = async (req, id) => {
+//   try {
+//     console.log("blog id", id)
+//     const blog = await Blogs.findById(id);
+//     console.log("blogs server", blog)
+//     if (!blog) {
+//       return NextResponse.json({ message: "Blog not found" }, { status: 404 });
+//     }
+//     return NextResponse.json(
+//       { message: "Get single data", blog },
+//       { status: 200 }
+//     );
+//   } catch (error) {
+//     return NextResponse.json(
+//       { message: "Server error", error: error.message },
+//       { status: 500 }
+//     );
+//   }
+// };
+export const getSingleBlog = async (id) => {
   try {
     const blog = await Blogs.findById(id);
     if (!blog) {
       return NextResponse.json({ message: "Blog not found" }, { status: 404 });
     }
+    return NextResponse.json({ message: "Get single data", blog });
+  } catch (err) {
     return NextResponse.json(
-      { message: "Get single data", blog },
-      { status: 200 }
-    );
-  } catch (error) {
-    return NextResponse.json(
-      { message: "Server error", error: error.message },
+      { message: "Server error", error: err.message },
       { status: 500 }
     );
   }

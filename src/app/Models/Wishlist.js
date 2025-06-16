@@ -3,20 +3,11 @@ import mongoose from "mongoose";
 const wishlistSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
-    location: { type: String, required: true },
-    beds: { type: Number, required: true },
-    baths: { type: Number, required: true },
-    sqft: { type: Number, required: true },
-    price: { type: Number, required: true },
-    rate: { type: Number, required: true },
-    category: { type: String, required: true },
     cardImage: { type: String, required: true },
-    detImg1: { type: String },
-    detImg2: { type: String },
-    detImg3: { type: String },
-    detImg4: { type: String },
-    description: { type: String, required: true },
+    location: { type: String, required: true },
     status: { type: String, default: "Rent" },
+    propertyID: { type: String, required: true },
+    userEmail: { type: String, required: true },
   },
   { timestamps: true }
 );

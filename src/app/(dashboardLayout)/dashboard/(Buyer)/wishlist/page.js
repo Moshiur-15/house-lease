@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import {
   Table,
   TableBody,
@@ -18,12 +18,46 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import wishlistData from "../../../../../fakeapi/wishlist/page";
+import axios from "axios";
+import { useSession } from "next-auth/react";
 
 const Wishlist = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [wishlistData, setWishlistData] = useState([]);
   const itemsPerPage = 8;
+
+  const { data: session } = useSession();
+  const email = session?.user?.email;
+
+  const fetchWishlist = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/buyer`,
+        { params: { userEmail: email } }
+      );
+      setWishlistData(res.data);
+    } catch (err) {
+      console.error("Error fetching wishlist:", err);
+    }
+  };
+
+  useEffect(() => {
+    if (email) {
+      fetchWishlist();
+    }
+  }, [email]);
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/buyer`, {
+        data: { id },
+      });
+      setWishlistData((prev) => prev.filter((item) => item._id !== id));
+    } catch (err) {
+      console.error("Error deleting wishlist item:", err);
+    }
+  };
 
   const filteredWishlist = useMemo(() => {
     const term = searchTerm.toLowerCase();
@@ -32,12 +66,11 @@ const Wishlist = () => {
         item.title.toLowerCase().includes(term) ||
         item.location.toLowerCase().includes(term) ||
         item.status.toLowerCase().includes(term) ||
-        item.category.toLowerCase().includes(term)
+        (item.category ? item.category.toLowerCase().includes(term) : false)
     );
-  }, [searchTerm]);
+  }, [searchTerm, wishlistData]);
 
   const totalPages = Math.ceil(filteredWishlist.length / itemsPerPage);
-
   const paginatedWishlist = useMemo(() => {
     const start = (currentPage - 1) * itemsPerPage;
     return filteredWishlist.slice(start, start + itemsPerPage);
@@ -91,10 +124,10 @@ const Wishlist = () => {
           <TableBody className="bg-white dark:bg-gray-900">
             {paginatedWishlist.map((item) => (
               <TableRow
-                key={item.id}
+                key={item._id}
                 className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
               >
-                <TableCell className="p-1 border-r border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">
+                <TableCell className="p-1 border-r border-gray-200 dark:border-gray-700">
                   <img
                     src={item.cardImage}
                     alt={item.title}
@@ -123,52 +156,71 @@ const Wishlist = () => {
                   <button className="text-blue-600 dark:text-blue-400 hover:text-blue-500">
                     <AiOutlineEye className="inline-block" />
                   </button>
-                  <button className="text-red-600 dark:text-red-400 hover:text-red-500">
+                  <button
+                    onClick={() => handleDelete(item._id)}
+                    className="text-red-600 dark:text-red-400 hover:text-red-500"
+                  >
                     <AiOutlineDelete className="inline-block" />
                   </button>
                 </TableCell>
               </TableRow>
             ))}
+            {paginatedWishlist.length === 0 && (
+              <TableRow>
+                <TableCell colSpan={5} className="text-center p-4 text-gray-500">
+                  No wishlist items found.
+                </TableCell>
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </div>
 
-      {/* Pagination Controls */}
-      <Pagination className="mt-4">
-        <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious
-              href="#"
-              onClick={() => handlePageChange(currentPage - 1)}
-            />
-          </PaginationItem>
-
-          {Array.from({ length: totalPages }, (_, i) => (
-            <PaginationItem key={i}>
-              <PaginationLink
-                href="#"
-                isActive={currentPage === i + 1}
-                onClick={() => handlePageChange(i + 1)}
-              >
-                {i + 1}
-              </PaginationLink>
-            </PaginationItem>
-          ))}
-
-          {totalPages > 3 && currentPage < totalPages - 2 && (
+      {totalPages > 1 && (
+        <Pagination className="mt-4">
+          <PaginationContent>
             <PaginationItem>
-              <PaginationEllipsis />
+              <PaginationPrevious
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handlePageChange(currentPage - 1);
+                }}
+                disabled={currentPage === 1}
+              />
             </PaginationItem>
-          )}...
-
-          <PaginationItem>
-            <PaginationNext
-              href="#"
-              onClick={() => handlePageChange(currentPage + 1)}
-            />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
+            {Array.from({ length: totalPages }, (_, i) => (
+              <PaginationItem key={i}>
+                <PaginationLink
+                  href="#"
+                  isActive={currentPage === i + 1}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handlePageChange(i + 1);
+                  }}
+                >
+                  {i + 1}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
+            {totalPages > 3 && currentPage < totalPages - 2 && (
+              <PaginationItem>
+                <PaginationEllipsis />
+              </PaginationItem>
+            )}
+            <PaginationItem>
+              <PaginationNext
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handlePageChange(currentPage + 1);
+                }}
+                disabled={currentPage === totalPages}
+              />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      )}
     </div>
   );
 };
