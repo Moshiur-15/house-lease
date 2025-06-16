@@ -1,8 +1,10 @@
+'use client'
+import axios from "axios";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaMapMarkerAlt, FaCalendarAlt, FaComments } from "react-icons/fa";
 
-const BlogDetails = ({ detail }) => {
+const BlogDetails = ({ detail, blogId }) => {
   const {
     CardTitle,
     DetailTitle,
@@ -15,7 +17,31 @@ const BlogDetails = ({ detail }) => {
     detImg1,
     Date,
     Location,
-  } = detail || {}
+  } = detail || {};
+
+  const [commentsCount, setCommentsCount] = useState(0);
+
+  useEffect(() => {
+    if (!blogId) return;
+
+    const getComment = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/admin/blogs/comment?blogId=${blogId}`
+        );
+        if (res.data.success && Array.isArray(res.data.data)) {
+          setCommentsCount(res.data.data.length);
+        } else {
+          setCommentsCount(0);
+        }
+      } catch (error) {
+        console.error("Error fetching comments:", error);
+        setCommentsCount(0);
+      }
+    };
+
+    getComment();
+  }, [blogId]);
 
   return (
     <>
@@ -34,30 +60,30 @@ const BlogDetails = ({ detail }) => {
           </span>
           <span className="flex items-center gap-1">
             <FaComments className="text-yellow-500" />
-            10 Comments
+            {commentsCount} Comment{commentsCount !== 1 ? "s" : ""}
           </span>
         </div>
 
         <p className="text-gray-700 mb-4">{CardDes}</p>
 
         <Image
-          src={cardImage ||  "/default-image.jpg"}
+          src={cardImage || "/default-image.jpg"}
           alt={CardTitle}
           className="w-full h-auto mb-6 object-cover bg-gray-200"
-          height={70}
-          width={100}
+          height={400}
+          width={800}
         />
 
         <h2 className="text-2xl sm:text-3xl font-bold mb-4">{DetailTitle}</h2>
         <p className="text-gray-800 mb-4">{DetailDes1}</p>
         <p className="text-gray-800">{DetailDes2}</p>
 
-         <Image
-          src={detImg1 ||  "/default-image.jpg"}
+        <Image
+          src={detImg1 || "/default-image.jpg"}
           alt={CardTitle}
           className="w-full h-auto mb-6 object-cover bg-gray-200 mt-8 lg:mt-14"
-          height={70}
-          width={100}
+          height={400}
+          width={800}
         />
 
         <h2 className="text-2xl sm:text-3xl font-bold mb-4">{DetailTitle1_1}</h2>

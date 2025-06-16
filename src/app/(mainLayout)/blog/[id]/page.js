@@ -16,9 +16,7 @@ const BlogId = async({ params }) => {
     <div className="container mx-auto lg:flex gap-10 px-6.5 lg:px-5.5">
       {/* details data */}
       <section className="w-full lg:w-4/6 min-h-96">
-        <BlogDetails detail={singleBlog} />
-        {/* show Comment */}
-        <ShowBlogComment blogId={id} />
+        <BlogDetails blogId={id} detail={singleBlog} />
         {/* Comment input */}
         <BlogComment blogId={id} />
       </section>

@@ -5,14 +5,41 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Thumbs } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/thumbs";
+import axios from "axios";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
-const CustomSwiper = ({ house }) => {
+const CustomSwiper = ({ house, propertyId }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const { data: session } = useSession();
+  const router = useRouter();
 
   const { detImg1, detImg2, detImg3, detImg4 } = house || {};
   const images = { detImg1, detImg2, detImg3, detImg4 };
   const imageArray = images ? Object.values(images) : [];
-  
+
+  const handleBooking = async () => {
+    try {
+      if (!session?.user?.email) return alert("please login!");
+      if (session?.user?.role !== "buyer") return alert("You are not a buyer!");
+
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/buyer/booking`, {
+        BuyerName: session?.user?.name,
+        BuyerEmail: session?.user?.email,
+        PropertyName: house.title,
+        PropertyFees: house.price,
+        PaymentStatus: "Unpaid",
+        ConfirmationStatus: "pending",
+        propertyId: propertyId,
+      });
+      console.log(res.data);
+      alert("Booking successful");
+      router.push('/dashboard/myBookings')
+    } catch (err) {
+      console.log(err);
+      alert(`${err?.response?.data?.message}`)
+    }
+  };
 
   return (
     <div className="">
@@ -80,7 +107,10 @@ const CustomSwiper = ({ house }) => {
               <p className="text-4xl font-bold mb-6">
                 ${house.price.toLocaleString()}
               </p>
-              <button className="w-full cursor-pointer text-white py-3 bg-[#FF8904] transition-colors font-semibold duration-500">
+              <button
+                onClick={handleBooking}
+                className="w-full cursor-pointer text-white py-3 bg-[#FF8904] transition-colors font-semibold duration-500"
+              >
                 Booking
               </button>
               {/* <button className="group relative w-full border border-[#FF8904] overflow-hidden py-2 mt-2 transition-all duration-500 hover:border-transparent">

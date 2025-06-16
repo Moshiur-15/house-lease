@@ -20,9 +20,7 @@ export default async function PropertiesDetails({ params }) {
       <div className="container mx-auto lg:flex gap-10 lg:gap-14 px-6.5 lg:px-5.5">
         {/* details data */}
         <section className="w-full lg:w-4/6 my-8">
-          <CustomSwiper house={house} />
-          {/* show comment */}
-          <ShowComment  propertyId ={id} />
+          <CustomSwiper propertyId={id} house={house} />
           {/* comment */}
           <Comment propertyId={id} />
         </section>

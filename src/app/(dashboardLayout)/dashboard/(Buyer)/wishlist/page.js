@@ -84,7 +84,7 @@ const Wishlist = () => {
 
   return (
     <div className="p-4 mx-auto">
-      <div className="flex justify-between mb-4 items-center">
+      <div className="flex flex-col lg:flex-row justify-between space-y-3 mb-6">
         <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
           Wishlist
         </h2>
@@ -96,7 +96,7 @@ const Wishlist = () => {
             setSearchTerm(e.target.value);
             setCurrentPage(1);
           }}
-          className="border border-gray-300 dark:border-gray-600 w-full max-w-[16rem] py-2 px-3 rounded"
+          className="border border-gray-300 dark:border-gray-600 w-full max-w-[20rem] py-2 px-4 focus:outline-none focus:ring-0 dark:bg-gray-800 dark:text-white"
         />
       </div>
 
