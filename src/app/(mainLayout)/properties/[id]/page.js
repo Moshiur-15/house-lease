@@ -9,28 +9,28 @@ import React from "react";
 export default async function PropertiesDetails({ params }) {
  
   const { id } = await params;
-  // const house = await GetSingleData(id);
-  //   if (!house) {
-  //     return <div className="text-center text-red-500 p-10">Data not found</div>;
-  //   }
-    // const recentPosts = await GetPropertiesData();
+  const house = await GetSingleData(id);
+    if (!house) {
+      return <div className="text-center text-red-500 p-10">Data not found</div>;
+    }
+    const recentPosts = await GetPropertiesData();
     
   return (
     <section>
       <div className="container mx-auto lg:flex gap-10 lg:gap-14 px-6.5 lg:px-5.5">
         {/* details data */}
         <section className="w-full lg:w-4/6 my-8">
-          {/* <CustomSwiper house={house} /> */}
+          <CustomSwiper house={house} />
           {/* show comment */}
-          {/* <ShowComment /> */}
+          <ShowComment />
           {/* comment */}
-          {/* <Comment /> */}
+          <Comment />
           <h2>{id}</h2>
         </section>
         {/* sideber */}
-        {/* <aside className="w-full lg:w-2/6 h-fit top-12 sticky">
+        <aside className="w-full lg:w-2/6 h-fit top-12 sticky">
           <SideBer recentPosts={recentPosts} />
-        </aside> */}
+        </aside>
       </div>
     </section>
   );
