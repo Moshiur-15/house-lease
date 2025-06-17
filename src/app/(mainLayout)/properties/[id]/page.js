@@ -1,19 +1,22 @@
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import Comment from "@/app/Components/Propertie/Comment";
 import CustomSwiper from "@/app/Components/Propertie/CustomSwiper";
-import ShowComment from "@/app/Components/Propertie/ShowComment";
 import SideBer from "@/app/Components/Propertie/SideBer";
 import GetPropertiesData from "@/app/Components/seller/GetData";
 import GetSingleData from "@/app/Components/seller/GetSingleData";
+import { getServerSession } from "next-auth";
 import React from "react";
 
 export default async function PropertiesDetails({ params }) {
- 
   const { id } = await params;
   const house = await GetSingleData(id);
-    if (!house) {
-      return <div className="text-center text-red-500 p-10">Data not found</div>;
-    }
-    const recentPosts = await GetPropertiesData();
+  if (!house) {
+    return <div className="text-center text-red-500 p-10">Data not found</div>;
+  }
+  const session = await getServerSession(authOptions);
+  const email = session?.user?.email;
+
+  const recentPosts = await GetPropertiesData(email);
 
   return (
     <section>

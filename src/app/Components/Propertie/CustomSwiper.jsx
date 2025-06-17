@@ -18,6 +18,7 @@ const CustomSwiper = ({ house, propertyId }) => {
   const { detImg1, detImg2, detImg3, detImg4 } = house || {};
   const images = { detImg1, detImg2, detImg3, detImg4 };
   const imageArray = images ? Object.values(images) : [];
+  console.log(house)
 
   const handleBooking = async () => {
     try {
@@ -27,6 +28,7 @@ const CustomSwiper = ({ house, propertyId }) => {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/buyer/booking`, {
         BuyerName: session?.user?.name,
         BuyerEmail: session?.user?.email,
+        sellerEmail:  house.sellerEmail,
         PropertyName: house.title,
         PropertyFees: house.price,
         PaymentStatus: "Unpaid",

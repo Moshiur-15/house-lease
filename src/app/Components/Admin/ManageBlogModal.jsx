@@ -23,7 +23,7 @@ const ManageBlogModal = ({ BlogId, onDelete }) => {
           <FaEye className="text-blue-500" title="View" />
           <span className="text-sm text-gray-700 dark:text-gray-200">View</span>
         </li> */}
-        <Link href={`/dashboard/manageBlog/${BlogId}`} className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
+        <Link href={`/dashboard/ManageBlog/${BlogId}`} className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
           <FaEdit className="text-green-500" title="Edit" />
           <span className="text-sm text-gray-700 dark:text-gray-200">Edit</span>
         </Link>

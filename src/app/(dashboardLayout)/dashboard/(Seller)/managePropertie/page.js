@@ -1,9 +1,14 @@
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import GetPropertiesData from "@/app/Components/seller/GetData";
 import ManagePropertieTable from "@/app/Components/seller/ManagePropertieTable";
+import { getServerSession } from "next-auth";
 import React from "react";
 
 const ManagePropertie = async () => {
-  const PropertiesData = await GetPropertiesData();
+  const session = await getServerSession(authOptions);
+  const email = session?.user?.email;
+
+  const PropertiesData = await GetPropertiesData(email);
 
   return (
     <section className="my-5 lg:my-10">

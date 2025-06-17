@@ -1,10 +1,9 @@
+import { viewAllProperty } from "@/app/Components/Admin/viewAllProperty";
 import ViewProperty from "@/app/Components/Admin/ViewProperty";
-import GetPropertiesData from "@/app/Components/seller/GetData";
-import React from "react";
 
 const ViewAllProperty = async () => {
-  const PropertiesData = await GetPropertiesData();
 
+  const PropertiesData = await viewAllProperty()
   return (
     <section className="my-5 lg:my-10 px-4 xl:px-0 space-y-3">
       <div className="flex flex-col lg:flex-row justify-between space-y-3">

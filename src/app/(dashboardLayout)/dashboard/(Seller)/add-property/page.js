@@ -1,29 +1,41 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
+import { useSession } from "next-auth/react";
 
 const imgbbApiKey = "58a9d3ffd0c8663f17be9ce8a26786ff";
 
 const Property = () => {
-  const [formData, setFormData] = useState({
-    title: "",
-    location: "",
-    beds: "",
-    baths: "",
-    sqft: "",
-    price: "",
-    category: "",
-    cardImage: "",
-    detImg1: "",
-    detImg2: "",
-    detImg3: "",
-    detImg4: "",
-    description: "",
-    rate: "",
-  });
-  
+  const {data: session} = useSession();
+const [formData, setFormData] = useState({
+  title: "",
+  location: "",
+  beds: "",
+  baths: "",
+  sqft: "",
+  price: "",
+  category: "",
+  cardImage: "",
+  detImg1: "",
+  detImg2: "",
+  detImg3: "",
+  detImg4: "",
+  description: "",
+  rate: "",
+  sellerEmail: "",
+});
 
+useEffect(() => {
+  if (session?.user?.email) {
+    setFormData((prev) => ({
+      ...prev,
+      sellerEmail: session.user.email,
+    }));
+  }
+}, [session]);
+
+  
   const [uploading, setUploading] = useState({
     cardImage: false,
     detImg1: false,
@@ -75,7 +87,6 @@ const Property = () => {
         `${process.env.NEXT_PUBLIC_API_URL}/api/seller/property`,
         formData
       );
-      console.log(res)
       
       toast("Data Added Successfully!")
     } catch (err) {

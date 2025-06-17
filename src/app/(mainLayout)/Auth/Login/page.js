@@ -35,7 +35,7 @@ export default function LoginPage() {
 
     if (res.ok) {
       if (role === "admin") {
-        router.push("/dashboard/allUsers");
+        router.push("/dashboard/AllUsers");
       } else if (role === "seller") {
         router.push("/dashboard/seller");
       } else if (role === "buyer") {

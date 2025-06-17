@@ -17,6 +17,7 @@ const propertySchema = new mongoose.Schema(
     detImg4: { type: String },
     description: { type: String, required: true },
     status: { type: String, default: "Rent" },
+    sellerEmail: {type: String,  required: true}
   },
   { timestamps: true }
 );

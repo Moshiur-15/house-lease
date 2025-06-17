@@ -1,8 +1,7 @@
+import { viewAllProperty } from "../Admin/viewAllProperty";
 import ExclusiveCard from "./ExclusiveCard";
-import GetPropertiesData from "../seller/GetData";
-
 const Exclusive = async () => {
-  const properties = await GetPropertiesData();
+  const properties = await viewAllProperty();
 
   return (
     <div className="px-4 sm:px-6 lg:px-24">
@@ -16,9 +15,13 @@ const Exclusive = async () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
-        {properties?.slice().reverse().slice(0, 6).map((property) => (
-          <ExclusiveCard property={property} key={property._id} />
-        ))}
+        {properties
+          ?.slice()
+          .reverse()
+          .slice(0, 6)
+          .map((property) => (
+            <ExclusiveCard property={property} key={property._id} />
+          ))}
       </div>
     </div>
   );

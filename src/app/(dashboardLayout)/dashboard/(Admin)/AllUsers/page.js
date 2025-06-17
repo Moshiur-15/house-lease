@@ -1,24 +1,28 @@
+'use client';
+import { useEffect, useState } from "react";
+import axios from "axios";
 import ManageUserTable from "@/app/Components/Admin/ManageUserTable";
-import user from "@/fakeapi/user/page";
-import React from "react";
 
-const page = () => {
-  const UsersData = user;
-  return (
-    <div>
-      <div className="flex flex-col lg:flex-row justify-between space-y-3 px-4">
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
-          MANAGE USERS
-        </h2>
-        <input
-          type="text"
-          placeholder="Search Users..."
-          className="border border-gray-300 dark:border-gray-600 w-full max-w-[16rem] py-2 px-3"
-        />
-      </div>
-      <ManageUserTable UsersData={UsersData} />
-    </div>
-  );
+const UsersPage = ({ loggedInUserEmail }) => {
+  const [usersData, setUsersData] = useState([]);
+
+  useEffect(() => {
+    async function fetchUsers() {
+      try {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/admin/blogs/user?email=${loggedInUserEmail}`
+        );
+        if (res.data.success) {
+          setUsersData(res.data.users);
+        }
+      } catch (err) {
+        console.error("Failed to fetch users", err);
+      }
+    }
+    fetchUsers();
+  }, [loggedInUserEmail]);
+
+  return <ManageUserTable UsersData={usersData} setUsersData={setUsersData} />;
 };
 
-export default page;
+export default UsersPage;

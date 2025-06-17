@@ -19,6 +19,10 @@ const BookingSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    sellerEmail: {
+      type: String,
+      required: true,
+    },
     PaymentStatus: {
       type: String,
       required: true,

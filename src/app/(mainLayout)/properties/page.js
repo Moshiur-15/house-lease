@@ -3,15 +3,16 @@
 import FilterBar from "@/app/Components/Home/FilterBar";
 import ExclusiveCard from "../../Components/Home/ExclusiveCard";
 import { useEffect, useState } from "react";
-import GetPropertiesData from "@/app/Components/seller/GetData";
+import { useSession } from "next-auth/react";
+import { viewAllProperty } from "@/app/Components/Admin/viewAllProperty";
 
 const Properties = () => {
   const [view, setView] = useState("grid");
   const [properties, setProperties] = useState([]);
-
+  const {data: session} = useSession()
   const fetchData = async () => {
     try {
-      const data = await GetPropertiesData();
+      const data = await viewAllProperty()
       setProperties(data);
       console.log("Inside fetch:", data);
     } catch (err) {
@@ -22,7 +23,6 @@ const Properties = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
   return (
     <div>
       {/* banner */}

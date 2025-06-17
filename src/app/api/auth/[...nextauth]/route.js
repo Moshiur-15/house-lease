@@ -1,14 +1,15 @@
+// app/api/auth/[...nextauth]/route.js
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-const handler = NextAuth({
+export const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
       credentials: {
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
-        role: { label: "Role", type: "text" }, // role পাঠাতে হলে
+        role: { label: "Role", type: "text" },
       },
       async authorize(credentials) {
         const { email, password, role } = credentials;
@@ -59,7 +60,6 @@ const handler = NextAuth({
     }),
   ],
 
-  // 🔁 CALLBACKS
   callbacks: {
     async session({ session, token }) {
       session.user.role = token.role;
@@ -73,13 +73,13 @@ const handler = NextAuth({
     },
   },
 
-  // ✅ Optional custom login page
   pages: {
     signIn: "/login",
   },
 
-  // 🛡️ Must have secret
   secret: process.env.NEXTAUTH_SECRET,
-});
+};
 
+// ⬇️ Handler for Next.js API route
+const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
