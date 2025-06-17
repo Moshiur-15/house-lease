@@ -47,7 +47,7 @@ const ViewProperty = ({ properties }) => {
           </tr>
         </thead>
         <tbody>
-          {property.map((property) => (
+          {property?.map((property) => (
             <tr
               key={property._id}
               className="hover:bg-gray-50 dark:hover:bg-gray-800 transition duration-200"
