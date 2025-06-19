@@ -1,24 +1,38 @@
 import { useState } from "react";
 import { Star } from "lucide-react";
 import { toast } from "sonner";
+import axios from "axios";
+import { useSession } from "next-auth/react";
 
 const FeedBackModal = ({ booking, onClose }) => {
   const [feedback, setFeedback] = useState("");
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
+  const { data: session } = useSession();
 
-  const handleSubmit = (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  if (rating === 0) {
-    toast("Please give a rating before submitting.");
-    return;
-  }
-  console.log("⭐:", rating);
-  console.log("💬:", feedback);
-  onClose();
-};
-
+    if (rating === 0) {
+      toast("Please give a rating before submitting.");
+      return;
+    }
+    try {
+      const res = await axios.post("/api/buyer/rating", {
+        role: session?.user?.role,
+        name: session.user.name,
+        rating,
+        comment: feedback,
+      });
+      console.log("Feedback submitted:", res.data);
+    } catch (error) {
+      console.error("Error submitting feedback:", error);
+      toast("Failed to submit feedback. Please try again.");
+      return;
+    }
+    toast("Feedback submitted successfully!");
+    onClose();
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
