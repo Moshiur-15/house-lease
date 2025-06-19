@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import axios from "axios";
 
@@ -20,13 +20,11 @@ export default function SuccessClient() {
           email: session.user.email,
           status: "paid",
         });
-
         console.log("✅ Payment status updated:", res.data);
       } catch (error) {
         console.error("❌ Failed to update payment status:", error);
       }
     };
-
     updatePaymentStatus();
   }, [bookingId, session]);
 
@@ -34,7 +32,10 @@ export default function SuccessClient() {
     <div className="text-center mt-10">
       <h2 className="text-2xl font-bold text-green-600">PAYMENT SUCCESSFUL</h2>
       <p className="mt-2 text-gray-700">Your booking has been confirmed.</p>
-      <a href="/dashboard/myBookings" className="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+      <a
+        href="/dashboard/myBookings"
+        className="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+      >
         View My Bookings
       </a>
     </div>
