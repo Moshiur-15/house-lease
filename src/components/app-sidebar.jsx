@@ -129,12 +129,6 @@ export function AppSidebar(props) {
           icon: Command,
         },
         {
-          id: 13,
-          title: "PAYMENT HISTORY",
-          url: "/dashboard/paymentHistory",
-          icon: MapIcon,
-        },
-        {
           id: 14,
           title: "WISHLIST",
           url: "/dashboard/wishlist",
@@ -145,6 +139,12 @@ export function AppSidebar(props) {
           title: "MY BOOKINGS",
           url: "/dashboard/myBookings",
           icon: BookOpen,
+        },
+        {
+          id: 13,
+          title: "PAYMENT HISTORY",
+          url: "/dashboard/paymentHistory",
+          icon: MapIcon,
         },
       ],
     },

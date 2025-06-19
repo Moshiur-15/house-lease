@@ -24,8 +24,6 @@ export async function POST(req) {
   }
 }
 
-
-
 export async function GET(req) {
   await connectDB();
   const { searchParams } = new URL(req.url);
@@ -40,8 +38,6 @@ export async function GET(req) {
     return NextResponse.json({ success: false, message: "Failed to fetch bookings", error: err });
   }
 }
-
-
 
 export async function DELETE(req) {
   await connectDB();
@@ -61,5 +57,27 @@ export async function DELETE(req) {
     return NextResponse.json({ success: true, message: "Booking deleted successfully." });
   } catch (err) {
     return NextResponse.json({ success: false, message: "Error deleting booking", error: err });
+  }
+}
+
+export async function PATCH(req) {
+  await connectDB();
+  try {
+    const body = await req.json();
+    const { bookingId, email, status } = body;
+
+    const updated = await Booking.findOneAndUpdate(
+      { _id: bookingId, BuyerEmail: email },
+      { PaymentStatus: status },
+      { new: true }
+    );
+
+    if (!updated) {
+      return NextResponse.json({ error: "Booking not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({ message: "Payment status updated", data: updated });
+  } catch (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

@@ -1,5 +1,4 @@
 const SideBer = ({ recentPosts }) => {
-
   return (
     <aside className="py-8 space-y-10">
       {/* seller info */}
@@ -20,25 +19,23 @@ const SideBer = ({ recentPosts }) => {
         </div>
 
         {/* Form Fields */}
-        <div className="mt-4">
+        <div className="max-w-sm mx-auto p-4 bg-gray-50">
           <input
-            type="text"
             placeholder="Your Name"
             className="w-full border px-3 py-2 text-sm mb-2 focus:outline-none focus:ring-0"
           />
           <input
-            type="email"
             placeholder="Your Email"
             className="w-full border px-3 py-2 text-sm mb-2 focus:outline-none focus:ring-0"
           />
           <input
-            type="tel"
             placeholder="Your Phone"
             className="w-full border px-3 py-2 text-sm mb-2 focus:outline-none focus:ring-0"
           />
           <textarea
-            placeholder="I'm interested in [ Townhouse For Sale ]"
-            className="w-full border px-3 py-2 text-sm mb-2 focus:outline-none focus:ring-0"
+            placeholder="Your Message"
+            rows="4"
+            className="w-full max-h-36 max-w-full border px-3 py-2 text-sm mb-2 focus:outline-none focus:ring-0"
           ></textarea>
         </div>
 

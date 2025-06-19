@@ -53,8 +53,32 @@ const MyBookings = () => {
     }
   };
 
-  const handlePay = () => {
-    toast("processing...");
+  const handlePay = async (booking) => {
+    if (!session?.user?.email) {
+      toast("User not authenticated. Please try again.");
+      return;
+    }
+
+    if (!booking?._id || !booking?.PropertyFees || !booking?.PropertyName) {
+      toast("Invalid booking data.");
+      return;
+    }
+
+    try {
+      const res = await axios.post("/api/buyer/stripe", {
+        bookingId: booking._id,
+        propertyName: booking.PropertyName,
+        price: booking.PropertyFees,
+        email: session.user.email,
+      });
+
+      if (res.data?.url) {
+        window.location.href = res.data.url;
+      }
+    } catch (error) {
+      console.error("Payment Error:", error.response?.data || error.message);
+      toast("Payment initialization failed");
+    }
   };
 
   return (
@@ -116,7 +140,7 @@ const MyBookings = () => {
                   <TableCell className="px-4 py-3">
                     {booking.PaymentStatus.toLowerCase() === "unpaid" ? (
                       <button
-                        onClick={handlePay}
+                        onClick={() => handlePay(booking)}
                         className="px-3 py-1 text-sm bg-green-500 text-white hover:bg-green-600"
                       >
                         Pay

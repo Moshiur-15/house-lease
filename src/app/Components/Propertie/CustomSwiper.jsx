@@ -18,7 +18,6 @@ const CustomSwiper = ({ house, propertyId }) => {
   const { detImg1, detImg2, detImg3, detImg4 } = house || {};
   const images = { detImg1, detImg2, detImg3, detImg4 };
   const imageArray = images ? Object.values(images) : [];
-  console.log(house)
 
   const handleBooking = async () => {
     try {

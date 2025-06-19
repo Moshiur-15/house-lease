@@ -23,12 +23,13 @@ const ManageBookingsTable = () => {
   const handleConfirmationChange = async (id, newStatus) => {
     try {
       const res = await axios.patch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/seller/booking/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/seller/ConfirmationStatus/${id}`,
         { newStatus }
       );
+
       if (res.data.success) {
-        // console.log("Updated:", res.data.data);
         toast("Confirmation Status Updated!");
+
         setBookings((prev) =>
           prev.map((b) =>
             b._id === id ? { ...b, ConfirmationStatus: newStatus } : b
