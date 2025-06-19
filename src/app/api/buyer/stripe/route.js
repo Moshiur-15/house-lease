@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
-
+export const runtime = "nodejs";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: "2024-04-10",
 });
@@ -18,7 +18,7 @@ export async function POST(req) {
             product_data: {
               name: propertyName,
             },
-            unit_amount: price * 100, 
+            unit_amount: price * 100,
           },
           quantity: 1,
         },
@@ -29,44 +29,21 @@ export async function POST(req) {
       cancel_url: `${process.env.NEXT_PUBLIC_API_URL}/dashboard/myBookings`,
     });
 
-    return  NextResponse.json({ url: session.url }, {
-      status: 200,
-    });
+    return NextResponse.json(
+      { url: session.url },
+      {
+        status: 200,
+      }
+    );
   } catch (error) {
-    return NextResponse.json({ error: "Payment session failed" }, {
-      status: 500,
-    });
+    return NextResponse.json(
+      { error: "Payment session failed" },
+      {
+        status: 500,
+      }
+    );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // export async function GET(req) {
 //   try {
