@@ -1,223 +1,128 @@
 "use client";
-import React, { useState, useMemo } from "react";
+
+import { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
-  TableCell,
   TableHead,
   TableHeader,
   TableRow,
+  TableCell,
+  TableHead as TH,
 } from "@/components/ui/table";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
+import axios from "axios";
+import { useSession } from "next-auth/react";
 
 const PaymentHistory = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8;
+  const [payments, setPayments] = useState([]);
+  const [stripeTransition, setStripeTransition] = useState(null);
+  const { data: session } = useSession();
+  // Fetch payment history
+  useEffect(() => {
+    const fetchPayments = async () => {
+      if (!session?.user?.email) return;
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/buyer/payment?email=${session.user.email}`
+      );
+      setPayments(response.data.data);
+    };
+    fetchPayments();
+  }, [session?.user?.email]);
 
-  const payments = [
-    {
-      id: 1,
-      propertyName: "Mountain Retreat Cabin",
-      price: 3200,
-      bedrooms: 3,
-      bathrooms: 2,
-      date: "2025-05-01",
-      status: "Completed",
-    },
-    {
-      id: 2,
-      propertyName: "Lakeside Villa",
-      price: 2800,
-      bedrooms: 2,
-      bathrooms: 2,
-      date: "2025-04-01",
-      status: "Completed",
-    },
-    {
-      id: 3,
-      propertyName: "Urban Studio",
-      price: 1500,
-      bedrooms: 1,
-      bathrooms: 1,
-      date: "2025-03-01",
-      status: "Pending",
-    },
-    {
-      id: 4,
-      propertyName: "Countryside Cottage",
-      price: 2100,
-      bedrooms: 2,
-      bathrooms: 1,
-      date: "2025-02-15",
-      status: "Completed",
-    },
-    {
-      id: 5,
-      propertyName: "Beachfront Condo",
-      price: 3900,
-      bedrooms: 4,
-      bathrooms: 3,
-      date: "2025-01-20",
-      status: "Completed",
-    },
-    {
-      id: 6,
-      propertyName: "Hilltop Mansion",
-      price: 5100,
-      bedrooms: 5,
-      bathrooms: 5,
-      date: "2024-12-01",
-      status: "Pending",
-    },
-    {
-      id: 7,
-      propertyName: "Countryside Cottage",
-      price: 2100,
-      bedrooms: 2,
-      bathrooms: 1,
-      date: "2025-02-15",
-      status: "Completed",
-    },
-    {
-      id: 8,
-      propertyName: "Beachfront Condo",
-      price: 3900,
-      bedrooms: 4,
-      bathrooms: 3,
-      date: "2025-01-20",
-      status: "Completed",
-    },
-    {
-      id: 9,
-      propertyName: "Hilltop Mansion",
-      price: 5100,
-      bedrooms: 5,
-      bathrooms: 5,
-      date: "2024-12-01",
-      status: "Pending",
-    },
-  ];
+  // Fetch Stripe payment history
+  useEffect(() => {
+    const fetchPayments = async () => {
+      if (!session?.user?.email) return;
 
-  const filteredPayments = useMemo(() => {
-    const term = searchTerm.toLowerCase();
-    return payments.filter((p) =>
-      p.propertyName.toLowerCase().includes(term)
-    );
-  }, [searchTerm]);
+      try {
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/buyer/stripe?email=${session.user.email}`
+        );
+        setStripeTransition(response.data.data);
+      } catch (error) {
+        console.error("Error fetching payment history:", error);
+      }
+    };
 
-  const totalPages = Math.ceil(filteredPayments.length / itemsPerPage);
-
-  const paginatedPayments = useMemo(() => {
-    const start = (currentPage - 1) * itemsPerPage;
-    return filteredPayments.slice(start, start + itemsPerPage);
-  }, [filteredPayments, currentPage]);
-
-  const handlePageChange = (number) => {
-    if (number >= 1 && number <= totalPages) {
-      setCurrentPage(number);
-    }
-  };
+    fetchPayments();
+  }, [session]);
 
   return (
     <div className="p-4">
-      <div className="flex justify-between mb-4 items-center">
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
-          Payment History
+      <div className="flex flex-col lg:flex-row justify-between space-y-3 mb-6">
+        <h2 className="text-xl md:text-3xl uppercase font-extrabold text-gray-900 dark:text-gray-100">
+          Booking Payment History
         </h2>
         <input
           type="text"
-          placeholder="Search properties..."
+          placeholder="Search by property..."
           value={searchTerm}
-          onChange={(e) => {
-            setSearchTerm(e.target.value);
-            setCurrentPage(1);
-          }}
-          className="border border-gray-300 dark:border-gray-600 w-full max-w-[16rem] py-2 px-3 rounded"
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="border border-gray-300 dark:border-gray-600 w-full max-w-[20rem] py-2 px-4 focus:outline-none focus:ring-0 dark:bg-gray-800 dark:text-white"
         />
       </div>
 
       <div className="overflow-x-auto border border-gray-200 dark:border-gray-700">
-        <Table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
+        <Table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
           <TableHeader className="bg-gray-100 dark:bg-gray-800">
             <TableRow>
-              <TableHead>Property Name</TableHead>
-              <TableHead>Price</TableHead>
-              <TableHead>Bedrooms</TableHead>
-              <TableHead>Bathrooms</TableHead>
-              <TableHead>Date</TableHead>
-              <TableHead>Status</TableHead>
+              <TH className="text-center px-4 py-3">Property Name</TH>
+              <TH className="text-center px-4 py-3">Price</TH>
+              <TH className="text-center px-4 py-3">Payment Status</TH>
+              <TH className="text-center px-4 py-3">Date</TH>
+              <TH className="px-4 py-3 text-center">Transition</TH>
             </TableRow>
           </TableHeader>
+
           <TableBody className="bg-white dark:bg-gray-900">
-            {paginatedPayments.map((payment) => (
-              <TableRow key={payment.id}>
-                <TableCell>{payment.propertyName}</TableCell>
-                <TableCell>${payment.price.toLocaleString()}</TableCell>
-                <TableCell>{payment.bedrooms}</TableCell>
-                <TableCell>{payment.bathrooms}</TableCell>
-                <TableCell>{payment.date}</TableCell>
-                <TableCell>
-                  <span
-                    className={`px-2 py-1 text-xs font-semibold rounded ${
-                      payment.status === "Completed"
-                        ? "bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100"
-                        : "bg-yellow-100 text-yellow-800 dark:bg-yellow-700 dark:text-yellow-100"
-                    }`}
-                  >
-                    {payment.status}
-                  </span>
+            {payments.length === 0 ? (
+              <TableRow>
+                <TableCell
+                  colSpan={5}
+                  className="text-center py-6 text-gray-500 dark:text-gray-400"
+                >
+                  No payments found.
                 </TableCell>
               </TableRow>
-            ))}
+            ) : (
+              payments?.map((payment) => (
+                <TableRow
+                  key={payment._id}
+                  className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-center"
+                >
+                  <TableCell className="px-4 py-3 font-semibold text-gray-800 dark:text-gray-200">
+                    {payment.PropertyName}
+                  </TableCell>
+                  <TableCell className="px-4 py-3">
+                    {payment.PropertyFees}৳
+                  </TableCell>
+                  <TableCell
+                    className={`px-4 py-3 ${
+                      payment.PaymentStatus.toLowerCase() === "paid"
+                        ? "text-green-600 dark:text-green-600"
+                        : "text-red-600 dark:text-red-400"
+                    }`}
+                  >
+                    {stripeTransition?.map((transition) => (
+                      <span key={transition.id}>{transition.status}</span>
+                    ))}
+                  </TableCell>
+
+                  <TableCell className="px-4 py-3 text-gray-500 dark:text-gray-400">
+                    {new Date(payment.createdAt).toLocaleDateString()}
+                  </TableCell>
+                  <TableCell className="text-center px-4 py-3 text-gray-500 dark:text-gray-400">
+                    {stripeTransition?.map((transition) => (
+                      <span key={transition.id}>{transition.id}</span>
+                    ))}
+                  </TableCell>
+                </TableRow>
+              ))
+            )}
           </TableBody>
         </Table>
       </div>
-
-      {/* Pagination Controls */}
-      <Pagination className="mt-4">
-        <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious
-              href="#"
-              onClick={() => handlePageChange(currentPage - 1)}
-            />
-          </PaginationItem>
-
-          {Array.from({ length: totalPages }, (_, i) => (
-            <PaginationItem key={i}>
-              <PaginationLink
-                href="#"
-                isActive={currentPage === i + 1}
-                onClick={() => handlePageChange(i + 1)}
-              >
-                {i + 1}
-              </PaginationLink>
-            </PaginationItem>
-          ))}
-
-          {totalPages > 3 && currentPage < totalPages - 2 && (
-            <PaginationItem>
-              <PaginationEllipsis />
-            </PaginationItem>
-          )}...
-
-          <PaginationItem>
-            <PaginationNext
-              href="#"
-              onClick={() => handlePageChange(currentPage + 1)}
-            />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
     </div>
   );
 };

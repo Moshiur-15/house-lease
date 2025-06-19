@@ -52,7 +52,7 @@ const MyBookings = () => {
       toast("Failed to delete");
     }
   };
-
+  
   const handlePay = async (booking) => {
     if (!session?.user?.email) {
       toast("User not authenticated. Please try again.");
@@ -65,11 +65,11 @@ const MyBookings = () => {
     }
 
     try {
-      const res = await axios.post("/api/buyer/stripe", {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/buyer/stripe`, {
         bookingId: booking._id,
         propertyName: booking.PropertyName,
-        price: booking.PropertyFees,
         email: session.user.email,
+        price: booking.PropertyFees,
       });
 
       if (res.data?.url) {
@@ -80,8 +80,6 @@ const MyBookings = () => {
       toast("Payment initialization failed");
     }
   };
-
-  
 
   return (
     <div className="p-4 max-w-7xl mx-auto">

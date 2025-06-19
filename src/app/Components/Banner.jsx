@@ -1,10 +1,14 @@
-import React from 'react';
+import Link from "next/link";
+import React from "react";
 
 const Banner = () => {
   return (
-    <div 
+    <div
       className="relative h-96 sm:h-[410px] lg:h-[600px] flex items-center justify-center bg-cover bg-center"
-      style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80)' }}
+      style={{
+        backgroundImage:
+          "url(https://i.ibb.co/07gvvtg/wp4012682.jpg)",
+      }}
     >
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/50"></div>
@@ -15,12 +19,14 @@ const Banner = () => {
           Buy, Sell & Rent Real Estate in Portland
         </h1>
         <p className="text-lg lg:text-xl mb-6 leading-relaxed">
-          Explore Portland's real estate opportunities and discover your next home 
-          in one of the Pacific Northwest's most dynamic cities.
+          Explore Portland's real estate opportunities and discover your next
+          home in one of the Pacific Northwest's most dynamic cities.
         </p>
-        <button className="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-3 px-8 transition duration-300">
-          Explore Properties
-        </button>
+        <Link href="/properties">
+          <button className="bg-[#FF8904] px-5 py-2.5 hover:cursor-pointer hover:bg-[#FF8904]/90">
+            Explore Properties
+          </button>
+        </Link>
       </div>
     </div>
   );

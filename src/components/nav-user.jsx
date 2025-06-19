@@ -23,15 +23,12 @@ import {
 } from "@/components/ui/sidebar";
 import Image from "next/image";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 export function NavUser() {
   const { isMobile } = useSidebar();
-  const user={
-    avatar:'https://i.ibb.co.com/Q7zQC7sY/1000000889.jpg',
-    email:'masiurislam28@gmail.com',
-    name:'Moshiur',
-  }
-
+  const {data: session} = useSession();
+  console.log('session', session);
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -42,10 +39,10 @@ export function NavUser() {
               className="hover:cursor-pointer data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-none">
-                <AvatarImage src={user.avatar} alt={user.name} />
+                <AvatarImage src={session?.user.image} alt={session?.user.name} />
                 <AvatarFallback className="rounded-lg">
                   <Image
-                    src="https://i.ibb.co.com/Q7zQC7sY/1000000889.jpg"
+                    src={session?.user.image || "https://i.ibb.co.com/Q7zQC7sY/1000000889.jpg"}
                     alt="Descriptive alt text"
                     width={50}
                     height={50}
@@ -54,8 +51,8 @@ export function NavUser() {
                 </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
-                <span className="truncate text-xs">{user.email}</span>
+                <span className="truncate font-medium">{session?.user.name}</span>
+                <span className="truncate text-xs">{session?.user.email}</span>
               </div>
             </SidebarMenuButton>
           </DropdownMenuTrigger>
@@ -68,7 +65,7 @@ export function NavUser() {
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8">
-                  <AvatarImage src={user.avatar} alt={user.name} />
+                  <AvatarImage src={session?.user.image} alt={session?.user.name} />
                   <AvatarFallback className="rounded-lg">
                     <Image
                       src="https://i.ibb.co.com/Q7zQC7sY/1000000889.jpg"
@@ -79,8 +76,8 @@ export function NavUser() {
                   </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
-                  <span className="truncate text-xs">{user.email}</span>
+                  <span className="truncate font-medium">{session?.user.name}</span>
+                  <span className="truncate text-xs">{session?.user.email}</span>
                 </div>
               </div>
             </DropdownMenuLabel>

@@ -13,9 +13,8 @@ export default function TestimonialSection() {
   const [feedbacks, setFeedbacks] = useState([]);
   useEffect(() => {
     const getFeedback = async () => {
-      const response = await axios.get("/api/buyer/rating");
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/buyer/rating`);
       const feedback = response.data.data;
-      console.log("Feedback:", feedback);
       setFeedbacks(feedback);
     };
     getFeedback();

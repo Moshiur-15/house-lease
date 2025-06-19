@@ -18,13 +18,12 @@ const FeedBackModal = ({ booking, onClose }) => {
       return;
     }
     try {
-      const res = await axios.post("/api/buyer/rating", {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/buyer/rating`, {
         role: session?.user?.role,
         name: session.user.name,
         rating,
         comment: feedback,
       });
-      console.log("Feedback submitted:", res.data);
     } catch (error) {
       console.error("Error submitting feedback:", error);
       toast("Failed to submit feedback. Please try again.");

@@ -4,52 +4,52 @@ import Title from "../Sherd/Title";
 const Category = () => {
   const Categories = [
     {
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      img: "https://i.ibb.co/wh66CX0J/download-7-1.jpg",
       title: "Apartments",
       listing: "24",
     },
     {
-      img: "https://portland-residence.b-cdn.net/wp-content/uploads/2014/05/2.6-6-1.webp",
+      img: "https://i.ibb.co/xtrWvg8m/download-2.jpg",
       title: "Luxury Villas",
       listing: "12",
     },
     {
-      img: "https://portland-residence.b-cdn.net/wp-content/uploads/2014/05/10-4-1-1.webp",
+      img: "https://i.ibb.co/7NBq8SYY/download-1.jpg",
       title: "Single Family Homes",
       listing: "18",
     },
     {
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      img: "https://i.ibb.co/xqKSYQ4B/download.jpg",
       title: "Commercial Spaces",
       listing: "30",
     },
     {
-      img: "https://portland-residence.b-cdn.net/wp-content/uploads/2021/11/slider4-2-1-1.jpeg",
+      img: "https://i.ibb.co/600Q0FWg/download-4.jpg",
       title: "Studio Apartments",
       listing: "15",
     },
     {
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      img: "https://i.ibb.co/fd4mwWjq/download.jpg",
       title: "Resort Homes",
       listing: "8",
     },
     {
-      img: "https://images.unsplash.com/photo-1570129477492-45c003edd2be",
+      img: "https://i.ibb.co/39X2b3Fy/images.jpg",
       title: "Shared Housing",
       listing: "20",
     },
     {
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      img: "https://i.ibb.co/vCrKnV5R/download-9.jpg",
       title: "Penthouse",
       listing: "5",
     },
     {
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      img: "https://i.ibb.co/XMpCCjn/download-8.jpg",
       title: "Townhouses",
       listing: "10",
     },
     {
-      img: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      img: "https://i.ibb.co/XMpCCjn/download-8.jpg",
       title: "Land Plots",
       listing: "50",
     },
@@ -61,10 +61,10 @@ const Category = () => {
         h2="CATEGORIES"
         p="Find your perfect fit in Portland real estate"
       />
-      
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
         {Categories?.slice(0, 10).map((category, index) => (
-          <div 
+          <div
             key={index}
             className="group transform transition-all duration-300 hover:-translate-y-2"
           >

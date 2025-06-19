@@ -1,16 +1,10 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 const ProfilePage = () => {
-  const [userData] = useState({
-    name: "Moshiur",
-    email: "masiurislam28@gmail.com",
-    location: "patuakhali, barisal bangladesh",
-    role: "admin",
-    profileImage:
-      "https://scontent.fdac31-1.fna.fbcdn.net/v/t39.30808-6/482029397_666064502483185_5276856443150858496_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeGv-X9dZXuRBiZMNTuVkdCBXqFtI40eDh1eoW0jjR4OHdV4wvyCVPo4A7T40BRiu2U51q8ezMyDJeqSLQ7MW09O&_nc_ohc=CTyDShnkCzAQ7kNvwHdOatQ&_nc_oc=AdnaBZxu6cB84xbO4emxrr7sa4bmbh4Goo-xpG_zwd76ZdIdjxcdR957xeak_CsvuIc&_nc_zt=23&_nc_ht=scontent.fdac31-1.fna&_nc_gid=sCaDaeRX7k6_F4g59RtiDA&oh=00_AfGwJfBqdBlFs-AVNmL3fFv35OLLcrowHz-A3Zni8IHKgQ&oe=68127F25",
-  });
+  const { data: session } = useSession();
 
   return (
     <div className="dark:bg-[#0C0A09] bg-gray-100 min-h-screen">
@@ -37,7 +31,10 @@ const ProfilePage = () => {
         <div className="absolute top-0 left-6 transform -translate-y-1/2">
           <div className="relative group">
             <Image
-              src={userData.profileImage}
+              src={
+                session?.user.image ||
+                "https://i.ibb.co.com/Q7zQC7sY/1000000889.jpg"
+              }
               alt="Profile"
               width={120}
               height={120}
@@ -65,16 +62,17 @@ const ProfilePage = () => {
                     borderColor: "#ffb17d",
                   }}
                 >
-                  {userData.name}
+                  {session?.user.name}
                 </span>
-                {userData.name}
+                {session?.user.name}
               </span>
             </h2>
           </div>
 
           <p className="text-gray-600 dark:text-gray-400 mt-1 text-[17px]">
-            {userData.role === "admin" && "Administrator"}
-            {userData.role === "seller" && "Real Estate Seller"}
+            {session?.user.role === "admin" && "Administrator"}
+            {session?.user.role === "seller" && "Real Estate Seller"}
+            {session?.user.role === "buyer" && "Real Estate Buyer"}
           </p>
         </>
 
@@ -85,7 +83,7 @@ const ProfilePage = () => {
               Email Address
             </label>
             <p className="text-gray-700 dark:text-gray-200 mt-1 break-words">
-              {userData.email}
+              {session?.user.email}
             </p>
           </div>
 
@@ -94,24 +92,24 @@ const ProfilePage = () => {
               Location
             </label>
             <p className="text-gray-700 dark:text-gray-200 mt-1">
-              {userData.location}
+              {session?.user.location}
             </p>
           </div>
         </div>
 
         {/* Admin or Seller Extra Info */}
         <div className="bg-gray-100 dark:bg-gray-700 p-4 mt-6">
-          {userData.role === "admin" && (
+          {session?.user.role === "admin" && (
             <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
               🛡️ As an admin, you have full control over users and listings.
             </p>
           )}
-          {userData.role === "seller" && (
+          {session?.user.role === "seller" && (
             <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
               🏠 As a seller, you can manage your property listings.
             </p>
           )}
-          {userData.role === "buyer" && (
+          {session?.user.role === "buyer" && (
             <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
               🛒 As a buyer, you can browse and save your favorite properties.
             </p>
@@ -124,7 +122,6 @@ const ProfilePage = () => {
       {/* Update Section */}
       <section className="border-t dark:border-gray-700 bg-slate-50 dark:bg-gray-900/80 mt-12">
         <div className="px-4 py-10 lg:px-32">
-
           <div className="relative group overflow-hidden mb-8">
             <h2 className="text-2xl md:text-3xl font-bold dark:text-white">
               <span
