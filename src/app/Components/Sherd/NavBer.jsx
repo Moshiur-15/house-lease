@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { NavLinks } from "./NavLinks";
 import { useSession, signOut } from "next-auth/react";
+import { FiLogOut } from "react-icons/fi";
+import { MdDashboard } from "react-icons/md";
 
 const NavBer = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,43 +31,6 @@ const NavBer = () => {
             <NavLinks href="/gallery" text="Gallery" />
             <NavLinks href="/contact" text="Contact" />
             <NavLinks href="/about" text="About" />
-
-            {/* {session?.user ? (
-              <div className="relative">
-                <img
-                  src={session.user.image}
-                  alt="avatar"
-                  className="w-8 h-8 rounded-full cursor-pointer"
-                  onClick={() => setShowDropdown(!showDropdown)}
-                />
-                {showDropdown && (
-                  <div className="absolute right-0 mt-2 bg-white text-black shadow-md rounded w-40">
-                    <Link
-                      href="/dashboard"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                      onClick={() => setShowDropdown(false)}
-                    >
-                      Dashboard
-                    </Link>
-                    <button
-                      onClick={() => {
-                        signOut();
-                        setShowDropdown(false);
-                      }}
-                      className="w-full text-left px-4 py-2 hover:bg-gray-100"
-                    >
-                      Logout
-                    </button>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <Link href="/Auth/Login">
-                <button className="bg-green-500 px-3 py-1 rounded">
-                  Login
-                </button>
-              </Link>
-            )} */}
           </nav>
 
           <div className="flex items-center">
@@ -91,42 +56,34 @@ const NavBer = () => {
               </svg>
             </button>
             {/* User Avatar and Dropdown */}
-            <div className="flex items-center gap-3">
-              {session?.user ? (
-                <>
-                  <img
-                    src={session.user.image}
-                    alt="avatar"
-                    className="w-8 h-8 rounded-full cursor-pointer"
-                    onClick={() => setShowDropdown(!showDropdown)}
-                  />
-                  {showDropdown && (
-                    <div className="absolute top-20 right-6 bg-white text-black shadow-md rounded w-40">
-                      <Link
-                        href="/dashboard"
-                        className="block px-4 py-2 hover:bg-gray-100"
-                        onClick={() => setShowDropdown(false)}
-                      >
-                        Dashboard
-                      </Link>
-                      <button
-                        onClick={() => {
-                          signOut();
-                          setShowDropdown(false);
-                        }}
-                        className="w-full text-left px-4 py-2 hover:bg-gray-100"
-                      >
-                        Logout
-                      </button>
-                    </div>
-                  )}
-                </>
-              ) : (
-                <Link href="/Auth/Login">
-                  <button className="bg-[#FF8904] px-5 py-1.5 hover:cursor-pointer hover:bg-[#FF8904]/90">
-                    Login
+            <div className="relative flex items-center gap-3">
+              <img
+                src={session?.user.image}
+                alt="avatar"
+                className="w-8 h-8 rounded-full cursor-pointer"
+                onClick={() => setShowDropdown(!showDropdown)}
+              />
+              {showDropdown && (
+                <div className="absolute top-10 right-0 z-50 bg-white text-black shadow-lg w-44">
+                  <Link
+                    href="/dashboard"
+                    className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100"
+                    onClick={() => setShowDropdown(false)}
+                  >
+                    <MdDashboard className="text-lg" />
+                    Dashboard
+                  </Link>
+                  <button
+                    onClick={() => {
+                      signOut();
+                      setShowDropdown(false);
+                    }}
+                    className="flex items-center gap-2 w-full text-left px-4 py-2 hover:bg-gray-100"
+                  >
+                    <FiLogOut className="text-lg" />
+                    Logout
                   </button>
-                </Link>
+                </div>
               )}
             </div>
           </div>

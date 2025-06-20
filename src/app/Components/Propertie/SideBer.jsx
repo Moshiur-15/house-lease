@@ -1,4 +1,18 @@
+'use client'
+import { useSession } from "next-auth/react";
+
 const SideBer = ({ recentPosts }) => {
+  const { data: session } = useSession();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission logic here
+    const formData = new FormData(e.target);
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const message = formData.get("message");
+    console.log("Form submitted", { name, email, message });
+  };
+
   return (
     <aside className="py-8 space-y-10">
       {/* seller info */}
@@ -19,28 +33,41 @@ const SideBer = ({ recentPosts }) => {
         </div>
 
         {/* Form Fields */}
-        <div className="max-w-sm mx-auto p-4 bg-gray-50">
+        <form
+          onSubmit={handleSubmit}
+          className="w-full mx-auto p-4 bg-gray-50"
+        >
           <input
+            name="name"
             placeholder="Your Name"
             className="w-full border px-3 py-2 text-sm mb-2 focus:outline-none focus:ring-0"
+            defaultValue={session?.user?.name || ""}
+            required
+            readOnly
           />
           <input
+            name="email"
             placeholder="Your Email"
             className="w-full border px-3 py-2 text-sm mb-2 focus:outline-none focus:ring-0"
-          />
-          <input
-            placeholder="Your Phone"
-            className="w-full border px-3 py-2 text-sm mb-2 focus:outline-none focus:ring-0"
+            defaultValue={session?.user?.email || ""}
+            type="email"
+            readOnly
+            required
           />
           <textarea
+            name="message"
+            required
             placeholder="Your Message"
             rows="4"
             className="w-full max-h-36 max-w-full border px-3 py-2 text-sm mb-2 focus:outline-none focus:ring-0"
           ></textarea>
-        </div>
+        </form>
 
         {/* Buttons */}
-        <button className="w-full border bg-black py-2 mt-2 hover:border-black hover:bg-gray-100 text-white duration-500  hover:text-black border-transparent">
+        <button
+          type="submit"
+          className="w-full border bg-black py-2 mt-2 hover:border-black hover:bg-gray-100 text-white duration-500  hover:text-black border-transparent"
+        >
           📧 Send Email
         </button>
 
