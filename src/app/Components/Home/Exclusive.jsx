@@ -15,11 +15,11 @@ const Exclusive = async () => {
   return (
     <div className="px-4 sm:px-6 lg:px-24">
       <div className="flex flex-col space-y-1 text-center">
-        <span className="text-xs font-semibold tracking-widest flex justify-center items-center gap-1 uppercase">
+        <span className="text-xs font-semibold tracking-widest dark:text-gray-300 flex justify-center items-center gap-1 uppercase">
           <div className="h-2.5 w-2.5 rounded-full bg-[#EA703B]"></div>
           Exclusive
         </span>
-        <h2 className="text-3xl font-bold text-gray-900">
+        <h2 className="text-xl md:text-3xl font-bold text-gray-900 dark:text-white">
           Featured Properties
         </h2>
       </div>

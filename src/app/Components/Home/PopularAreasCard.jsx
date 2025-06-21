@@ -27,7 +27,7 @@ const PopularAreas = () => {
           <p className="text-orange-400 text-sm uppercase tracking-wider">
             Exclusive
           </p>
-          <h2 className="text-4xl font-semibold">Popular Areas</h2>
+          <h2 className="text-2xl md:text-4xl font-semibold">Popular Areas</h2>
           <p className="text-gray-400 max-w-lg mx-auto md:mx-0">
             Dynamic approach, and tireless commitment to facilitating
             transactions for buyers and sellers.

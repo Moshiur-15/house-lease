@@ -5,12 +5,11 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 import { toast } from "sonner";
 
-// Main Page Component
+//main Page
 const PropertyComments = ({ propertyId }) => {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // fetch comments from API
   const fetchComments = async () => {
     if (!propertyId) return;
     try {
@@ -43,7 +42,7 @@ const PropertyComments = ({ propertyId }) => {
 
 export default PropertyComments;
 
-// Show Comment Component
+// Show Comment 
 const ShowComment = ({ comments, loading }) => {
   const [expandedComments, setExpandedComments] = useState({});
 
@@ -54,35 +53,33 @@ const ShowComment = ({ comments, loading }) => {
     }));
   };
 
-  if (loading) return <p>Loading comments...</p>;
-  if (!comments.length) return <p>No comments found.</p>;
+  if (loading) return <p className="text-gray-800 dark:text-gray-200">Loading comments...</p>;
+  if (!comments.length) return <p className="text-gray-800 dark:text-gray-200">No comments found.</p>;
 
   return (
     <div className="mt-10">
-      <h2 className="text-2xl font-bold mb-6 uppercase">
+      <h2 className="text-2xl font-bold mb-6 uppercase text-gray-900 dark:text-gray-100">
         {comments.length} Comment{comments.length > 1 ? "s" : ""}
       </h2>
       {comments.slice(0, 4).map((item) => (
         <div key={item._id} className="flex gap-4 mb-8">
-          {item.avatar ? (
+          {item.avatar && (
             <img
               src={item.avatar}
               alt={item.email}
-              className="w-14 h-14 rounded-full object-cover"
+              className="w-14 h-14 object-cover"
             />
-          ) : (
-            <div className="w-14 h-14 rounded-full bg-gray-300 flex items-center justify-center text-white text-xl font-bold">
-              {item.email[0].toUpperCase()}
-            </div>
           )}
           <div className="flex-1">
             <div className="flex items-center justify-between">
-              <h3 className="font-bold uppercase">{item.name}</h3>
-              <span className="text-sm text-gray-500">
+              <h3 className="font-bold uppercase text-gray-900 dark:text-gray-100">
+                {item.name}
+              </h3>
+              <span className="text-sm text-gray-500 dark:text-gray-400">
                 {new Date(item.createdAt).toLocaleDateString()}
               </span>
             </div>
-            <p className="text-gray-700 my-2 text-justify border-b border-gray-300 leading-7 pb-4">
+            <p className="text-gray-700 dark:text-gray-300 my-2 text-justify border-b border-gray-300 dark:border-gray-700 leading-7 pb-4">
               {expandedComments[item._id]
                 ? item.comment
                 : `${item.comment.slice(0, 150)}...`}
@@ -102,28 +99,28 @@ const ShowComment = ({ comments, loading }) => {
   );
 };
 
-// Comment Form Component
+//  Comment Form
 const CommentForm = ({ propertyId, fetchComments }) => {
   const [loading, setLoading] = useState(false);
-  const { data: section } = useSession();
+  const { data: session } = useSession();
 
   const handleComment = async (e) => {
     e.preventDefault();
-    if (!section?.user?.email) return toast("Please Login...");
+    if (!session?.user?.email) return toast("Please Login...");
     const comment = e.target.comment.value;
     try {
       setLoading(true);
       await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/api/seller/property/comment`,
         {
-          email: section.user.email,
-          name: section.user.name,
+          email: session.user.email,
+          name: session.user.name,
           comment: comment,
           propertyId: propertyId,
         }
       );
       e.target.reset();
-      await fetchComments(); // Refresh comments list
+      await fetchComments();
     } catch (err) {
       console.error(err);
     } finally {
@@ -132,33 +129,33 @@ const CommentForm = ({ propertyId, fetchComments }) => {
   };
 
   return (
-    <section className="mt-6 px-6 py-12">
-      <h2 className="text-2xl font-bold mb-4">Leave a Reply</h2>
-      <p className="text-gray-700 mb-4">
+    <section className="mt-6 px-6 py-12 bg-white dark:bg-gray-900">
+      <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Leave a Reply</h2>
+      <p className="text-gray-700 dark:text-gray-300 mb-4">
         Your email address will not be published.
       </p>
       <form onSubmit={handleComment}>
         <textarea
           name="comment"
           placeholder="Your Message"
-          className="p-3 resize-none border w-full mt-4 h-32 focus:outline-none"
+          className="p-3 resize-none border w-full mt-4 h-32 focus:outline-none focus:border-blue-500 bg-white dark:bg-gray-800 dark:text-gray-100 dark:border-gray-700"
           required
         ></textarea>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
           <input
             type="text"
-            className="p-3 border w-full"
-            defaultValue={section?.user?.name}
+            className="p-3 border w-full focus:outline-none focus:border-blue-500 bg-white dark:bg-gray-800 dark:text-gray-100 dark:border-gray-700"
+            defaultValue={session?.user?.name}
             readOnly
           />
           <input
             type="email"
-            className="p-3 border w-full"
-            defaultValue={section?.user?.email}
+            className="p-3 border w-full focus:outline-none focus:border-blue-500 bg-white dark:bg-gray-800 dark:text-gray-100 dark:border-gray-700"
+            defaultValue={session?.user?.email}
             readOnly
           />
         </div>
-        <button className="mt-4 bg-black text-white px-6 py-2 hover:bg-white hover:text-black border border-black transition">
+        <button className="mt-4 bg-black text-white px-6 py-2 hover:bg-white hover:text-black hover:border hover:border-black transition dark:bg-gray-100 dark:text-black dark:hover:bg-black dark:hover:text-white dark:hover:border-white">
           {loading ? "Submitting..." : "Submit Comment"}
         </button>
       </form>

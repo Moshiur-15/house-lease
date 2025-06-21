@@ -15,15 +15,15 @@ const Banner = () => {
 
       {/* Content */}
       <div className="relative z-10 text-white text-center p-5 max-w-4xl mx-auto">
-        <h1 className="text-4xl lg:text-5xl font-bold mb-4">
+        <h1 className="text-2xl dark:text-white md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4">
           Buy, Sell & Rent Real Estate in Portland
         </h1>
-        <p className="text-lg lg:text-xl mb-6 leading-relaxed">
+        <p className="text-sm md:text-lg lg:text-xl mb-2 md:mb-6 leading-relaxed dark:text-gray-300">
           Explore Portland's real estate opportunities and discover your next
           home in one of the Pacific Northwest's most dynamic cities.
         </p>
         <Link href="/properties">
-          <button className="bg-[#FF8904] px-5 py-2.5 hover:cursor-pointer hover:bg-[#FF8904]/90">
+          <button className="bg-[#FF8904] px-3 py-1.5 md:px-5 md:py-2.5 hover:cursor-pointer hover:bg-[#FF8904]/90">
             Explore Properties
           </button>
         </Link>

@@ -5,10 +5,10 @@ import { NextResponse } from "next/server";
 
 export async function POST(req) {
   await connectDB();
-  const { email, name, comment, blogId } = await req.json();
+  const { email, name, comment, blogId, image } = await req.json();
 
   try {
-    const newComment = await CommentBlog.create({ email, name, comment, blogId });
+    const newComment = await CommentBlog.create({ email, name, comment, blogId, image });
     console.log(newComment)
     return NextResponse.json({ success: true, data: newComment });
   } catch (error) {

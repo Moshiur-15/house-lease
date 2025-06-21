@@ -4,9 +4,9 @@ import { FaThLarge, FaBars } from "react-icons/fa";
 const FilterBar = ({view, setView}) => {
 
   return (
-    <div className="flex items-center justify-between px-6 py-3 border border-gray-200 bg-white mt-10">
+    <div className="flex items-center justify-between px-6 py-3 border dark:border-gray-800 border-gray-200 dark:bg-gray-900 bg-white mt-10">
       {/* Filters Section */}
-      <div className="flex flex-col sm:flex-row flex-wrap items-center gap-4 sm:gap-6 w-full md:w-auto">
+      <div className="flex flex-col sm:flex-row flex-wrap items-center gap-4 sm:gap-6 w-full md:w-auto text-black dark:text-gray-300">
         {/* Types Dropdown */}
         <select  className="w-full md:w-auto outline-0">
           <option value="default">
@@ -60,18 +60,18 @@ const FilterBar = ({view, setView}) => {
         <button
           onClick={() => setView("grid")}
           className={`p-2 rounded hover:bg-gray-100 transition ${
-            view === "grid" ? "bg-gray-100" : ""
+            view === "grid" ? "bg-gray-100 dark:bg-gray-800" : ""
           }`}
         >
-          <FaThLarge className="text-gray-700 w-4 h-4" />
+          <FaThLarge className="text-gray-700 w-4 dark:text-white h-4" />
         </button>
         <button
           onClick={() => setView("list")}
           className={`p-2 rounded hover:bg-gray-100 transition ${
-            view === "list" ? "bg-gray-100" : ""
+            view === "list" ? "bg-gray-100 dark:bg-gray-800" : ""
           }`}
         >
-          <FaBars className="text-gray-700 w-4 h-4" />
+          <FaBars className="text-gray-700 w-4 h-4 dark:text-white" />
         </button>
       </div>
     </div>

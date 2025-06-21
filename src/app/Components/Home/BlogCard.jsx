@@ -10,7 +10,7 @@ const BlogCard = ({ blog }) => {
       <div className="relative w-full h-56 overflow-hidden">
         <Image
           src={cardImage}
-          alt={CardTitle}
+          alt="Img Not Found"
           className="object-cover object-center"
           loading="lazy"
           fill
@@ -18,8 +18,12 @@ const BlogCard = ({ blog }) => {
       </div>
 
       <div className="flex flex-col grow px-4 py-6">
-        <h2 className="text-lg font-semibold text-gray-800">{CardTitle}</h2>
-        <p className="text-gray-600 text-sm mt-2">{CardDes.slice(0, 80)}...</p>
+        <h2 className="text-lg font-semibold text-gray-800 dark:text-white">
+          {CardTitle}
+        </h2>
+        <p className="text-gray-600 text-sm mt-2 dark:text-gray-300/90">
+          {CardDes.slice(0, 80)}...
+        </p>
         <div className="mt-auto">
           <Link
             href={`/blog/${_id}`}

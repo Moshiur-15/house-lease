@@ -69,7 +69,7 @@ const Category = () => {
             className="group transform transition-all duration-300 hover:-translate-y-2"
           >
             {/* img */}
-            <div className="relative aspect-square border-2 border-gray-100 rounded-bl-[30px] rounded-tr-[30px] overflow-hidden shadow-lg">
+            <div className="relative aspect-square border-2 border-gray-100 dark:border-gray-600 rounded-bl-[30px] rounded-tr-[30px] overflow-hidden shadow-lg">
               <img
                 src={category.img}
                 alt={category.title}
@@ -81,10 +81,10 @@ const Category = () => {
 
             {/* text */}
             <div className="px-2 py-4 md:px-3 md:py-6">
-              <h2 className="text-lg md:text-xl font-bold text-gray-800 truncate">
+              <h2 className="text-lg md:text-xl font-bold text-gray-800 truncate dark:text-white">
                 {category.title}
               </h2>
-              <p className="text-sm md:text-base text-gray-600 mt-1 md:mt-2">
+              <p className="text-sm md:text-base text-gray-600 mt-1 md:mt-2 dark:text-gray-300/90">
                 {category.listing} listing
               </p>
             </div>

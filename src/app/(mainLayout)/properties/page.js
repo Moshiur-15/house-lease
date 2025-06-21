@@ -27,7 +27,7 @@ const Properties = () => {
     <div>
       {/* banner */}
       <div
-        className="relative h-96 sm:h-[410px] xl:h-[500px] flex items-center justify-center bg-cover bg-center"
+        className="relative h-80 sm:h-[410px] xl:h-[500px] flex items-center justify-center bg-cover bg-center"
         style={{
           backgroundImage:
             "url(https://portland-residence.b-cdn.net/wp-content/uploads/2014/05/2.6-6-1.webp)",
@@ -38,7 +38,7 @@ const Properties = () => {
 
         {/* Content */}
         <div className="relative z-10 text-white text-center p-5">
-          <h1 className="text-4xl lg:text-5xl font-semibold mb-4">
+          <h1 className="text-2xl md:text-4xl lg:text-5xl font-semibold mb-4">
             Top Real Estate <br /> Listings in Portland
           </h1>
         </div>
@@ -49,7 +49,7 @@ const Properties = () => {
           <FilterBar view={view} setView={setView} />
         </>
         <div
-          className={`grid gap-6 mt-8 ${
+          className={`grid gap-6 data:gap-0 mt-8 ${
             view === "list"
               ? "grid-cols-1"
               : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"

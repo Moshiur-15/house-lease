@@ -57,12 +57,20 @@ const NavBer = () => {
             </button>
             {/* User Avatar and Dropdown */}
             <div className="relative flex items-center gap-3">
-              <img
-                src={session?.user.image}
-                alt="avatar"
-                className="w-8 h-8 rounded-full cursor-pointer"
-                onClick={() => setShowDropdown(!showDropdown)}
-              />
+              {session?.user?.email ? (
+                <img
+                  src={session?.user.image}
+                  alt="avatar"
+                  className="w-8 h-8 rounded-full cursor-pointer"
+                  onClick={() => setShowDropdown(!showDropdown)}
+                />
+              ) : (
+                <Link href="/Auth/Login">
+                  <button className="bg-[#FF8904] px-6 py-2 hover:cursor-pointer hover:bg-[#FF8904]/90">
+                    Login 
+                  </button>
+                </Link>
+              )}
               {showDropdown && (
                 <div className="absolute top-10 right-0 z-50 bg-white text-black shadow-lg w-44">
                   <Link

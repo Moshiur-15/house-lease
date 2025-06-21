@@ -44,10 +44,10 @@ const Services = () => {
               <Images img={item.img} />
             </div>
             <div className="px-3 py-6 flex flex-col grow">
-              <h2 className="text-lg sm:text-xl font-semibold uppercase">
+              <h2 className="text-lg sm:text-xl font-semibold uppercase dark:text-white">
                 {item.title}
               </h2>
-              <p className="text-gray-600 text-sm mt-2">{item.description}</p>
+              <p className="text-gray-600 text-sm mt-2 dark:text-gray-300/90">{item.description}</p>
               <div className="mt-auto">
                 <Link
                   href={item?.link}
