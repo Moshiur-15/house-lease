@@ -3,20 +3,18 @@ import React, { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import ManageBlogModal from "./ManageBlogModal";
 
-const ManageBlogTable = ({ blog }) => {
-  const [blogs, setBlog] = useState(blog);
+const ManageBlogTable = ({ blog, onDelete }) => {
   const [openMenuId, setOpenMenuId] = useState(null);
 
   const toggleMenu = (id) => {
     setOpenMenuId((prev) => (prev === id ? null : id));
   };
 
-  const onDelete = (id) => {
-    setBlog((p) => p.filter((p) => p._id !== id));
-    setOpenMenuId(null);
-  };
-
   const tdStyle = "p-3 border text-nowrap dark:border-gray-700";
+
+  if (!blog || blog.length === 0) {
+    return <p className="text-center text-red-500">No blogs found.</p>;
+  }
 
   return (
     <div className="px-4 py-6">
@@ -32,37 +30,46 @@ const ManageBlogTable = ({ blog }) => {
             </tr>
           </thead>
           <tbody>
-            {blogs?.slice().reverse().map((blog, index) => (
-              <tr
-                key={blog._id}
-                className="hover:bg-gray-50 dark:hover:bg-gray-800"
-              >
-                <td className={`${tdStyle} text-gray-900 dark:text-gray-100`}>
-                  {index + 1}
-                </td>
-                <td className={`${tdStyle} text-gray-900 dark:text-gray-100`}>
-                  {blog.CardTitle}
-                </td>
-                <td className={`${tdStyle} text-gray-900 dark:text-gray-100`}>
-                  {blog.Date}
-                </td>
-                <td className={`${tdStyle} text-gray-900 dark:text-gray-100`}>
-                  {blog.Location}
-                </td>
-                <td className="p-3 border text-center relative dark:border-gray-700">
-                  <button
-                    className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full transition"
-                    onClick={() => toggleMenu(blog._id)}
-                  >
-                    <BsThreeDotsVertical className="text-xl text-gray-900 dark:text-gray-100" />
-                  </button>
+            {blog
+              ?.slice()
+              .reverse()
+              .map((blog, index) => (
+                <tr
+                  key={blog._id}
+                  className="hover:bg-gray-50 dark:hover:bg-gray-800"
+                >
+                  <td className={`${tdStyle} text-gray-900 dark:text-gray-100`}>
+                    {index + 1}
+                  </td>
+                  <td className={`${tdStyle} text-gray-900 dark:text-gray-100`}>
+                    {blog.CardTitle}
+                  </td>
+                  <td className={`${tdStyle} text-gray-900 dark:text-gray-100`}>
+                    {blog.Date}
+                  </td>
+                  <td className={`${tdStyle} text-gray-900 dark:text-gray-100`}>
+                    {blog.Location}
+                  </td>
+                  <td className="p-3 border text-center relative dark:border-gray-700">
+                    <button
+                      className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full transition"
+                      onClick={() => toggleMenu(blog._id)}
+                    >
+                      <BsThreeDotsVertical className="text-xl text-gray-900 dark:text-gray-100" />
+                    </button>
 
-                  {openMenuId === blog._id && (
-                    <ManageBlogModal BlogId={blog._id} onDelete={onDelete} />
-                  )}
-                </td>
-              </tr>
-            ))}
+                    {openMenuId === blog._id && (
+                      <ManageBlogModal
+                        BlogId={blog._id}
+                        onDelete={() => {
+                          onDelete(blog._id);
+                          setOpenMenuId(null);
+                        }}
+                      />
+                    )}
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

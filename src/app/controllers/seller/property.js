@@ -15,29 +15,38 @@ export const property = async (req) => {
 // get property
 export const getProperty = async (req) => {
   const { searchParams } = new URL(req.url);
-  const sellerEmail = searchParams.get("sellerEmail");
+
+  const email = searchParams.get("email");
+  const search = searchParams.get("search") || "";
+
+  const price = parseInt(search);
+  const isPriceSearch = !isNaN(price);
 
   try {
-    if (!sellerEmail) {
-      return NextResponse.json({
-        message: "Seller email is required",
-        status: 400,
-      });
+    let query = {
+      sellerEmail: email,
+    };
+
+    if (search) {
+      if (isPriceSearch) {
+        query.price = price;
+      } else {
+        query.$or = [
+          { title: { $regex: search, $options: "i" } },
+          { location: { $regex: search, $options: "i" } },
+        ];
+      }
     }
-    const property = await addProperty.find({ sellerEmail });
-    return NextResponse.json({
-      message: "Seller's property data fetched successfully",
-      status: 200,
-      property,
-    });
+
+    const properties = await addProperty.find(query);
+
+    return NextResponse.json({ success: true, data: properties });
   } catch (error) {
-    return NextResponse.json({
-      message: "Error fetching seller's property",
-      status: 500,
-      error,
-    });
+    return NextResponse.json({ success: false, message: error.message });
   }
 };
+
+
 
 
 export const getSingleProperty = async (id) => {

@@ -10,7 +10,7 @@ const ManageBlogModal = ({ BlogId, onDelete }) => {
     try {
       await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/blogs?id=${BlogId}`);
       toast("Blog deleted");
-      onDelete(BlogId);
+      onDelete();
     } catch (err) {
       console.log(err);
     }
