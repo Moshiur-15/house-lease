@@ -21,7 +21,9 @@ const ManagePropertie = () => {
       setLoading(true);
       try {
         const params = new URLSearchParams({ email, search: searchItem });
-        const res = await axios.get(`/api/seller/property?${params.toString()}`);
+        const res = await axios.get(
+          `/api/seller/property?${params.toString()}`
+        );
         setProperties(res.data.data || []);
       } catch (error) {
         toast.error("Failed to load properties");
@@ -35,7 +37,7 @@ const ManagePropertie = () => {
 
   return (
     <section className="my-5 lg:my-10">
-      <div className="flex flex-col lg:flex-row justify-between space-y-3 mb-6 px-4">
+      <div className="flex flex-col lg:flex-row justify-between space-y-3 mb-6">
         <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
           MANAGE YOUR PROPERTIES
         </h2>

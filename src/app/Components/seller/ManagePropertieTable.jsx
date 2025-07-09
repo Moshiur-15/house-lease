@@ -26,18 +26,10 @@ const ManagePropertieTable = ({ properties, loading, setProperties }) => {
 
   const tdStyle = "py-3 px-4 text-center text-nowrap border";
 
-  if (loading) {
-    return <p className="text-center py-8">Loading...</p>;
-  }
-
-  if (!properties.length) {
-    return <p className="text-center py-8">No properties found.</p>;
-  }
-
   return (
     <div className="overflow-x-auto max-w-full">
       <table className="min-w-full border border-gray-300 dark:border-gray-700 text-left">
-        <thead className="bg-gray-100 dark:bg-gray-800">
+        <thead className="bg-gray-100 dark:bg-gray-800 text-center">
           <tr>
             {["Title", "Location", "Beds", "Baths", "Price", "Status", "Actions"].map(
               (head, key) => (
@@ -52,44 +44,61 @@ const ManagePropertieTable = ({ properties, loading, setProperties }) => {
           </tr>
         </thead>
         <tbody>
-          {properties.slice().reverse().map((property) => (
-            <tr
-              key={property._id}
-              className="hover:bg-gray-50 dark:hover:bg-gray-800 transition duration-200"
-            >
-              <td className={`${tdStyle}`}>{property.title}</td>
-              <td className={`${tdStyle}`}>{property.location}</td>
-              <td className={`${tdStyle}`}>{property.beds}</td>
-              <td className={`${tdStyle}`}>{property.baths}</td>
-              <td className={`${tdStyle}`}>{property.price.toLocaleString()}</td>
-              <td className={`${tdStyle}`}>
-                <span
-                  className={`px-2 py-1 rounded text-xs font-medium ${
-                    property.status === "sold"
-                      ? "bg-red-100 text-red-800 dark:bg-red-800 dark:text-white"
-                      : "bg-green-100 text-green-800 dark:bg-green-800 dark:text-white"
-                  }`}
-                >
-                  {property.status}
-                </span>
-              </td>
-              <td className={`${tdStyle}`}>
-                <button
-                  className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full transition"
-                  onClick={() => toggleMenu(property._id)}
-                >
-                  <BsThreeDotsVertical className="text-xl" />
-                </button>
-
-                {openMenuId === property._id && (
-                  <ManagePropertieModal
-                    propertyId={property._id}
-                    onDelete={handleDelete}
-                  />
-                )}
+          {loading ? (
+            <tr>
+              <td colSpan="7" className="py-8 text-center">
+                Loading...
               </td>
             </tr>
-          ))}
+          ) : properties.length === 0 ? (
+            <tr>
+              <td colSpan="7" className="py-8 text-center">
+                No properties found.
+              </td>
+            </tr>
+          ) : (
+            properties
+              .slice()
+              .reverse()
+              .map((property) => (
+                <tr
+                  key={property._id}
+                  className="hover:bg-gray-50 dark:hover:bg-gray-800 transition duration-200"
+                >
+                  <td className={tdStyle}>{property.title}</td>
+                  <td className={tdStyle}>{property.location}</td>
+                  <td className={tdStyle}>{property.beds}</td>
+                  <td className={tdStyle}>{property.baths}</td>
+                  <td className={tdStyle}>{property.price.toLocaleString()}</td>
+                  <td className={tdStyle}>
+                    <span
+                      className={`px-2 py-1 rounded text-xs font-medium ${
+                        property.status === "sold"
+                          ? "bg-red-100 text-red-800 dark:bg-red-800 dark:text-white"
+                          : "bg-green-100 text-green-800 dark:bg-green-800 dark:text-white"
+                      }`}
+                    >
+                      {property.status}
+                    </span>
+                  </td>
+                  <td className={tdStyle}>
+                    <button
+                      className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full transition"
+                      onClick={() => toggleMenu(property._id)}
+                    >
+                      <BsThreeDotsVertical className="text-xl" />
+                    </button>
+
+                    {openMenuId === property._id && (
+                      <ManagePropertieModal
+                        propertyId={property._id}
+                        onDelete={handleDelete}
+                      />
+                    )}
+                  </td>
+                </tr>
+              ))
+          )}
         </tbody>
       </table>
     </div>

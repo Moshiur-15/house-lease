@@ -1,12 +1,17 @@
 "use client";
 
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 const ViewProperty = ({ properties }) => {
-  const [property, setProperty] = useState(properties);
   const [loadingId, setLoadingId] = useState(null);
+  const [property, setProperty] = useState(properties);
+
+  useEffect(() => {
+    setProperty(properties);
+  }, [properties]);
+  // delete
   const handleDelete = async (id) => {
     setLoadingId(id);
     try {
