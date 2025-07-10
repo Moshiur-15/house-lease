@@ -2,10 +2,10 @@
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { toast } from "sonner";
 
-const LoginForm = () => {
+const LoginFormContent = () => {
   const inputStyle =
     "w-full px-4 py-2 border border-gray-300 focus:outline-none focus:ring-0 bg-white text-black";
 
@@ -55,37 +55,17 @@ const LoginForm = () => {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label
-              htmlFor="email"
-              className="block mb-1 font-medium text-gray-600"
-            >
+            <label htmlFor="email" className="block mb-1 font-medium text-gray-600">
               Email
             </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="Your email"
-              className={inputStyle}
-              required
-            />
+            <input id="email" name="email" type="email" className={inputStyle} required />
           </div>
 
           <div>
-            <label
-              htmlFor="password"
-              className="block mb-1 font-medium text-gray-600"
-            >
+            <label htmlFor="password" className="block mb-1 font-medium text-gray-600">
               Password
             </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              placeholder="Your password"
-              className={inputStyle}
-              required
-            />
+            <input id="password" name="password" type="password" className={inputStyle} required />
           </div>
 
           <button
@@ -103,7 +83,7 @@ const LoginForm = () => {
           <button
             type="button"
             className="w-full border border-gray-300 py-2 flex items-center justify-center gap-2 hover:bg-black hover:text-white hover:border-transparent duration-300"
-            onClick={() => "Google login not implemented yet"}
+            onClick={() => toast("Google login not implemented yet")}
           >
             <img
               src="https://www.svgrepo.com/show/355037/google.svg"
@@ -131,6 +111,14 @@ const LoginForm = () => {
         </form>
       </div>
     </div>
+  );
+};
+
+const LoginForm = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LoginFormContent />
+    </Suspense>
   );
 };
 

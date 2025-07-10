@@ -1,7 +1,5 @@
 // "use client";
 
-
-
 // import { useState } from "react";
 // import { signIn } from "next-auth/react";
 // import { useRouter } from "next/navigation";
@@ -118,6 +116,14 @@
 // }
 
 import LoginForm from "@/app/Components/LoginForm";
-export default function LoginPage() {
-  return <LoginForm />;
-}
+import React from "react";
+
+const LoginPage = () => {
+  return (
+    <div>
+      <LoginForm />
+    </div>
+  );
+};
+
+export default LoginPage;
