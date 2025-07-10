@@ -50,7 +50,7 @@ const data = {
 
 export function AppSidebar(props) {
   const { data: session } = useSession();
-  const role = session?.user?.role || "user";
+  const role = session?.user?.role;
 
   const fullNav = [
     {

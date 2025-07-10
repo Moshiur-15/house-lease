@@ -26,7 +26,6 @@ export function NavUser() {
   const { isMobile } = useSidebar();
   const { data: session } = useSession();
 
-  console.log("session", session);
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -38,8 +37,8 @@ export function NavUser() {
             >
               <Avatar className="h-8 w-8 rounded-none">
                 <AvatarImage
-                  src={session?.user.image}
-                  alt={session?.user.name}
+                  src={session?.user?.image}
+                  alt={session?.user?.name}
                 />
                 <AvatarFallback className="rounded-lg">
                   <Image

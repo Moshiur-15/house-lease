@@ -3,9 +3,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
-// import { useAuth } from "@/app/context/AuthContext";
-
-// 👇 Replace with your actual API key
+import { useRouter } from "next/navigation";
 const imgbbApiKey = "58a9d3ffd0c8663f17be9ce8a26786ff";
 
 const RegisterPage = () => {
@@ -18,9 +16,8 @@ const RegisterPage = () => {
     password: "",
     image: "",
   });
-  //const { login } = useAuth();
   const [register, setRegister] = useState(false);
-  const [message, setMessage] = useState("");
+  const router = useRouter();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,12 +48,13 @@ const RegisterPage = () => {
     console.log("Submitted data:", formData);
     try {
       setRegister(true);
-      // const  res  = await axios.post(
-      //   "https://house-lease.vercel.app/api/auth?register=true",
-      //   formData
-      // );
-      // setMessage("Account created successfully");
-      // login(res.data)
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/register`,
+        formData
+      );
+      console.log(res.data);
+
+      router.push("/Auth/Login");
     } catch (err) {
       console.error("Error submitting data", err);
     } finally {
@@ -142,11 +140,6 @@ const RegisterPage = () => {
             Create Account Google
           </button>
         </form>
-        {message && (
-          <p className="text-green-600 font-bold text-sm">
-            {message.toUpperCase()}
-          </p>
-        )}
         {/* Already have account */}
         <p className="text-sm text-center text-gray-600 mt-4">
           Already have an account?{" "}

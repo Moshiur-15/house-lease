@@ -1,4 +1,5 @@
 "use client";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -21,6 +22,8 @@ const images = [
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const { data: session } = useSession();
+  console.log(session);
 
   return (
     <div className="">
@@ -49,7 +52,9 @@ const Gallery = () => {
 
       {/*  Gallery  */}
       <div className="container mx-auto px-5 lg:px-14 mb-20">
-        <h2 className="text-xl md:text-3xl font-bold text-center mb-6 my-10">Gallery</h2>
+        <h2 className="text-xl md:text-3xl font-bold text-center mb-6 my-10">
+          Gallery
+        </h2>
         <div className="mt-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
             {images.map((img, index) => (
