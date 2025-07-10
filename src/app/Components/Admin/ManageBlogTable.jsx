@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import ManageBlogModal from "./ManageBlogModal";
 
-const ManageBlogTable = ({ blog, onDelete }) => {
+const ManageBlogTable = ({ blog, onDelete, loading }) => {
   const [openMenuId, setOpenMenuId] = useState(null);
 
   const toggleMenu = (id) => {
@@ -11,10 +11,6 @@ const ManageBlogTable = ({ blog, onDelete }) => {
   };
 
   const tdStyle = "p-3 border text-nowrap dark:border-gray-700";
-
-  if (!blog || blog.length === 0) {
-    return <p className="text-center text-red-500">No blogs found.</p>;
-  }
 
   return (
     <div className="px-4 py-6">
@@ -30,46 +26,71 @@ const ManageBlogTable = ({ blog, onDelete }) => {
             </tr>
           </thead>
           <tbody>
-            {blog
-              ?.slice()
-              .reverse()
-              .map((blog, index) => (
-                <tr
-                  key={blog._id}
-                  className="hover:bg-gray-50 dark:hover:bg-gray-800"
+            {loading ? (
+              <tr>
+                <td
+                  colSpan={5}
+                  className="text-center py-5 text-gray-500 dark:text-gray-400"
                 >
-                  <td className={`${tdStyle} text-gray-900 dark:text-gray-100`}>
-                    {index + 1}
-                  </td>
-                  <td className={`${tdStyle} text-gray-900 dark:text-gray-100`}>
-                    {blog.CardTitle}
-                  </td>
-                  <td className={`${tdStyle} text-gray-900 dark:text-gray-100`}>
-                    {blog.Date}
-                  </td>
-                  <td className={`${tdStyle} text-gray-900 dark:text-gray-100`}>
-                    {blog.Location}
-                  </td>
-                  <td className="p-3 border text-center relative dark:border-gray-700">
-                    <button
-                      className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full transition"
-                      onClick={() => toggleMenu(blog._id)}
+                  Loading...
+                </td>
+              </tr>
+            ) : blog?.length === 0 ? (
+              <tr>
+                <td colSpan={5} className="text-center py-5 text-red-500">
+                  No blogs found.
+                </td>
+              </tr>
+            ) : (
+              blog
+                ?.slice()
+                .reverse()
+                .map((blog, index) => (
+                  <tr
+                    key={blog._id}
+                    className="hover:bg-gray-50 dark:hover:bg-gray-800"
+                  >
+                    <td
+                      className={`${tdStyle} text-gray-900 dark:text-gray-100`}
                     >
-                      <BsThreeDotsVertical className="text-xl text-gray-900 dark:text-gray-100" />
-                    </button>
+                      {index + 1}
+                    </td>
+                    <td
+                      className={`${tdStyle} text-gray-900 dark:text-gray-100`}
+                    >
+                      {blog.CardTitle}
+                    </td>
+                    <td
+                      className={`${tdStyle} text-gray-900 dark:text-gray-100`}
+                    >
+                      {blog.Date}
+                    </td>
+                    <td
+                      className={`${tdStyle} text-gray-900 dark:text-gray-100`}
+                    >
+                      {blog.Location}
+                    </td>
+                    <td className="p-3 border text-center relative dark:border-gray-700">
+                      <button
+                        className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full transition"
+                        onClick={() => toggleMenu(blog._id)}
+                      >
+                        <BsThreeDotsVertical className="text-xl text-gray-900 dark:text-gray-100" />
+                      </button>
 
-                    {openMenuId === blog._id && (
-                      <ManageBlogModal
-                        BlogId={blog._id}
-                        onDelete={() => {
-                          onDelete(blog._id);
-                          setOpenMenuId(null);
-                        }}
-                      />
-                    )}
-                  </td>
-                </tr>
-              ))}
+                      {openMenuId === blog._id && (
+                        <ManageBlogModal
+                          BlogId={blog._id}
+                          onDelete={() => {
+                            onDelete(blog._id);
+                            setOpenMenuId(null);
+                          }}
+                        />
+                      )}
+                    </td>
+                  </tr>
+                ))
+            )}
           </tbody>
         </table>
       </div>

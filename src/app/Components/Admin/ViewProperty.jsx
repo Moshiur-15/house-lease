@@ -3,33 +3,47 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import DeleteModal from "./DeleteModal";
 
 const ViewProperty = ({ properties }) => {
   const [loadingId, setLoadingId] = useState(null);
   const [property, setProperty] = useState(properties);
+  const [deleteId, setDeleteId] = useState(null);
+  const [isModalOpen, setModalOpen] = useState(false);
 
+  // set data from props
   useEffect(() => {
     setProperty(properties);
   }, [properties]);
-  // delete
-  const handleDelete = async (id) => {
-    setLoadingId(id);
+
+  // When Delete button clicked
+  const handleDeleteClick = (id) => {
+    setDeleteId(id);
+    setModalOpen(true);
+  };
+
+  // Final confirm delete
+  const confirmDelete = async () => {
+    if (!deleteId) return;
+    setLoadingId(deleteId);
     try {
       await axios.delete(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/seller/property?id=${id}`
+        `${process.env.NEXT_PUBLIC_API_URL}/api/seller/property?id=${deleteId}`
       );
-      toast("Property deleted");
-      setProperty((p) => p.filter((p) => p._id !== id));
+      toast.success("Property deleted");
+      setProperty((prev) => prev.filter((item) => item._id !== deleteId));
     } catch (err) {
       console.error(err);
-      toast("Delete failed. Please try again.");
+      toast.error("Delete failed. Please try again.");
     } finally {
       setLoadingId(null);
+      setDeleteId(null);
+      setModalOpen(false);
     }
   };
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto relative">
       <table className="w-full border border-gray-300 dark:border-gray-700 text-center">
         <thead className="bg-gray-100 dark:bg-gray-800">
           <tr>
@@ -81,10 +95,11 @@ const ViewProperty = ({ properties }) => {
                   {property.status}
                 </span>
               </td>
-              <td className="py-1 sm:py-3 px-2 sm:px-4 text-center relative text-sm lg:text-lg">
+              <td className="py-1 sm:py-3 px-2 sm:px-4 text-center relative text-sm">
                 <button
-                  className="text-red-500 font-bold p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full transition"
-                  onClick={() => handleDelete(property._id)}
+                  className="py-1 px-4 bg-gray-200  text-red-500 font-bold p-2 hover:bg-red-100 dark:hover:bg-gray-700 transition"
+                  onClick={() => handleDeleteClick(property._id)}
+                  disabled={loadingId === property._id}
                 >
                   {loadingId === property._id ? "Deleting..." : "Delete"}
                 </button>
@@ -93,6 +108,12 @@ const ViewProperty = ({ properties }) => {
           ))}
         </tbody>
       </table>
+
+      <DeleteModal
+        isOpen={isModalOpen}
+        onClose={() => setModalOpen(false)}
+        onConfirm={confirmDelete}
+      />
     </div>
   );
 };

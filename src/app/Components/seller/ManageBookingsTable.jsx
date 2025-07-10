@@ -1,10 +1,9 @@
 "use client";
 import axios from "axios";
-import { Section } from "lucide-react";
 import { toast } from "sonner";
 
 const ManageBookingsTable = ({ bookings, loading, setBookings, onDelete }) => {
-  // confirmation update handler
+
   const handleConfirmationChange = async (id, newStatus) => {
     try {
       const res = await axios.patch(

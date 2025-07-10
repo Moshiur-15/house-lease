@@ -3,7 +3,21 @@ import { NextResponse } from "next/server";
 
 // get blog
 export const getBlogs = async (req) => {
-  const blog = await Blogs.find();
+  const { searchParams } = new URL(req.url);
+  const search = searchParams.get("search");
+  let query = {};
+
+  if (search) {
+    query = {
+      $or: [
+        { CardTitle: { $regex: search, $options: "i" } },
+        { Location: { $regex: search, $options: "i" } },
+        { Date: { $regex: search, $options: "i" } }
+      ],
+    };
+  }
+
+  const blog = await Blogs.find(query);
   return NextResponse.json({ message: "Get data", blog });
 };
 

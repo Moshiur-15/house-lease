@@ -1,4 +1,4 @@
-"use client"; // make this a client component
+"use client";
 
 import React, { useState, useEffect } from "react";
 import GetBlog from "@/app/Components/Admin/GetBlog";
@@ -10,27 +10,20 @@ const Page = () => {
 
   useEffect(() => {
     const fetchBlogs = async () => {
-      const data = await GetBlog();
+      const data = await GetBlog(searchTerm);
       setBlogs(data);
     };
     fetchBlogs();
-  }, []);
+  }, [searchTerm]);
 
   // delete
   const handleDelete = (id) => {
     setBlogs((p) => p.filter((blog) => blog._id !== id));
   };
 
-  const filteredBlogs = blogs.filter(
-    (b) =>
-      b?.CardTitle?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      b?.Date?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      b?.Location?.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
   return (
     <div>
-      <div className="ml-7 lg:ml-0 flex flex-col xl:flex-row items-start lg:items-center justify-between gap-4 p-4 lg:mx-52 xl:mx-[215px]">
+      <div className="md:ml-7 lg:ml-0 flex flex-col xl:flex-row items-start lg:items-center justify-between gap-4 p-4 lg:mx-52 xl:mx-[215px]">
         <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
           MANAGE BLOGS
         </h2>
@@ -43,7 +36,7 @@ const Page = () => {
         />
       </div>
 
-      <ManageBlogTable blog={filteredBlogs} onDelete={handleDelete} />
+      <ManageBlogTable blog={blogs} onDelete={handleDelete} />
     </div>
   );
 };

@@ -34,6 +34,7 @@ const ManagePropertie = () => {
 
     fetchProperties();
   }, [email, searchItem]);
+  console.log(properties)
 
   return (
     <section className="my-5 lg:my-10">

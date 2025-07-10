@@ -8,13 +8,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { AiOutlineEye, AiOutlineDelete } from "react-icons/ai";
 import axios from "axios";
 import { useSession } from "next-auth/react";
+import DeleteModal from "@/app/Components/Admin/DeleteModal";
 
 const Wishlist = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [wishlistData, setWishlistData] = useState([]);
+  const [selectedId, setSelectedId] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: session } = useSession();
   const email = session?.user?.email;
 
@@ -36,14 +38,17 @@ const Wishlist = () => {
     }
   }, [email]);
 
-  const handleDelete = async (id) => {
+  const handleConfirmDelete = async () => {
     try {
       await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/buyer`, {
-        data: { id },
+        data: { id: selectedId },
       });
-      setWishlistData((prev) => prev.filter((item) => item._id !== id));
+      setWishlistData((prev) => prev.filter((item) => item._id !== selectedId));
     } catch (err) {
       console.error("Error deleting wishlist item:", err);
+    } finally {
+      setIsModalOpen(false);
+      setSelectedId(null);
     }
   };
 
@@ -115,7 +120,7 @@ const Wishlist = () => {
                 <TableCell className="text-center border-r dark:border-gray-700">
                   <span
                     className={`px-2 py-1 text-xs font-medium ${
-                      item.status === "For Sale"
+                      item.status === "Rent"
                         ? "bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100"
                         : "bg-red-100 text-red-800 dark:bg-red-700 dark:text-red-100"
                     }`}
@@ -124,21 +129,24 @@ const Wishlist = () => {
                   </span>
                 </TableCell>
                 <TableCell className="text-gray-700 dark:text-gray-300 flex space-x-3 text-xl mt-1.5 mx-3">
-                  {/* <button className="text-blue-600 dark:text-blue-400 hover:text-blue-500">
-                    <AiOutlineEye />
-                  </button> */}
                   <button
-                    onClick={() => handleDelete(item._id)}
-                    className="text-red-600 dark:text-red-400 hover:text-red-500"
+                    onClick={() => {
+                      setSelectedId(item._id);
+                      setIsModalOpen(true);
+                    }}
+                    className="px-4 py-1 text-xs sm:text-sm text-white transition bg-red-600 hover:bg-red-700"
                   >
-                    <AiOutlineDelete />
+                    Delete
                   </button>
                 </TableCell>
               </TableRow>
             ))}
             {filteredWishlist.length === 0 && (
               <TableRow>
-                <TableCell colSpan={5} className="text-center p-4 text-gray-500">
+                <TableCell
+                  colSpan={5}
+                  className="text-center p-4 text-gray-500"
+                >
                   No wishlist items found.
                 </TableCell>
               </TableRow>
@@ -146,6 +154,11 @@ const Wishlist = () => {
           </TableBody>
         </Table>
       </div>
+      <DeleteModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={handleConfirmDelete}
+      />
     </div>
   );
 };

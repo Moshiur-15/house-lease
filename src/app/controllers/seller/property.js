@@ -11,31 +11,31 @@ export const property = async (req) => {
   return NextResponse.json({ message: "data post", status: 200, property });
 };
 
-
 // get property
 export const getProperty = async (req) => {
   const { searchParams } = new URL(req.url);
 
   const email = searchParams.get("email");
   const search = searchParams.get("search") || "";
-
-  const price = parseInt(search);
-  const isPriceSearch = !isNaN(price);
-
+  const numberSearch = Number(search);
+  const isSearchNum = !isNaN(numberSearch);
   try {
     let query = {
       sellerEmail: email,
     };
 
     if (search) {
-      if (isPriceSearch) {
-        query.price = price;
-      } else {
-        query.$or = [
-          { title: { $regex: search, $options: "i" } },
-          { location: { $regex: search, $options: "i" } },
-        ];
-      }
+      query.$and = [
+        { sellerEmail: email },
+        {
+          $or: [
+            { title: { $regex: search, $options: "i" } },
+            { location: { $regex: search, $options: "i" } },
+            { status: { $regex: search, $options: "i" } },
+            ...(isSearchNum ? [{price: numberSearch}, {baths: numberSearch}, {beds: numberSearch}] : [] )
+          ],
+        },
+      ];
     }
 
     const properties = await addProperty.find(query);
@@ -46,15 +46,10 @@ export const getProperty = async (req) => {
   }
 };
 
-
-
-
 export const getSingleProperty = async (id) => {
   const property = await addProperty.findById(id);
   return NextResponse.json({ message: "Single post", status: 200, property });
 };
-
-
 
 // delete property
 export const deleteProperty = async (req) => {
@@ -62,9 +57,12 @@ export const deleteProperty = async (req) => {
   const id = searchParams.get("id");
   const property = await addProperty.findByIdAndDelete(id);
 
-  return NextResponse.json({ message: "Deleted successfully", status: 200, property });
+  return NextResponse.json({
+    message: "Deleted successfully",
+    status: 200,
+    property,
+  });
 };
-
 
 // update property
 export const updateProperty = async (req, id) => {

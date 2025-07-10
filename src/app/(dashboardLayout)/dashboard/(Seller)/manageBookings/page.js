@@ -1,9 +1,11 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { toast } from "sonner";
 import ManageBookingsTable from "@/app/Components/seller/ManageBookingsTable";
+import DeleteModal from "@/app/Components/Admin/DeleteModal";
 
 const ManageBookings = () => {
   const { data: session } = useSession();
@@ -13,7 +15,9 @@ const ManageBookings = () => {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // Fetch bookings on email or searchTerm change
+  const [deleteId, setDeleteId] = useState(null);
+  const [isModalOpen, setModalOpen] = useState(false);
+
   useEffect(() => {
     const fetchBookings = async () => {
       if (!email) return;
@@ -26,9 +30,7 @@ const ManageBookings = () => {
         });
 
         const res = await axios.get(
-          `${
-            process.env.NEXT_PUBLIC_API_URL
-          }/api/seller/booking?${params.toString()}`
+          `${process.env.NEXT_PUBLIC_API_URL}/api/seller/booking?${params.toString()}`
         );
 
         setBookings(res.data.data || []);
@@ -42,17 +44,25 @@ const ManageBookings = () => {
     fetchBookings();
   }, [email, searchTerm]);
 
-  // Delete
-  const handleDeleteBooking = async (id) => {
+  const handleDeleteClick = (id) => {
+    setDeleteId(id);
+    setModalOpen(true);
+  };
+
+  // Confirm delete
+  const confirmDelete = async () => {
     try {
       const res = await axios.delete(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/seller/booking/${id}`
+        `${process.env.NEXT_PUBLIC_API_URL}/api/seller/booking/${deleteId}`
       );
-      setBookings((prev) => prev.filter((b) => b._id !== id));
+      setBookings((prev) => prev.filter((b) => b._id !== deleteId));
       toast.success(res.data.message || "Booking deleted successfully");
     } catch (err) {
       console.error("Error deleting booking:", err.message);
       toast.error("Something went wrong while deleting the booking.");
+    } finally {
+      setDeleteId(null);
+      setModalOpen(false);
     }
   };
 
@@ -75,7 +85,13 @@ const ManageBookings = () => {
         bookings={bookings}
         loading={loading}
         setBookings={setBookings}
-        onDelete={handleDeleteBooking}
+        onDelete={handleDeleteClick}
+      />
+
+      <DeleteModal
+        isOpen={isModalOpen}
+        onClose={() => setModalOpen(false)}
+        onConfirm={confirmDelete}
       />
     </section>
   );

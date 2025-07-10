@@ -7,6 +7,8 @@ export async function GET(req) {
 
   const { searchParams } = new URL(req.url);
   const search = searchParams.get("search");
+  const searchNum = Number(search);
+  const isNumSearch = !isNaN(searchNum)
 
   let query = {};
 
@@ -16,6 +18,7 @@ export async function GET(req) {
         { title: { $regex: search, $options: "i" } },
         { category: { $regex: search, $options: "i" } },
         { status: { $regex: search, $options: "i" } },
+        ...(isNumSearch ? [{ price: searchNum }, {baths: searchNum}, {beds: searchNum}] : []),
       ],
     };
   }
