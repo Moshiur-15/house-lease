@@ -18,7 +18,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <div className="">
-      {/* <NextAuthSectionProvider> */}
         <SidebarProvider>
           <AppSidebar />
           <SidebarInset>
@@ -43,7 +42,6 @@ export default function RootLayout({ children }) {
             </div>
           </SidebarInset>
         </SidebarProvider>
-      {/* </NextAuthSectionProvider> */}
     </div>
   );
 }

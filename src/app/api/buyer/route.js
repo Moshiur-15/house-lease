@@ -28,39 +28,48 @@ export async function GET(req) {
 
   const { searchParams } = new URL(req.url);
   const userEmail = searchParams.get("userEmail");
+  const search = searchParams.get("search");
 
   if (!userEmail) {
     return NextResponse.json("Missing user email", { status: 400 });
   }
-
   try {
-    const wishlists = await Wishlist.find({ userEmail });
+    let query = { userEmail };
+    if (search) {
+      query = {
+        ...query,
+        $or: [
+          { title: { $regex: search, $options: "i" } },
+          { location: { $regex: search, $options: "i" } },
+          { status: { $regex: search, $options: "i" } },
+        ],
+      };
+    }
+    const wishlists = await Wishlist.find(query);
     return NextResponse.json(wishlists);
   } catch (err) {
     return NextResponse.json("Failed to fetch wishlist", { status: 500 });
   }
 }
 
-
 export async function DELETE(req) {
   await connectDB();
 
   try {
-    // Get data from request body
     const { id } = await req.json();
 
     if (!id) {
       return NextResponse.json("Missing wishlist item ID", { status: 400 });
     }
-
-    // Delete the wishlist item by id
     const deleted = await Wishlist.findByIdAndDelete(id);
 
     if (!deleted) {
       return NextResponse.json("Wishlist item not found", { status: 404 });
     }
 
-    return NextResponse.json("Wishlist item deleted successfully", { status: 200 });
+    return NextResponse.json("Wishlist item deleted successfully", {
+      status: 200,
+    });
   } catch (error) {
     return NextResponse.json("Failed to delete wishlist item", { status: 500 });
   }

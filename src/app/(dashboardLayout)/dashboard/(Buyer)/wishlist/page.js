@@ -23,7 +23,7 @@ const Wishlist = () => {
   const fetchWishlist = async () => {
     try {
       const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/buyer`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/buyer?search=${searchTerm}`,
         { params: { userEmail: email } }
       );
       setWishlistData(res.data);
@@ -36,7 +36,7 @@ const Wishlist = () => {
     if (email) {
       fetchWishlist();
     }
-  }, [email]);
+  }, [email, searchTerm]);
 
   const handleConfirmDelete = async () => {
     try {
@@ -51,16 +51,6 @@ const Wishlist = () => {
       setSelectedId(null);
     }
   };
-
-  const filteredWishlist = wishlistData.filter((item) => {
-    const term = searchTerm.toLowerCase();
-    return (
-      item.title.toLowerCase().includes(term) ||
-      item.location.toLowerCase().includes(term) ||
-      item.status.toLowerCase().includes(term) ||
-      (item.category ? item.category.toLowerCase().includes(term) : false)
-    );
-  });
 
   return (
     <div className="p-4 mx-auto">
@@ -81,43 +71,43 @@ const Wishlist = () => {
         <Table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
           <TableHeader className="bg-gray-100 dark:bg-gray-800">
             <TableRow>
-              <TableHead className="text-gray-700 dark:text-gray-300 border-r">
+              <TableHead className="text-gray-700 dark:text-gray-300 ">
                 Image
               </TableHead>
-              <TableHead className="text-gray-700 dark:text-gray-300 border-r">
+              <TableHead className="text-gray-700 dark:text-gray-300 ">
                 Title
               </TableHead>
-              <TableHead className="text-gray-700 dark:text-gray-300 border-r">
+              <TableHead className="text-gray-700 dark:text-gray-300">
                 Location
               </TableHead>
-              <TableHead className="text-gray-700 dark:text-gray-300 border-r">
+              <TableHead className="text-gray-700 dark:text-gray-300 ">
                 Status
               </TableHead>
-              <TableHead className="text-gray-700 dark:text-gray-300 border-r">
+              <TableHead className="text-gray-700 dark:text-gray-300 text-center">
                 Action
               </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody className="bg-white dark:bg-gray-900">
-            {filteredWishlist.map((item) => (
+            {wishlistData?.map((item) => (
               <TableRow
                 key={item._id}
                 className="border-b dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
               >
-                <TableCell className="p-1 border-r dark:border-gray-700">
+                <TableCell className="p-1 dark:border-gray-700">
                   <img
                     src={item.cardImage}
                     alt={item.title}
                     className="w-full h-[50px] object-cover mx-auto"
                   />
                 </TableCell>
-                <TableCell className="font-medium text-gray-800 dark:text-gray-100 border-r dark:border-gray-700">
+                <TableCell className="font-medium text-gray-800 dark:text-gray-100 dark:border-gray-700">
                   {item.title}
                 </TableCell>
-                <TableCell className="text-gray-700 dark:text-gray-300 border-r dark:border-gray-700">
+                <TableCell className="text-gray-700 dark:text-gray-300  dark:border-gray-700">
                   {item.location}
                 </TableCell>
-                <TableCell className="text-center border-r dark:border-gray-700">
+                <TableCell className="text-center  dark:border-gray-700">
                   <span
                     className={`px-2 py-1 text-xs font-medium ${
                       item.status === "Rent"
@@ -128,7 +118,7 @@ const Wishlist = () => {
                     {item.status}
                   </span>
                 </TableCell>
-                <TableCell className="text-gray-700 dark:text-gray-300 flex space-x-3 text-xl mt-1.5 mx-3">
+                <TableCell className="text-gray-700 justify-center dark:text-gray-300 flex space-x-3 text-xl mt-1.5 mx-3">
                   <button
                     onClick={() => {
                       setSelectedId(item._id);
@@ -141,7 +131,7 @@ const Wishlist = () => {
                 </TableCell>
               </TableRow>
             ))}
-            {filteredWishlist.length === 0 && (
+            {wishlistData.length === 0 && (
               <TableRow>
                 <TableCell
                   colSpan={5}

@@ -2,11 +2,13 @@
 
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import { useSession } from "next-auth/react";
 
 const Contact = () => {
   const form = useRef();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const {data: section} = useSession();
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -122,6 +124,8 @@ const Contact = () => {
                   className="p-3 border w-full bg-white dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 focus:outline-none focus:ring-0"
                   required
                   onChange={handleInputChange}
+                  defaultValue={section?.user?.name}
+                  readOnly
                 />
                 <input
                   name="user_email"
@@ -130,12 +134,14 @@ const Contact = () => {
                   className="p-3 border w-full bg-white dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 focus:outline-none focus:ring-0"
                   required
                   onChange={handleInputChange}
+                  defaultValue={section?.user?.email}
+                  readOnly
                 />
               </div>
               <textarea
                 name="message"
                 placeholder="Your Message"
-                className="p-3 border w-full h-52 md:h-64 bg-white dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 focus:outline-none focus:ring-00"
+                className="p-3 border  h-40 w-full resize-none bg-white dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 focus:outline-none focus:ring-00"
                 required
                 onChange={handleInputChange}
               ></textarea>

@@ -36,7 +36,8 @@ const MyBookings = () => {
   const filteredBookings = useMemo(() => {
     const term = searchTerm.toLowerCase();
     return bookings.filter((booking) =>
-      booking.PropertyName?.toLowerCase().includes(term)
+      booking.PropertyName?.toLowerCase().includes(term) ||
+       booking.PropertyFees?.toString().toLowerCase().includes(term)
     );
   }, [searchTerm, bookings]);
 

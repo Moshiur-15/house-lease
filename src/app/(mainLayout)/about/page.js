@@ -21,7 +21,7 @@ export default function AboutUs() {
 
       <section className="flex flex-col md:flex-row items-center justify-center container mx-auto py-8">
         <div className="relative z-10 w-full md:w-1/2 text-white px-8 py-12">
-          <h1 className="text-xl md:text-2xl lg:text-4xl font-bold mb-4">
+          <h1 className="text-2xl lg:text-4xl font-bold mb-4">
             WANT TO KNOW YOUR PROPERTY&apos;S WORTH?
           </h1>
 
@@ -34,8 +34,8 @@ export default function AboutUs() {
           </p>
         </div>
 
-        <section className="mx-4">
-          <div className="relative z-10 w-full md:w-1/2 bg-white dark:bg-gray-900 rounded-tr-4xl rounded-bl-4xl p-8 max-w-xl mx-auto">
+        <section className="mx-4 md:w-1/2">
+          <div className="relative z-10 w-full bg-white dark:bg-gray-900 rounded-tr-4xl rounded-bl-4xl p-8 max-w-xl mx-auto">
             {formSent && (
               <div className="bg-green-200 text-green-800 text-sm p-2 rounded mb-4">
                 The message was sent! Your request will be confirmed via email

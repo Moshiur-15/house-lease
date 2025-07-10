@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Table,
   TableBody,
-  TableHead,
   TableHeader,
   TableRow,
   TableCell,
@@ -18,6 +17,7 @@ const PaymentHistory = () => {
   const [payments, setPayments] = useState([]);
   const [stripeTransition, setStripeTransition] = useState(null);
   const { data: session } = useSession();
+
   // Fetch payment history
   useEffect(() => {
     const fetchPayments = async () => {
@@ -30,7 +30,6 @@ const PaymentHistory = () => {
     fetchPayments();
   }, [session?.user?.email]);
 
-  // Fetch Stripe payment history
   useEffect(() => {
     const fetchPayments = async () => {
       if (!session?.user?.email) return;
@@ -47,6 +46,17 @@ const PaymentHistory = () => {
 
     fetchPayments();
   }, [session]);
+
+  const filteredPayments = useMemo(() => {
+    const term = searchTerm.toLowerCase();
+    return payments.filter(
+      (payment) =>
+        payment.PropertyName?.toLowerCase().includes(term) ||
+        payment.PropertyFees?.toString().includes(term) ||
+        payment.PaymentStatus?.toLowerCase().includes(term) ||
+        new Date(payment.createdAt).toLocaleDateString().includes(term)
+    );
+  }, [payments, searchTerm]);
 
   return (
     <div className="p-4">
@@ -76,7 +86,7 @@ const PaymentHistory = () => {
           </TableHeader>
 
           <TableBody className="bg-white dark:bg-gray-900">
-            {payments.length === 0 ? (
+            {filteredPayments.length === 0 ? (
               <TableRow>
                 <TableCell
                   colSpan={5}
@@ -86,7 +96,7 @@ const PaymentHistory = () => {
                 </TableCell>
               </TableRow>
             ) : (
-              payments?.map((payment) => (
+              filteredPayments?.map((payment) => (
                 <TableRow
                   key={payment._id}
                   className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-center"
@@ -104,18 +114,30 @@ const PaymentHistory = () => {
                         : "text-red-600 dark:text-red-400"
                     }`}
                   >
-                    {stripeTransition?.map((transition) => (
-                      <span key={transition.id}>{transition.status}</span>
-                    ))}
+                    {stripeTransition ? (
+                      <div>
+                        {stripeTransition?.map((transition) => (
+                          <span key={transition.id}>{transition.status}</span>
+                        ))}
+                      </div>
+                    ) : (
+                      "Loading..."
+                    )}
                   </TableCell>
 
                   <TableCell className="px-4 py-3 text-gray-500 dark:text-gray-400">
                     {new Date(payment.createdAt).toLocaleDateString()}
                   </TableCell>
                   <TableCell className="text-center px-4 py-3 text-gray-500 dark:text-gray-400">
-                    {stripeTransition?.map((transition) => (
-                      <span key={transition.id}>{transition.id}</span>
-                    ))}
+                    {stripeTransition ? (
+                      <div>
+                        {stripeTransition?.map((transition) => (
+                          <span key={transition.id}>{transition.id}</span>
+                        ))}
+                      </div>
+                    ) : (
+                      "Loading..."
+                    )}
                   </TableCell>
                 </TableRow>
               ))

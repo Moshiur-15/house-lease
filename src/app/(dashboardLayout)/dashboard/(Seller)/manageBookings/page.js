@@ -66,6 +66,8 @@ const ManageBookings = () => {
     }
   };
 
+  console.log(bookings)
+
   return (
     <section className="my-5 lg:my-10">
       <div className="flex flex-col lg:flex-row justify-between space-y-3 mb-6 px-4">

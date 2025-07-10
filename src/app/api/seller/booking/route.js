@@ -8,6 +8,8 @@ export async function GET(req) {
   const { searchParams } = new URL(req.url);
   const email = searchParams.get("email") || "";
   const search = searchParams.get("search")?.toLowerCase() || "";
+  const num = Number(search);
+  const isNum = !isNaN(num);
 
   try {
     let filter = { sellerEmail: email };
@@ -17,7 +19,8 @@ export async function GET(req) {
         ...filter,
         $or: [
           { PropertyName: { $regex: search, $options: "i" } },
-          { BuyerName: { $regex: search, $options: "i" } },
+          { PaymentStatus: { $regex: search, $options: "i" } },
+          ...(isNum ? [{ PropertyFees: num }] : []),
         ],
       };
     }
