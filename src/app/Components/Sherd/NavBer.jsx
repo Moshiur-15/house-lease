@@ -59,9 +59,9 @@ const NavBer = () => {
             <div className="relative flex items-center gap-3">
               {session?.user?.email ? (
                 <img
-                  src={session?.user.image}
+                  src={session?.user?.image || 'https://i.postimg.cc/4NWgkPrB/png-transparent-computer-icons-management-admin-silhouette-black-and-white-neck-thumbnail.png'}
                   alt="avatar"
-                  className="w-8 h-8 rounded-full cursor-pointer"
+                  className="w-8 h-8 rounded-full cursor-pointer border border-gray-600"
                   onClick={() => setShowDropdown(!showDropdown)}
                 />
               ) : (

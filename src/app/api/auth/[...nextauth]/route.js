@@ -3,8 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import connectDB from "@/app/utils/database";
 import User from "@/app/Models/user";
-
-const handler = NextAuth({
+export const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -33,7 +32,6 @@ const handler = NextAuth({
 
         if (!isValid) return null;
 
-        // Return user object for session, NEVER return password
         return {
           id: user._id.toString(),
           name: user.name,
@@ -45,7 +43,7 @@ const handler = NextAuth({
     }),
   ],
   session: {
-    strategy: "jwt", // Use JWT based session
+    strategy: "jwt",
   },
   jwt: {
     secret: process.env.NEXTAUTH_SECRET,
@@ -73,8 +71,7 @@ const handler = NextAuth({
   pages: {
     signIn: "/Auth/Login",
   },
-
   secret: process.env.NEXTAUTH_SECRET,
-});
-
+};
+const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };

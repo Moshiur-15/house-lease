@@ -150,7 +150,7 @@ export function AppSidebar(props) {
     },
   ];
 
-  // Filter menu based on user role
+  // Filter user role
   const filteredNav = fullNav.filter((section) => {
     if (role === "admin") return section.section === "Admin";
     if (role === "seller") return section.section === "Seller";

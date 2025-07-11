@@ -11,6 +11,9 @@ const LoginFormContent = () => {
 
   const [register, setRegister] = useState(false);
   const [message, setMessage] = useState("");
+  const [userInfo, setUserInfo] = useState("");
+  const [userPass, setUserPass] = useState("");
+
   const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
@@ -53,19 +56,76 @@ const LoginFormContent = () => {
           WELCOME BACK! PLEASE LOGIN TO YOUR ACCOUNT
         </p>
 
+        <section className="flex items-center justify-center gap-3 mb-4">
+          <button
+            type="button"
+            onClick={() => {
+              setUserInfo("admin@gmail.com");
+              setUserPass("1234");
+            }}
+            className="px-3 py-1 border rounded cursor-pointer"
+          >
+            Admin
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setUserInfo("seller@gmail.com");
+              setUserPass("1234");
+            }}
+            className="px-3 py-1 border rounded cursor-pointer"
+          >
+            Seller
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setUserInfo("buyer@gmail.com");
+              setUserPass("1234");
+            }}
+            className="px-3 py-1 border rounded cursor-pointer"
+          >
+            Buyer
+          </button>
+        </section>
+
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="email" className="block mb-1 font-medium text-gray-600">
+            <label
+              htmlFor="email"
+              className="block mb-1 font-medium text-gray-600"
+            >
               Email
             </label>
-            <input id="email" name="email" type="email" className={inputStyle} required />
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="Enter Your Email"
+              className={inputStyle}
+              required
+              defaultValue={userInfo}
+              onChange={(e) => setUserInfo(e.target.value)}
+            />
           </div>
 
           <div>
-            <label htmlFor="password" className="block mb-1 font-medium text-gray-600">
+            <label
+              htmlFor="password"
+              className="block mb-1 font-medium text-gray-600"
+            >
               Password
             </label>
-            <input id="password" name="password" type="password" className={inputStyle} required />
+            <input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="Enter Your Password"
+              className={inputStyle}
+              required
+              defaultValue={userPass}
+              onChange={(e) => setUserInfo(e.target.value)}
+            />
           </div>
 
           <button
