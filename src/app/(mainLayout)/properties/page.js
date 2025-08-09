@@ -3,18 +3,16 @@
 import FilterBar from "@/app/Components/Home/FilterBar";
 import ExclusiveCard from "../../Components/Home/ExclusiveCard";
 import { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
 import { viewAllProperty } from "@/app/Components/Admin/viewAllProperty";
 
 const Properties = () => {
   const [view, setView] = useState("grid");
   const [properties, setProperties] = useState([]);
-  const {data: session} = useSession()
+  const [search, setSearch] = useState("");
   const fetchData = async () => {
     try {
-      const data = await viewAllProperty()
+      const data = await viewAllProperty(search);
       setProperties(data);
-      console.log("Inside fetch:", data);
     } catch (err) {
       console.error("Error fetching properties:", err);
     }
@@ -22,7 +20,7 @@ const Properties = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [search]);
   return (
     <div>
       {/* banner */}
@@ -46,7 +44,12 @@ const Properties = () => {
 
       <section className="container mx-auto px-6 mb-20">
         <>
-          <FilterBar view={view} setView={setView} />
+          <FilterBar
+            view={view}
+            setView={setView}
+            search={search}
+            setSearch={setSearch}
+          />
         </>
         <div
           className={`grid gap-6 data:gap-0 mt-8 ${
@@ -55,9 +58,16 @@ const Properties = () => {
               : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
           }`}
         >
-          {properties?.slice().reverse().map((property) => (
-            <ExclusiveCard view={view} property={property} key={property?._id} />
-          ))}
+          {properties
+            ?.slice()
+            .reverse()
+            .map((property) => (
+              <ExclusiveCard
+                view={view}
+                property={property}
+                key={property?._id}
+              />
+            ))}
         </div>
       </section>
     </div>

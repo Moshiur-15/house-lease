@@ -10,6 +10,7 @@ import React from "react";
 const Home = () => {
   return (
     <>
+    
       <Banner />
       <div className="container mx-auto py-8 md:py-14 lg:py-20">
         <Services />

@@ -16,6 +16,7 @@ export async function GET(req) {
     query = {
       $or: [
         { title: { $regex: search, $options: "i" } },
+        { location: { $regex: search, $options: "i" } },
         { category: { $regex: search, $options: "i" } },
         { status: { $regex: search, $options: "i" } },
         ...(isNumSearch ? [{ price: searchNum }, {baths: searchNum}, {beds: searchNum}] : []),

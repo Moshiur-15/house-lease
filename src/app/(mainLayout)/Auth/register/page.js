@@ -62,9 +62,20 @@ const RegisterPage = () => {
     }
   };
 
+  const img = {
+    backgroundImage: "url('https://i.ibb.co/YM3BvTq/photo-1568605114967-8130f3a36994.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    width: "100%",
+    height: "100vh",
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-6 py-12">
-      <div className="w-full max-w-xl bg-white shadow-lg rounded-lg p-8">
+    <div
+      style={img}
+      className="min-h-screen bg-gray-50 flex items-center justify-center px-6 py-12"
+    >
+      <div className="w-full max-w-xl bg-white rounded p-8 my-56">
         <h2 className="text-3xl font-bold text-gray-800 mb-6">SIGN UP</h2>
 
         <form onSubmit={handleSubmit} className="space-y-6">

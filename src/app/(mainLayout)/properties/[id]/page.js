@@ -28,7 +28,7 @@ export default async function PropertiesDetails({ params }) {
         </section>
         {/* sideber */}
         <aside className="w-full lg:w-2/6 h-fit top-12 sticky">
-          <SideBer recentPosts={recentPosts} />
+          <SideBer house={house} recentPosts={recentPosts} />
         </aside>
       </div>
     </section>

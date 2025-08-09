@@ -97,7 +97,8 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4">Follow Us</h4>
             <div className="flex space-x-4">
               <a
-                href="#"
+                href="https://www.facebook.com/masiur.isllam"
+                target="_blank"
                 className="text-gray-300 hover:text-[#FF8904] transition-colors"
                 aria-label="Facebook"
               >
@@ -105,7 +106,8 @@ const Footer = () => {
               </a>
 
               <a
-                href="#"
+                href="https://www.linkedin.com/in/moshiur-islam28/"
+                target="_blank"
                 className="text-gray-300 hover:text-[#FF8904] transition-colors"
                 aria-label="LinkedIn"
               >
@@ -113,7 +115,8 @@ const Footer = () => {
               </a>
 
               <a
-                href="#"
+                href="https://github.com/Moshiur-15"
+                target="_blank"
                 className="text-gray-300 hover:text-[#FF8904] transition-colors"
                 aria-label="GitHub"
               >

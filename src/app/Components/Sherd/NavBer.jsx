@@ -66,7 +66,7 @@ const NavBer = () => {
                 />
               ) : (
                 <Link href="/Auth/Login">
-                  <button className="bg-[#FF8904] px-6 py-2 hover:cursor-pointer hover:bg-[#FF8904]/90">
+                  <button className="bg-[#FF8904] px-4 md:px-6 py-1 md:py-2 hover:cursor-pointer hover:bg-[#FF8904]/90">
                     Login 
                   </button>
                 </Link>
