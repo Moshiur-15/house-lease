@@ -27,7 +27,7 @@ export function NavMain({ items }) {
                 <SidebarMenuItem key={subItem.id}>
                   <Link href={subItem.url} className="w-full">
                     <SidebarMenuButton
-                      className={`flex items-center gap-2 w-full text-left transition-colors ${
+                      className={`flex hover:cursor-pointer active:scale-95 duration-500 items-center gap-2 w-full text-left transition-colors ${
                         isActive ? "text-[#FF8904] font-semibold" : "hover:text-[#FF8904]"
                       }`}
                     >

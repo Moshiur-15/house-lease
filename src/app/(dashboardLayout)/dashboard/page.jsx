@@ -2,6 +2,7 @@
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import WelcomePage from "@/app/Components/Sherd/WelcomePage";
 
 export default function DashboardPage() {
   const { data: session, status } = useSession();
@@ -15,5 +16,9 @@ export default function DashboardPage() {
     }
   }, [status, router]);
 
-  return <div>Welcome {session?.user?.name} to your dashboard!</div>;
+  return (
+    <div>
+      <WelcomePage session={session} />
+    </div>
+  );
 }

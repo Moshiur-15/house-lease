@@ -188,7 +188,7 @@ const LoginFormContent = () => {
 
 const LoginForm = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div>Loading Now...</div>}>
       <LoginFormContent />
     </Suspense>
   );
