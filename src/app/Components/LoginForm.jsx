@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, Suspense } from "react";
 import { toast } from "sonner";
+import { signIn as nextAuthSignIn } from "next-auth/react";
 
 const LoginFormContent = () => {
   const inputStyle =
@@ -54,11 +55,13 @@ const LoginFormContent = () => {
     height: "100vh",
   };
 
+  const handleGoogleSignIn = () => {
+    nextAuthSignIn("google");
+  };
+
   return (
     <section style={img}>
-      <div
-        className="min-h-screen flex items-center justify-center"
-      >
+      <div className="min-h-screen flex items-center justify-center">
         <div className="w-full max-w-md bg-white p-8 rounded shadow-md">
           <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
             LOGIN
@@ -154,7 +157,7 @@ const LoginFormContent = () => {
             <button
               type="button"
               className="w-full border border-gray-300 py-2 flex items-center justify-center gap-2 hover:bg-black hover:text-white hover:border-transparent duration-300"
-              onClick={() => toast("Google login not implemented yet")}
+              onClick={handleGoogleSignIn}
             >
               <img
                 src="https://www.svgrepo.com/show/355037/google.svg"

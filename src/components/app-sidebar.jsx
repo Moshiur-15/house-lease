@@ -95,7 +95,7 @@ export function AppSidebar(props) {
         {
           id: 8,
           title: "SELLER DASHBOARD",
-          url: "/dashboard/seller",
+          url: "/dashboard",
           icon: PieChart,
         },
         {
@@ -125,7 +125,7 @@ export function AppSidebar(props) {
         {
           id: 12,
           title: "ANALYTICS",
-          url: "/dashboard/analytics",
+          url: "/dashboard",
           icon: Command,
         },
         {

@@ -1,14 +1,48 @@
-import { useState, useEffect } from "react";
-import { Moon, Sun, User, Shield, BarChart3, Settings } from "lucide-react";
+"use client";
+
+import { useEffect, useState } from "react";
+import axios from "axios";
+import AdminDashboard from "../Admin/AdminDashboard";
+import SellerDashboard from "../seller/SellerDashboard";
+import BuyerDashboard from "../buyer/BuyerDashboard";
 
 export default function Dashboard({ session }) {
-  return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-4 transition-colors duration-500">
+  const [totalBlogs, setTotalBlogs] = useState(0);
+  const [totalProperties, setTotalProperties] = useState([]);
+  const [totalUsers, setTotalUsers] = useState(0);
 
-      <div className="bg-blue-50 dark:bg-slate-800 shadow-blue-200/50 dark:shadow-gray-900/50 rounded p-8 transition-all duration-500">
+  useEffect(() => {
+    const fetchAllData = async () => {
+      try {
+        const [blogsRes, propertiesRes, usersRes] = await Promise.all([
+          axios.get(
+            `${process.env.NEXT_PUBLIC_API_URL}/api/deshboardDataGet/totalBlogs`
+          ),
+          axios.get(
+            `${process.env.NEXT_PUBLIC_API_URL}/api/deshboardDataGet/totalPropertty`
+          ),
+          axios.get(
+            `${process.env.NEXT_PUBLIC_API_URL}/api/deshboardDataGet/totalUsers`
+          ),
+        ]);
+        setTotalBlogs(blogsRes.data);
+        setTotalProperties(propertiesRes.data);
+        setTotalUsers(usersRes.data.userInfo);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchAllData();
+  }, []);
+  console.log(session)
+
+  return (
+    <div className="min-h-screen bg-[#F5F7FA] dark:bg-gray-900 p-4 transition-colors duration-500">
+      <div className="bg-indigo-100/80 dark:bg-slate-800 shadow-blue-200/50 dark:shadow-gray-900/50 rounded p-8 transition-all duration-500">
         <div className="flex flex-col lg:flex-row items-center justify-between">
           <div className="flex items-center space-x-4 space-y-3 sm:space-y-0 flex-col sm:flex-row">
-            <img className="w-24 h-24" src={session?.user?.image} alt="img" />
+            <img className="w-24 h-24 bg-gray-50" src={session?.user?.image || "https://i.ibb.co/GfGymx0g/png-transparent-computer-icons-management-admin-silhouette-black-and-white-neck-thumbnail.png"} alt="img" />
             <div>
               <h1 className="text-3xl lg:text-4xl font-bold text-gray-800 dark:text-white mb-2">
                 Welcome back, {session?.user?.name}!
@@ -33,7 +67,19 @@ export default function Dashboard({ session }) {
           </div>
         </div>
       </div>
-
+      {session?.user?.role === "admin" && (
+        <AdminDashboard
+          totalProperties={totalProperties}
+          totalBlogs={totalBlogs}
+          totalUsers={totalUsers}
+        />
+      )}
+      {session?.user?.role === "seller" && (
+        <SellerDashboard />
+      )}
+      {session?.user?.role === "buyer" && (
+        <BuyerDashboard />
+      )}
     </div>
   );
 }

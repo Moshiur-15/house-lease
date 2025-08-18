@@ -5,6 +5,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 const imgbbApiKey = "58a9d3ffd0c8663f17be9ce8a26786ff";
+import { signIn  } from "next-auth/react";
 
 const RegisterPage = () => {
   const inputStyle =
@@ -69,6 +70,10 @@ const RegisterPage = () => {
     width: "100%",
     height: "100vh",
   };
+
+  const handleGoogleSignIn = () => {
+      signIn("google");
+    };
 
   return (
     <div
@@ -139,9 +144,9 @@ const RegisterPage = () => {
           </button>
 
           <button
-            type="button"
+            type="submit"
             className="w-full border border-gray-300 py-2 flex items-center justify-center gap-2 hover:bg-black hover:text-white hover:border-transparent duration-300"
-            onClick={() => toast("Google login not implemented yet")}
+            onClick={() => handleGoogleSignIn}
           >
             <img
               src="https://www.svgrepo.com/show/355037/google.svg"

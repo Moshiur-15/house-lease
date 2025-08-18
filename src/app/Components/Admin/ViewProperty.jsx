@@ -10,6 +10,7 @@ const ViewProperty = ({ properties }) => {
   const [property, setProperty] = useState(properties);
   const [deleteId, setDeleteId] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
+  console.log(properties)
 
   // set data from props
   useEffect(() => {
@@ -86,8 +87,8 @@ const ViewProperty = ({ properties }) => {
               </td>
               <td className="py-1 sm:py-3 px-2 sm:px-4 text-center capitalize text-sm lg:text-lg">
                 <span
-                  className={`px-2 py-1 text-xs font-medium ${
-                    property.status === "sold"
+                  className={`px-2 py-1 text-xs font-medium whitespace-nowrap ${
+                    property.status === "for sale"
                       ? "bg-red-100 text-red-800 dark:bg-red-800 dark:text-white"
                       : "bg-green-100 text-green-800 dark:bg-green-800 dark:text-white"
                   }`}

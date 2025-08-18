@@ -23,7 +23,7 @@ const Page = () => {
 
   return (
     <div>
-      <div className="md:ml-7 lg:ml-0 flex flex-col xl:flex-row items-start lg:items-center justify-between gap-4 p-4 lg:mx-52 xl:mx-[215px]">
+      <div className="flex flex-col xl:flex-row items-start lg:items-center justify-between gap-4 p-4">
         <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
           MANAGE BLOGS
         </h2>

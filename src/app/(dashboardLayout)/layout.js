@@ -38,7 +38,7 @@ export default function RootLayout({ children }) {
               </div>
             </div>
           </header>
-          <div className="py-2 sm:mx-8 lg:mx-14 container mx-auto">
+          <div className="py-2 sm:mx-8 lg:mx-14">
             {children}
           </div>
         </SidebarInset>

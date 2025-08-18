@@ -15,7 +15,7 @@ const ManageBlogTable = ({ blog, onDelete, loading }) => {
   return (
     <div className="px-4 py-6">
       <div className="overflow-x-auto">
-        <table className="table-auto w-auto lg:min-w-[1080px] mx-auto border border-gray-300 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-900">
+        <table className="table-auto w-full lg:min-w-[1080px] mx-auto border border-gray-300 rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-900">
           <thead className="bg-gray-100 text-left dark:bg-gray-800 dark:text-gray-200">
             <tr>
               <th className="p-3 border dark:border-gray-700">ID</th>
