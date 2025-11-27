@@ -23,7 +23,7 @@ export const authOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          return null; // invalid credentials
+          return null;
         }
 
         await connectDB();
@@ -44,6 +44,8 @@ export const authOptions = {
           email: user.email,
           image: user.image,
           role: user.role,
+          professionalTitle: user.professionalTitle || "",
+          location: user.location || "",
         };
       },
     }),
@@ -62,6 +64,8 @@ export const authOptions = {
         token.email = user.email;
         token.image = user.image;
         token.role = user.role;
+        token.professionalTitle = user.professionalTitle || "";
+        token.location = user.location || "";
       }
       return token;
     },
@@ -71,6 +75,8 @@ export const authOptions = {
       session.user.email = token.email;
       session.user.image = token.image;
       session.user.role = token.role;
+      session.user.professionalTitle = token.professionalTitle || "";
+      session.user.location = token.location || "";
       return session;
     },
   },

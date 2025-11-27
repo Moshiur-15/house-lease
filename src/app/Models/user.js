@@ -7,6 +7,8 @@ const userSchema = new mongoose.Schema(
     password: { type: String, required: true },
     image: { type: String },
     role: { type: String, default: "buyer" },
+    location: { type: String, default: "" },
+    professionalTitle: { type: String, default: "" },
   },
   { timestamps: true }
 );

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { 
-  Heart, 
-  Search, 
-  MapPin, 
+import React, { useEffect, useState } from "react";
+import {
+  Heart,
+  Search,
+  MapPin,
   Calendar,
   DollarSign,
   Home,
@@ -11,7 +11,8 @@ import {
   Bookmark,
   TrendingUp,
   Star,
-  Eye
+  Eye,
+  Clock,
 } from "lucide-react";
 import {
   LineChart,
@@ -28,6 +29,10 @@ import {
   AreaChart,
   Area,
 } from "recharts";
+import { useSession } from "next-auth/react";
+import axios from "axios";
+import Link from "next/link";
+import { BsCalendarCheck, BsCashStack, BsCollection } from "react-icons/bs";
 
 const searchActivityData = [
   { name: "Mon", searches: 12, views: 45 },
@@ -56,50 +61,73 @@ const marketTrendsData = [
 ];
 
 const savedProperties = [
-  { 
-    id: 1, 
-    title: "Modern Villa in Downtown", 
-    location: "Downtown City", 
+  {
+    id: 1,
+    title: "Modern Villa in Downtown",
+    location: "Downtown City",
     price: "$450,000",
     bedrooms: 3,
     bathrooms: 2,
     image: "🏠",
     saved: "2 days ago",
-    status: "Available"
+    status: "Available",
   },
-  { 
-    id: 2, 
-    title: "Cozy Apartment with Garden", 
-    location: "Green Valley", 
+  {
+    id: 2,
+    title: "Cozy Apartment with Garden",
+    location: "Green Valley",
     price: "$280,000",
     bedrooms: 2,
     bathrooms: 1,
     image: "🏢",
     saved: "5 days ago",
-    status: "Available"
+    status: "Available",
   },
-  { 
-    id: 3, 
-    title: "Family Home with Pool", 
-    location: "Suburb Hills", 
+  {
+    id: 3,
+    title: "Family Home with Pool",
+    location: "Suburb Hills",
     price: "$380,000",
     bedrooms: 4,
     bathrooms: 3,
     image: "🏡",
     saved: "1 week ago",
-    status: "Pending"
+    status: "Pending",
   },
 ];
 
 const recentlyViewed = [
-  { id: 1, title: "Luxury Penthouse Suite", price: "$720,000", location: "City Center", viewed: "1 hour ago" },
-  { id: 2, title: "Charming Cottage", price: "$195,000", location: "Countryside", viewed: "3 hours ago" },
-  { id: 3, title: "Modern Condo", price: "$340,000", location: "Tech District", viewed: "Yesterday" },
-  { id: 4, title: "Waterfront Villa", price: "$890,000", location: "Lakeside", viewed: "2 days ago" },
+  {
+    id: 1,
+    title: "Luxury Penthouse Suite",
+    price: "$720,000",
+    location: "City Center",
+    viewed: "1 hour ago",
+  },
+  {
+    id: 2,
+    title: "Charming Cottage",
+    price: "$195,000",
+    location: "Countryside",
+    viewed: "3 hours ago",
+  },
+  {
+    id: 3,
+    title: "Modern Condo",
+    price: "$340,000",
+    location: "Tech District",
+    viewed: "Yesterday",
+  },
+  {
+    id: 4,
+    title: "Waterfront Villa",
+    price: "$890,000",
+    location: "Lakeside",
+    viewed: "2 days ago",
+  },
 ];
 
 const BuyerDashboard = () => {
-
   // Sample buyer stats
   const stats = {
     savedProperties: 12,
@@ -108,15 +136,88 @@ const BuyerDashboard = () => {
     activeAlerts: 8,
     avgSearchesPerWeek: 15,
     favoriteLocations: ["Downtown", "Green Valley", "Tech District"],
-    budgetRange: "$300K - $500K"
+    budgetRange: "$300K - $500K",
   };
+
+  function timeAgo(dateString) {
+    const createdDate = new Date(dateString);
+    const now = new Date();
+
+    const diffMs = now - createdDate;
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+    if (diffDays === 0) return "today";
+    if (diffDays === 1) return "1 day ago";
+    return `${diffDays} days ago`;
+  }
+
+  const [wishlistData, setWishlistData] = useState([]);
+  const [propertiesData, setPropertiesData] = useState([]);
+  const [bookingData, setBookingData] = useState([]);
+  const [paymentData, setPaymentData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const { data: session } = useSession();
+  const email = session?.user?.email;
+
+  const fetchWishlist = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/buyer?search=${searchTerm}`,
+        { params: { userEmail: email } }
+      );
+      setWishlistData(res.data);
+    } catch (err) {
+      console.error("Error fetching wishlist:", err);
+    }
+  };
+  const fetchProperties = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/buyer/welcomePageApi/propertyLangth`
+      );
+      setPropertiesData(res.data.length);
+    } catch (err) {
+      console.error("Error fetching properties:", err);
+    }
+  };
+  const fetchPayment = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/buyer/welcomePageApi/paymentLength`,
+        { params: { userEmail: email } }
+      );
+      setPaymentData(res);
+    } catch (err) {
+      console.error("Error fetching payment data:", err);
+    }
+  };
+  const fetchBooking = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/buyer/welcomePageApi/bookingLangth`,
+        { params: { userEmail: email } }
+      );
+      setBookingData(res.data.bookedCount);
+    } catch (err) {
+      console.error("Error fetching properties:", err);
+    }
+  };
+  useEffect(() => {
+    if (email) {
+      fetchWishlist();
+      fetchProperties();
+      fetchBooking();
+      fetchPayment();
+    }
+  }, [email]);
+  console.log(searchTerm);
+  console.log("paymentData=>", paymentData);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 dark:text-white text-gray-900 p-6">
       <div className="mx-auto">
-
         {/* Quick Actions */}
-        <div className="mb-8">
+        {/* <div className="mb-8">
           <div className="flex flex-wrap gap-4">
             <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors">
               <Calendar className="w-4 h-4" />
@@ -135,7 +236,7 @@ const BuyerDashboard = () => {
               Advanced Filters
             </button>
           </div>
-        </div>
+        </div> */}
 
         {/* Main Metrics Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -150,8 +251,12 @@ const BuyerDashboard = () => {
                 +3
               </div>
             </div>
-            <div className="text-2xl font-bold mb-1">{stats.savedProperties}</div>
-            <div className="text-gray-500 dark:text-gray-400 text-sm">Saved Properties</div>
+            <div className="text-2xl font-bold mb-1">
+              {wishlistData?.map((item) => item._id).length}
+            </div>
+            <div className="text-gray-500 dark:text-gray-400 text-sm">
+              Saved Properties
+            </div>
             <div className="mt-2 text-xs text-gray-400">
               Available: 10 • Pending: 2
             </div>
@@ -168,46 +273,68 @@ const BuyerDashboard = () => {
                 +15
               </div>
             </div>
-            <div className="text-2xl font-bold mb-1">{stats.viewedProperties}</div>
-            <div className="text-gray-500 dark:text-gray-400 text-sm">Viewed Properties</div>
+            <div className="text-2xl font-bold mb-1">
+              {propertiesData?.map((item) => item.data_length)[0] || 0}
+            </div>
+            <div className="text-gray-500 dark:text-gray-400 text-sm">
+              Viewed Properties
+            </div>
             <div className="mt-2 text-xs text-gray-400">
               This week: 23 properties
             </div>
           </div>
 
-          {/* Scheduled Tours */}
+          {/* Booked */}
           <div className="bg-white dark:bg-gray-800 rounded-lg p-6">
             <div className="flex items-center justify-between mb-4">
               <div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
-                <Calendar className="w-6 h-6 text-green-600 dark:text-green-400" />
+                <BsCalendarCheck className="w-6 h-6 text-green-600 dark:text-green-400" />
               </div>
               <div className="flex items-center text-yellow-500 text-sm">
                 <Calendar className="w-4 h-4 mr-1" />
                 Soon
               </div>
             </div>
-            <div className="text-2xl font-bold mb-1">{stats.scheduledTours}</div>
-            <div className="text-gray-500 dark:text-gray-400 text-sm">Scheduled Tours</div>
+
+            <div className="text-2xl font-bold mb-1">
+              {bookingData?.map((item) => item._id).length}
+            </div>
+
+            <div className="text-gray-500 dark:text-gray-400 text-sm">
+              Bookings
+            </div>
+
             <div className="mt-2 text-xs text-gray-400">
               Next: Tomorrow 2:00 PM
             </div>
           </div>
 
-          {/* Active Alerts */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6">
+          {/* payment history */}
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
+            {/* Top Icons */}
             <div className="flex items-center justify-between mb-4">
-              <div className="p-2 bg-yellow-100 dark:bg-yellow-900 rounded-lg">
-                <Bell className="w-6 h-6 text-yellow-600 dark:text-yellow-400" />
+              <div className="p-3 bg-yellow-100 dark:bg-yellow-900 rounded-full">
+                <BsCashStack className="w-6 h-6 text-yellow-600 dark:text-yellow-400" />
               </div>
-              <div className="flex items-center text-blue-500 text-sm">
-                <Bell className="w-4 h-4 mr-1" />
-                Active
+              <div className="flex items-center text-blue-500 text-sm space-x-1">
+                <Clock className="w-4 h-4" />
+                <span>Recent</span>
               </div>
             </div>
-            <div className="text-2xl font-bold mb-1">{stats.activeAlerts}</div>
-            <div className="text-gray-500 dark:text-gray-400 text-sm">Price Alerts</div>
+
+            {/* Payment Count */}
+            <div className="text-3xl font-bold mb-1 text-gray-900 dark:text-gray-100">
+              {}
+            </div>
+
+            {/* Label */}
+            <div className="text-gray-500 dark:text-gray-400 text-sm mb-2">
+              Payments Made
+            </div>
+
+            {/* Last Payment */}
             <div className="mt-2 text-xs text-gray-400">
-              Budget: {stats.budgetRange}
+              Last: 27 Nov 2025 - $250
             </div>
           </div>
         </div>
@@ -218,7 +345,9 @@ const BuyerDashboard = () => {
           <div className="lg:col-span-2 bg-white dark:bg-gray-800 rounded-lg p-6">
             <div className="mb-6">
               <h3 className="text-xl font-semibold mb-1">Search Activity</h3>
-              <p className="text-gray-400 text-sm">Your property searches and views over the last 7 days</p>
+              <p className="text-gray-400 text-sm">
+                Your property searches and views over the last 7 days
+              </p>
               <div className="mt-4 text-sm text-gray-500">
                 Average {stats.avgSearchesPerWeek} searches per week
               </div>
@@ -308,61 +437,69 @@ const BuyerDashboard = () => {
           </div>
         </div>
 
-        {/* Market Trends */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg p-6 mb-8">
-          <div className="mb-6">
-            <h3 className="text-xl font-semibold mb-1">Market Trends</h3>
-            <p className="text-gray-400 text-sm">Average property prices in your interested areas</p>
-          </div>
-          <div className="h-64">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={marketTrendsData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                <XAxis dataKey="name" stroke="#9CA3AF" />
-                <YAxis stroke="#9CA3AF" tickFormatter={(value) => `$${value/1000}K`} />
-                <Line
-                  type="monotone"
-                  dataKey="avgPrice"
-                  stroke="#F59E0B"
-                  strokeWidth={3}
-                  dot={{ fill: '#F59E0B', r: 4 }}
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-
         {/* Property Lists */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Saved Properties */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6">
-            <div className="mb-6 flex items-center justify-between">
-              <h3 className="text-xl font-semibold">Saved Properties</h3>
-              <button className="text-blue-600 hover:text-blue-800 text-sm">View All</button>
-            </div>
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 relative">
+            <section>
+              <div className="mb-6 flex items-center justify-between">
+                <h3 className="text-xl font-semibold">Saved Properties</h3>
+                <Link
+                  href="/dashboard/wishlist"
+                  className="text-blue-600 hover:text-blue-800 text-sm"
+                >
+                  View All
+                </Link>
+              </div>
+              <input
+                placeholder="Search saved properties..."
+                onChange={(e) => setSearchTerm(e.target.value)}
+                type="text"
+                className="w-1 mb-6 bg-gray-100 dark:bg-gray-700 h-1 absolute top-8"
+              />
+            </section>
             <div className="space-y-4">
-              {savedProperties.map((property) => (
-                <div key={property.id} className="flex items-start space-x-4 p-4 border border-gray-100 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                  <div className="text-2xl">{property.image}</div>
+              {wishlistData?.map((property) => (
+                <div
+                  key={property._id}
+                  className="flex items-start space-x-4 p-4 border border-gray-100 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                >
+                  <img
+                    className="w-8 h-8"
+                    src={property.cardImage}
+                    alt={property.title}
+                  />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between">
                       <div>
-                        <h4 className="font-semibold text-sm mb-1">{property.title}</h4>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-2 flex items-center">
+                        <h4 className="font-semibold text-xs lg:text-sm mb-1">
+                          {property.title}
+                        </h4>
+
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-2 flex items-center text-nowrap">
                           <MapPin className="w-3 h-3 mr-1" />
                           {property.location}
                         </p>
-                        <div className="flex items-center space-x-3 text-xs text-gray-400">
-                          <span>{property.bedrooms} bed</span>
-                          <span>{property.bathrooms} bath</span>
-                          <span className={`px-2 py-1 rounded-full ${property.status === 'Available' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300' : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300'}`}>
+                      </div>
+
+                      <div className="text-right">
+                        {/* Saved time */}
+                        <div className="text-xs text-gray-400">
+                          Saved {timeAgo(property.createdAt)}
+                        </div>
+
+                        {/* Status tag */}
+                        <div className=" text-xs text-gray-400 mt-2">
+                          <span
+                            className={`px-2 py-1 rounded-full ${
+                              property.status === "Rent"
+                                ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300"
+                                : "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300"
+                            }`}
+                          >
                             {property.status}
                           </span>
                         </div>
-                      </div>
-                      <div className="text-right">
-                        <div className="font-bold text-lg">{property.price}</div>
-                        <div className="text-xs text-gray-400">Saved {property.saved}</div>
                       </div>
                     </div>
                   </div>
@@ -375,22 +512,33 @@ const BuyerDashboard = () => {
           <div className="bg-white dark:bg-gray-800 rounded-lg p-6">
             <div className="mb-6 flex items-center justify-between">
               <h3 className="text-xl font-semibold">Recently Viewed</h3>
-              <button className="text-blue-600 hover:text-blue-800 text-sm">Clear History</button>
+              <button className="text-blue-600 hover:text-blue-800 text-sm">
+                Clear History
+              </button>
             </div>
             <div className="space-y-4">
               {recentlyViewed.map((property) => (
-                <div key={property.id} className="flex items-center justify-between p-3 border border-gray-100 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                <div
+                  key={property.id}
+                  className="flex items-center justify-between p-3 border border-gray-100 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                >
                   <div>
-                    <h4 className="font-medium text-sm mb-1">{property.title}</h4>
+                    <h4 className="font-medium text-sm mb-1">
+                      {property.title}
+                    </h4>
                     <p className="text-xs text-gray-500 dark:text-gray-400 mb-1 flex items-center">
                       <MapPin className="w-3 h-3 mr-1" />
                       {property.location}
                     </p>
-                    <p className="text-xs text-gray-400">Viewed {property.viewed}</p>
+                    <p className="text-xs text-gray-400">
+                      Viewed {property.viewed}
+                    </p>
                   </div>
                   <div className="text-right">
                     <div className="font-bold text-sm">{property.price}</div>
-                    <button className="text-xs text-blue-600 hover:text-blue-800">View Again</button>
+                    <button className="text-xs text-blue-600 hover:text-blue-800">
+                      View Again
+                    </button>
                   </div>
                 </div>
               ))}

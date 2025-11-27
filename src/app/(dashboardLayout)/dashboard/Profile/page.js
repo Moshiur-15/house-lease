@@ -1,10 +1,39 @@
 "use client";
-import { useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
+import axios from "axios";
+import { toast } from "sonner";
+import { useEffect, useState } from "react";
 
 const ProfilePage = () => {
   const { data: session } = useSession();
+  const email = session?.user.email;
+  const [userData, setUserData] = useState(session?.user);
+
+  useEffect(() => {
+    if (session?.user) {
+      setUserData(session.user);
+    }
+  }, [session]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const location = form.location.value;
+    const professionalTitle = form.title.value;
+    try {
+      const res = await axios.put(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/UserDetailsUpdate`,
+        { name, email, location, professionalTitle }
+      );
+      setUserData(res?.data?.updatedUser);
+      toast("Profile updated successfully!");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  console.log(userData);
 
   return (
     <div className="dark:bg-[#0C0A09] bg-gray-100 min-h-screen">
@@ -16,9 +45,6 @@ const ProfilePage = () => {
           fill
           className="object-cover"
         />
-        <button className="absolute top-4 right-4 bg-white/80 dark:bg-gray-800/70 text-sm px-4 py-2 backdrop-blur-md hover:bg-white hover:scale-105 dark:hover:bg-gray-700 transition-all">
-          Edit Cover
-        </button>
       </div>
 
       {/* Profile Info Section */}
@@ -38,7 +64,7 @@ const ProfilePage = () => {
               alt="Profile"
               width={120}
               height={120}
-              className="border-4 border-white dark:border-gray-800 object-cover shadow-lg group-hover:scale-105 transition-transform"
+              className="border-4 h-[140px] w-36 border-white dark:border-gray-800 object-cover shadow-lg group-hover:scale-105 transition-transform"
               style={{ borderRadius: "50%" }}
             />
             <div
@@ -62,17 +88,17 @@ const ProfilePage = () => {
                     borderColor: "#ffb17d",
                   }}
                 >
-                  {session?.user.name}
+                  {userData?.name}
                 </span>
-                {session?.user.name}
+                {userData?.name}
               </span>
             </h2>
           </div>
 
           <p className="text-gray-600 dark:text-gray-400 mt-1 text-[17px]">
-            {session?.user.role === "admin" && "Administrator"}
-            {session?.user.role === "seller" && "Real Estate Seller"}
-            {session?.user.role === "buyer" && "Real Estate Buyer"}
+            {userData?.role === "admin" && "Administrator"}
+            {userData?.role === "seller" && "Real Estate Seller"}
+            {userData?.role === "buyer" && "Real Estate Buyer"}
           </p>
         </>
 
@@ -83,7 +109,7 @@ const ProfilePage = () => {
               Email Address
             </label>
             <p className="text-gray-700 dark:text-gray-200 mt-1 break-words">
-              {session?.user.email}
+              {userData?.email ? userData.email : 'N/A '}
             </p>
           </div>
 
@@ -92,24 +118,24 @@ const ProfilePage = () => {
               Location
             </label>
             <p className="text-gray-700 dark:text-gray-200 mt-1">
-              {session?.user.location}
+              {userData?.location ? userData.location : 'N/A '}
             </p>
           </div>
         </div>
 
         {/* Admin or Seller Extra Info */}
         <div className="bg-gray-100 dark:bg-gray-700 p-4 mt-6">
-          {session?.user.role === "admin" && (
+          {userData?.role === "admin" && (
             <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
               🛡️ As an admin, you have full control over users and listings.
             </p>
           )}
-          {session?.user.role === "seller" && (
+          {userData?.role === "seller" && (
             <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
               🏠 As a seller, you can manage your property listings.
             </p>
           )}
-          {session?.user.role === "buyer" && (
+          {userData?.role === "buyer" && (
             <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
               🛒 As a buyer, you can browse and save your favorite properties.
             </p>
@@ -121,7 +147,7 @@ const ProfilePage = () => {
 
       {/* Update Section */}
       <section className="border-t dark:border-gray-700 bg-slate-50 dark:bg-gray-900/80 mt-12">
-        <div className="px-4 py-10 lg:px-32">
+        <form onSubmit={handleSubmit} className="px-4 py-10 lg:px-32">
           <div className="relative group overflow-hidden mb-8">
             <h2 className="text-2xl md:text-3xl font-bold dark:text-white">
               <span
@@ -149,28 +175,41 @@ const ProfilePage = () => {
             <input
               type="text"
               placeholder="Full Name"
+              name="name"
+              required
+              defaultValue={userData?.name}
               className="w-full px-4 py-3 border dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-none focus:ring-0 focus:ring-none"
             />
             <input
               type="email"
               placeholder="Email Address"
+              name="email"
+              required
+              defaultValue={userData?.email}
+              readOnly
               className="w-full px-4 py-3 border dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-none focus:ring-0 focus:ring-none"
             />
             <input
               type="text"
               placeholder="Location"
+              name="location"
+              required
+              defaultValue={userData?.location}
               className="w-full px-4 py-3 border dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-none focus:ring-0 focus:ring-none"
             />
             <input
               type="text"
               placeholder="Professional Title"
+              name="title"
+              required
+              defaultValue={userData?.professionalTitle}
               className="w-full px-4 py-3 border dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-none focus:ring-0 focus:ring-none"
             />
           </div>
           <button className="mt-6 bg-[#FF8904] text-white px-6 py-3 transition-all shadow-lg hover:shadow-[#d4a973] dark:hover:shadow-[#e3af7397]">
             Save Changes
           </button>
-        </div>
+        </form>
       </section>
     </div>
   );

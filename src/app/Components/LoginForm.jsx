@@ -46,6 +46,7 @@ const LoginFormContent = () => {
       setRegister(false);
     }
   };
+  
   const img = {
     backgroundImage:
       "url('https://i.ibb.co/YM3BvTq/photo-1568605114967-8130f3a36994.jpg')",
@@ -58,6 +59,7 @@ const LoginFormContent = () => {
   const handleGoogleSignIn = () => {
     nextAuthSignIn("google");
   };
+
 
   return (
     <section style={img}>

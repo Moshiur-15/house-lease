@@ -10,10 +10,7 @@ const Banner = () => {
           "url(https://i.ibb.co/07gvvtg/wp4012682.jpg)",
       }}
     >
-      {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/50"></div>
-
-      {/* Content */}
       <div className="relative z-10 text-white text-center p-5 max-w-4xl mx-auto">
         <h1 className="text-2xl dark:text-white md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4">
           Buy, Sell & Rent Real Estate in Portland
@@ -23,7 +20,7 @@ const Banner = () => {
           home in one of the Pacific Northwest's most dynamic cities.
         </p>
         <Link href="/properties">
-          <button className="bg-[#FF8904] px-3 py-1.5 md:px-5 md:py-2.5 hover:cursor-pointer hover:bg-[#FF8904]/90">
+          <button className="bg-[#FF8904] active:scale-95 duration-300 px-3 py-1.5 md:px-5 md:py-2.5 hover:cursor-pointer hover:bg-[#FF8904]/90">
             Explore Properties
           </button>
         </Link>

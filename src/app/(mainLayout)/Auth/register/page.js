@@ -5,7 +5,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 const imgbbApiKey = "58a9d3ffd0c8663f17be9ce8a26786ff";
-import { signIn  } from "next-auth/react";
+import { signIn } from "next-auth/react";
 
 const RegisterPage = () => {
   const inputStyle =
@@ -64,7 +64,8 @@ const RegisterPage = () => {
   };
 
   const img = {
-    backgroundImage: "url('https://i.ibb.co/YM3BvTq/photo-1568605114967-8130f3a36994.jpg')",
+    backgroundImage:
+      "url('https://i.ibb.co/YM3BvTq/photo-1568605114967-8130f3a36994.jpg')",
     backgroundSize: "cover",
     backgroundPosition: "center",
     width: "100%",
@@ -72,8 +73,8 @@ const RegisterPage = () => {
   };
 
   const handleGoogleSignIn = () => {
-      signIn("google");
-    };
+    signIn("google");
+  };
 
   return (
     <div
