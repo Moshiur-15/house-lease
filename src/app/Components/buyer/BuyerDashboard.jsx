@@ -175,7 +175,7 @@ const BuyerDashboard = () => {
       const res = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}/api/buyer/welcomePageApi/propertyLangth`
       );
-      setPropertiesData(res.data.length);
+      setPropertiesData(res?.data?.data_length || 0);
     } catch (err) {
       console.error("Error fetching properties:", err);
     }
@@ -252,7 +252,7 @@ const BuyerDashboard = () => {
               </div>
             </div>
             <div className="text-2xl font-bold mb-1">
-              {wishlistData?.map((item) => item._id).length}
+              {Array.isArray(wishlistData) ? wishlistData.length : 0}
             </div>
             <div className="text-gray-500 dark:text-gray-400 text-sm">
               Saved Properties
@@ -274,7 +274,7 @@ const BuyerDashboard = () => {
               </div>
             </div>
             <div className="text-2xl font-bold mb-1">
-              {propertiesData?.map((item) => item.data_length)[0] || 0}
+              {propertiesData || 0}
             </div>
             <div className="text-gray-500 dark:text-gray-400 text-sm">
               Viewed Properties
@@ -297,7 +297,7 @@ const BuyerDashboard = () => {
             </div>
 
             <div className="text-2xl font-bold mb-1">
-              {bookingData?.map((item) => item._id).length}
+              {bookingData || 0}
             </div>
 
             <div className="text-gray-500 dark:text-gray-400 text-sm">
@@ -459,7 +459,7 @@ const BuyerDashboard = () => {
               />
             </section>
             <div className="space-y-4">
-              {wishlistData?.map((property) => (
+              {Array.isArray(wishlistData) && wishlistData.map((property) => (
                 <div
                   key={property._id}
                   className="flex items-start space-x-4 p-4 border border-gray-100 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
